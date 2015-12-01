@@ -18,31 +18,29 @@ namespace SaleManagement
 
         private void insertButton_Click(object sender, EventArgs e)
         {
-            SupplierDetailsForm SupplersDetailForm = new SupplierDetailsForm();
-            SupplersDetailForm.displayForInsert();
+            SupplierDetailsForm.CreateInsertForm();
             LoadDataToGrid();
         }
 
         private void updateButton_Click(object sender, EventArgs e)
         {
+            int selectedRowCount = Grv.SelectedRowsCount;
+            if (selectedRowCount == 0)
+            {
+                MessageBox.Show("Please select a category to update.");
+                return;
+            }
+            if (selectedRowCount > 1)
+            {
+                MessageBox.Show("You can only choose one category to update.");
+                return;
+            }
+
             try
             {
-                var rowCount = Grv.SelectedRowsCount;
-                if (rowCount == 0)
-                {
-                    MessageBox.Show("You have to choose one Category to update!");
-                }
-                else if (rowCount > 1)
-                {
-                    MessageBox.Show("You have to choose only one Category to update!");
-                }
-                else
-                {
-                    DataRow DataRowDetail = Grv.GetDataRow(Grv.FocusedRowHandle);
-                    SupplierDetailsForm CategoriesDetailForm = new SupplierDetailsForm();
-                    CategoriesDetailForm.displayForUpdate(DataRowDetail);
-                    LoadDataToGrid();
-                }
+                DataRow selectedRow = Grv.GetDataRow(Grv.FocusedRowHandle);
+                SupplierDetailsForm.CreateUpdateForm(selectedRow);
+                LoadDataToGrid();
             }
             catch (Exception)
             {
@@ -63,34 +61,36 @@ namespace SaleManagement
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
+            int selectedRowCount = Grv.SelectedRowsCount;
+            if (selectedRowCount == 0)
+            {
+                MessageBox.Show("Please select a category to delete.");
+                return;
+            }
+
             try
             {
-                decimal rowCount = Grv.SelectedRowsCount;
-                if (rowCount == 0)
+                bool plural = selectedRowCount > 1;
+                string itemType = (plural) ? "categories" : "category",
+                     warningMessage = "Are you sure that you want to delete the selected " + itemType + "?";
+                var dialogResult = MessageBox.Show(warningMessage, "Warning", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    MessageBox.Show("You have to choose at lease 1 Category to delete!");
-                }
-                else
-                {
-                    DialogResult dialogResult = MessageBox.Show("Are you sure that you want to continue to  perform this task?", "Warning", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.Yes)
+                    decimal j = 0;
+                    for (int i = 0; i < selectedRowCount; i++)
                     {
-                        decimal j = 0;
-                        for (int i = 0; i < rowCount; i++)
+                        DataRow DataRowDetail = Grv.GetDataRow(Grv.GetSelectedRows()[i]);
+                        decimal SupplierID = decimal.Parse(DataRowDetail["SupplierID"].ToString());
+                        DataAccess da = new DataAccess();
+                        if (!da.IsDeleteSuppliers(SupplierID))
                         {
-                            DataRow DataRowDetail = Grv.GetDataRow(Grv.GetSelectedRows()[i]);
-                            decimal SupplierID = decimal.Parse(DataRowDetail["SupplierID"].ToString());
-                            DataAccess da = new DataAccess();
-                            if (!da.IsDeleteSuppliers(SupplierID))
-                            {
-                                MessageBox.Show("Company named " + DataRowDetail["CompanyName"].ToString() + " have some Products, so you can not perform this task!");
-                                j++;
-                            }
+                            MessageBox.Show("Company named " + DataRowDetail["CompanyName"].ToString() + " have some Products, so you can not perform this task!");
+                            j++;
                         }
-
-                        MessageBox.Show("Delete " + (rowCount - j) + " record(s) successfully!");
-                       
                     }
+
+                    MessageBox.Show("Delete " + (selectedRowCount - j) + " record(s) successfully!");
+
                     LoadDataToGrid();
                 }
             }
