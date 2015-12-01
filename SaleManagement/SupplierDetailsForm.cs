@@ -62,32 +62,48 @@ namespace SaleManagement
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if (isForUpdate == false)
+            if (isInputOK())
             {
-                DataAccess da = new DataAccess();
-                if (da.IsInsertSuppliers(CompanyNameTxt.Text, PhoneTxt.Text, AddressTxt.Text))
+                if (isForUpdate == false)
                 {
-                    MessageBox.Show(" Insert Succeed!");
-                    this.Close();
+                    DataAccess da = new DataAccess();
+                    if (da.IsInsertSuppliers(CompanyNameTxt.Text, PhoneTxt.Text, AddressTxt.Text))
+                    {
+                        MessageBox.Show(" Insert Succeed!");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("This action isn't done because there are 2 record have same name!");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("This action isn't done because there are 2 record have same name!");
+                    DataAccess da = new DataAccess();
+                    if (da.IsUpdateSuppliers(CompanyNameTxt.Text, PhoneTxt.Text, AddressTxt.Text, supplierID))
+                    {
+                        MessageBox.Show("Update Succeed!");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("This action isn't done because there are 2 record have same name!");
+                    }
                 }
             }
             else
             {
-                DataAccess da = new DataAccess();
-                if (da.IsUpdateSuppliers(CompanyNameTxt.Text, PhoneTxt.Text, AddressTxt.Text, supplierID))
-                {
-                    MessageBox.Show("Update Succeed!");
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("This action isn't done because there are 2 record have same name!");
-                }
+                MessageBox.Show("You have to check your information!");
             }
+        }
+
+        private bool isInputOK()
+        {
+            if (CompanyNameTxt.Text!=""&& AddressTxt.Text!="" && PhoneTxt.Text!="")
+            {
+                return true;
+            }
+            return false;
         }
 
         private void exitButton_Click(object sender, EventArgs e)

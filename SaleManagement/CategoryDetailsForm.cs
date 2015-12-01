@@ -21,8 +21,10 @@ namespace SaleManagement
 
         private void m_cmd_luu_Click(object sender, EventArgs e)
         {
-            if (IsUpdate == false)
+            if (isInputOK())
             {
+                if (IsUpdate == false)
+                {
                     DataAccess da = new DataAccess();
                     if (da.IsInsertCategories(categoryTxt.Text, descriptionTxt.Text))
                     {
@@ -32,10 +34,10 @@ namespace SaleManagement
                     else
                     {
                         MessageBox.Show("This action isn't done because there are 2 record have same name!");
-                    }             
-            }
-            else
-            {             
+                    }
+                }
+                else
+                {
                     DataAccess da = new DataAccess();
                     if (da.IsUpdateCategories(categoryTxt.Text, descriptionTxt.Text, categoryID))
                     {
@@ -45,8 +47,20 @@ namespace SaleManagement
                     else
                     {
                         MessageBox.Show("This action isn't done because there are 2 record have same name!");
-                    }         
+                    }
+                }
             }
+            else
+            {
+                MessageBox.Show("You have to check your information!");
+            }
+        }
+
+        private bool isInputOK()
+        {
+            if (categoryTxt.Text != "")
+                return true;
+            return false;
         }
 
         internal void displayForUpdate(DataRow DataRowDetail)

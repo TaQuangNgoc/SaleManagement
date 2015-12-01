@@ -80,34 +80,53 @@ namespace SaleManagement
         private void saveButton_Click(object sender, EventArgs e)
         {
             byte[] image = null;
+            if( imageLocation!="")
             image= handleImageFileAndConvertToImageType(imageLocation);
-            if (IsUpdate == false)
+            if (isInputOK(image))
             {
-                DataAccess da = new DataAccess();
-                if (da.IsInsertProducts(productNameTxt.Text,decimal.Parse(companyNameSLE.EditValue.ToString()),decimal.Parse(categoryNameSLE.EditValue.ToString()),unitPriceTxt.Text,unitsInStockTxt.Text, image))
+                if (IsUpdate == false)
                 {
-                    MessageBox.Show(" Insert Succeed!");
-                    this.Close();
+                    DataAccess da = new DataAccess();
+                    if (da.IsInsertProducts(productNameTxt.Text, decimal.Parse(companyNameSLE.EditValue.ToString()), decimal.Parse(categoryNameSLE.EditValue.ToString()), unitPriceTxt.Text, unitsInStockTxt.Text, image))
+                    {
+                        MessageBox.Show(" Insert Succeed!");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("This action isn't done because there are 2 record have same name!");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("This action isn't done because there are 2 record have same name!");
+                    DataAccess da = new DataAccess();
+                    if (da.IsUpdateProducts(productNameTxt.Text, decimal.Parse(companyNameSLE.EditValue.ToString()), decimal.Parse(categoryNameSLE.EditValue.ToString()), unitPriceTxt.Text, unitsInStockTxt.Text, image, productID))
+                    {
+                        MessageBox.Show("Update Succeed!");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("This action isn't done because there are 2 record have same name!");
+                    }
                 }
             }
             else
             {
-                DataAccess da = new DataAccess();
-                if (da.IsUpdateProducts(productNameTxt.Text, decimal.Parse(companyNameSLE.EditValue.ToString()), decimal.Parse(categoryNameSLE.EditValue.ToString()), unitPriceTxt.Text, unitsInStockTxt.Text,image, productID))
-                {
-                    MessageBox.Show("Update Succeed!");
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("This action isn't done because there are 2 record have same name!");
-                }
+                 MessageBox.Show("You have to check your information!");
             }
+            
         }
+
+        private bool isInputOK(byte[] image)
+        {
+            if (productNameTxt.Text!=""&& companyNameSLE.Text!="" && categoryNameSLE.Text!="" && unitPriceTxt.Text!="" && unitsInStockTxt.Text!="")
+            {
+                return true;
+            }
+            return false;
+        }
+
 
         private byte[] handleImageFileAndConvertToImageType(string imageLocation)
         {

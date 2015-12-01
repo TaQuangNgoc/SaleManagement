@@ -17,7 +17,7 @@ namespace SaleManagement
         public DatabaseConnection()
         {
             myAdapter = new SqlDataAdapter();
-            string connectionString=" Data Source=taquangngoc-pc\\sqlexpress;Initial Catalog=SaleManagement;User id=sa;Password=sa";
+            string connectionString = " Data Source=27.118.16.60\\sqlexpress;Initial Catalog=SaleManagement;User id=sa;Password=BK!ndEx-2k15";
             conn = new SqlConnection(connectionString);
      
         }
