@@ -19,7 +19,6 @@ namespace SaleManagement
         public ProductDetailsForm()
         {
             InitializeComponent();
-            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void ProductsDetail_Load(object sender, EventArgs e)

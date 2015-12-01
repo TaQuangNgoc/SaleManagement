@@ -30,10 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductDetailsForm));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.BrowseButton = new DevExpress.XtraEditors.SimpleButton();
             this.companyNameSLE = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.categoryNameSLE = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.unitsInStockTxt = new System.Windows.Forms.TextBox();
             this.unitPriceTxt = new System.Windows.Forms.TextBox();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
@@ -47,24 +54,17 @@
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.exitButton = new DevExpress.XtraEditors.SimpleButton();
             this.saveButton = new DevExpress.XtraEditors.SimpleButton();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.BrowseButton = new DevExpress.XtraEditors.SimpleButton();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
+            this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.companyNameSLE.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryNameSLE.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
-            this.groupControl2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -90,6 +90,35 @@
             this.groupControl1.TabIndex = 11;
             this.groupControl1.Text = "Product Detail";
             // 
+            // groupControl2
+            // 
+            this.groupControl2.Controls.Add(this.pictureBox);
+            this.groupControl2.Controls.Add(this.BrowseButton);
+            this.groupControl2.Location = new System.Drawing.Point(426, 59);
+            this.groupControl2.Name = "groupControl2";
+            this.groupControl2.Size = new System.Drawing.Size(263, 297);
+            this.groupControl2.TabIndex = 22;
+            this.groupControl2.Text = "Picture";
+            // 
+            // pictureBox
+            // 
+            this.pictureBox.Location = new System.Drawing.Point(25, 70);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(216, 211);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox.TabIndex = 20;
+            this.pictureBox.TabStop = false;
+            // 
+            // BrowseButton
+            // 
+            this.BrowseButton.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.BrowseButton.Location = new System.Drawing.Point(61, 0);
+            this.BrowseButton.Name = "BrowseButton";
+            this.BrowseButton.Size = new System.Drawing.Size(142, 38);
+            this.BrowseButton.TabIndex = 21;
+            this.BrowseButton.Text = "Browse";
+            this.BrowseButton.Click += new System.EventHandler(this.BrowseButton_Click);
+            // 
             // companyNameSLE
             // 
             this.companyNameSLE.EditValue = "";
@@ -113,6 +142,20 @@
             this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "ID";
+            this.gridColumn1.FieldName = "SupplierID";
+            this.gridColumn1.Name = "gridColumn1";
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "COMPANY NAME";
+            this.gridColumn3.FieldName = "CompanyName";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 0;
+            // 
             // categoryNameSLE
             // 
             this.categoryNameSLE.EditValue = "";
@@ -135,6 +178,20 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "CATEGORY NAME";
+            this.gridColumn6.FieldName = "CategoryName";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 0;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "CategoryID";
+            this.gridColumn2.FieldName = "CategoryID";
+            this.gridColumn2.Name = "gridColumn2";
             // 
             // unitsInStockTxt
             // 
@@ -258,85 +315,29 @@
             this.saveButton.Text = "Save";
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
-            // pictureBox
-            // 
-            this.pictureBox.Location = new System.Drawing.Point(25, 70);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(216, 211);
-            this.pictureBox.TabIndex = 20;
-            this.pictureBox.TabStop = false;
-            // 
-            // BrowseButton
-            // 
-            this.BrowseButton.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
-            this.BrowseButton.Location = new System.Drawing.Point(61, 0);
-            this.BrowseButton.Name = "BrowseButton";
-            this.BrowseButton.Size = new System.Drawing.Size(142, 38);
-            this.BrowseButton.TabIndex = 21;
-            this.BrowseButton.Text = "Browse";
-            this.BrowseButton.Click += new System.EventHandler(this.BrowseButton_Click);
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "ID";
-            this.gridColumn1.FieldName = "SupplierID";
-            this.gridColumn1.Name = "gridColumn1";
-            // 
-            // gridColumn3
-            // 
-            this.gridColumn3.Caption = "COMPANY NAME";
-            this.gridColumn3.FieldName = "CompanyName";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 0;
-            // 
-            // gridColumn6
-            // 
-            this.gridColumn6.Caption = "CATEGORY NAME";
-            this.gridColumn6.FieldName = "CategoryName";
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 0;
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.Caption = "CategoryID";
-            this.gridColumn2.FieldName = "CategoryID";
-            this.gridColumn2.Name = "gridColumn2";
-            // 
-            // groupControl2
-            // 
-            this.groupControl2.Controls.Add(this.pictureBox);
-            this.groupControl2.Controls.Add(this.BrowseButton);
-            this.groupControl2.Location = new System.Drawing.Point(426, 59);
-            this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(263, 297);
-            this.groupControl2.TabIndex = 22;
-            this.groupControl2.Text = "Picture";
-            // 
-            // ProductsDetail
+            // ProductDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(715, 436);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.panelControl2);
-            this.Name = "ProductsDetail";
+            this.Name = "ProductDetailsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProductsDetail";
             this.Load += new System.EventHandler(this.ProductsDetail_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
+            this.groupControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.companyNameSLE.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryNameSLE.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
-            this.groupControl2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

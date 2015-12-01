@@ -11,7 +11,7 @@ namespace SaleManagement
 {
     public partial class SupplierDetailsForm : Form
     {
-        private bool isForUpdate = true;
+        private bool isForUpdate;
         private decimal supplierID;
 
         public static SupplierDetailsForm CreateInsertForm()

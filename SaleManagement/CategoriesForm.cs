@@ -18,8 +18,7 @@ namespace SaleManagement
 
         private void insertButton_Click(object sender, EventArgs e)
         {
-            CategoriesDetail CategoriesDetailForm = new CategoriesDetail();
-            CategoriesDetailForm.displayForInsert();
+            CategoryDetailsForm.CreateInsertForm();
             LoadDataToGrid();
         }
 
@@ -38,9 +37,8 @@ namespace SaleManagement
                 }
                 else
                 {
-                    DataRow DataRowDetail = Grv.GetDataRow(Grv.FocusedRowHandle);
-                    CategoriesDetail CategoriesDetailForm = new CategoriesDetail();
-                    CategoriesDetailForm.displayForUpdate(DataRowDetail);
+                    DataRow selectedRow = Grv.GetDataRow(Grv.FocusedRowHandle);
+                    CategoryDetailsForm.CreateUpdateForm(selectedRow);
                     LoadDataToGrid();
                 }
             }
