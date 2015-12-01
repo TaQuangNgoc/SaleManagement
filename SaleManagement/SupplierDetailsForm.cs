@@ -11,19 +11,38 @@ namespace SaleManagement
 {
     public partial class SupplierDetailsForm : Form
     {
-        private bool IsUpdate = true; // if Form is Insert State, IsUpdate= false;
+        private bool isForUpdate = true;
         private decimal supplierID;
 
-        public static SupplierDetailsForm Create
+        public static SupplierDetailsForm CreateInsertForm()
+        {
+            var form = new SupplierDetailsForm();
+            form.isForUpdate = false;
+            form.ShowDialog();
 
-        public SupplierDetailsForm()
+            return form;
+        }
+
+        public static SupplierDetailsForm CreateUpdateForm(DataRow selectedRow)
+        {
+            var form = new SupplierDetailsForm();
+            form.isForUpdate = true;
+
+            form.transferDataRowDetailToForm(selectedRow);
+
+            form.ShowDialog();
+
+            return form;
+        }
+
+        private SupplierDetailsForm()
         {
             InitializeComponent();
         }
 
         internal void displayForInsert()
         {
-            IsUpdate = false;
+            isForUpdate = false;
             this.ShowDialog();
         }
 
@@ -43,7 +62,7 @@ namespace SaleManagement
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if (IsUpdate == false)
+            if (isForUpdate == false)
             {
                 DataAccess da = new DataAccess();
                 if (da.IsInsertSuppliers(CompanyNameTxt.Text, PhoneTxt.Text, AddressTxt.Text))

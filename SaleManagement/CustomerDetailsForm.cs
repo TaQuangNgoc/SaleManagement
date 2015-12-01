@@ -11,24 +11,24 @@ namespace SaleManagement
 {
     public partial class CustomerDetailsForm : Form
     {
-        private bool IsForUpdate;
+        private bool isForUpdate;
         private decimal customerID;
 
         public static CustomerDetailsForm CreateInsertForm()
         {
             var form = new CustomerDetailsForm();
-            form.IsForUpdate = false;
+            form.isForUpdate = false;
             form.ShowDialog();
 
             return form;
         }
 
-        public static CustomerDetailsForm CreateUpdateForm(DataRow DataRowDetail)
+        public static CustomerDetailsForm CreateUpdateForm(DataRow selectedRow)
         {
             var form = new CustomerDetailsForm();
-            form.IsForUpdate = true;
+            form.isForUpdate = true;
 
-            form.transferDataRowDetailToForm(DataRowDetail);
+            form.transferDataRowDetailToForm(selectedRow);
 
             form.ShowDialog();
 
@@ -52,7 +52,7 @@ namespace SaleManagement
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if (IsForUpdate == false)
+            if (isForUpdate == false)
             {
                 DataAccess da = new DataAccess();
                 if (da.IsInsertCustomers(lastNameTxt.Text, firstNameTxt.Text,addressTxt.Text,phoneTxt.Text, dateOfBirthDAT.Value))
