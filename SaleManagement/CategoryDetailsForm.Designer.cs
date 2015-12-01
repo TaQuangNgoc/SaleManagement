@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CategoriesDetail));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CategoryDetailsForm));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.categoryTxt = new System.Windows.Forms.TextBox();
             this.m_lbl_nghiep_vu = new DevExpress.XtraEditors.LabelControl();
