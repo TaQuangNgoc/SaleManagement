@@ -65,41 +65,41 @@
     <Reference Include="UIAutomationClient" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Categories.cs">
+    <Compile Include="CategoriesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Categories.Designer.cs">
-      <DependentUpon>Categories.cs</DependentUpon>
+    <Compile Include="CategoriesForm.Designer.cs">
+      <DependentUpon>CategoriesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CategoriesDetail.cs">
+    <Compile Include="CategoryDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CategoriesDetail.Designer.cs">
-      <DependentUpon>CategoriesDetail.cs</DependentUpon>
+    <Compile Include="CategoryDetailsForm.Designer.cs">
+      <DependentUpon>CategoryDetailsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Customers.cs">
+    <Compile Include="CustomersForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Customers.Designer.cs">
-      <DependentUpon>Customers.cs</DependentUpon>
+    <Compile Include="CustomersForm.Designer.cs">
+      <DependentUpon>CustomersForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomerDetail.cs">
+    <Compile Include="CustomerDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CustomerDetail.Designer.cs">
-      <DependentUpon>CustomerDetail.cs</DependentUpon>
+    <Compile Include="CustomerDetailsForm.Designer.cs">
+      <DependentUpon>CustomerDetailsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Products.cs">
+    <Compile Include="ProductsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Products.Designer.cs">
-      <DependentUpon>Products.cs</DependentUpon>
+    <Compile Include="ProductsForm.Designer.cs">
+      <DependentUpon>ProductsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProductsDetail.cs">
+    <Compile Include="ProductDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProductsDetail.Designer.cs">
-      <DependentUpon>ProductsDetail.cs</DependentUpon>
+    <Compile Include="ProductDetailsForm.Designer.cs">
+      <DependentUpon>ProductDetailsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -109,35 +109,35 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Suppliers.cs">
+    <Compile Include="SuppliersForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Suppliers.Designer.cs">
-      <DependentUpon>Suppliers.cs</DependentUpon>
+    <Compile Include="SuppliersForm.Designer.cs">
+      <DependentUpon>SuppliersForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SuppliersDetail.cs">
+    <Compile Include="SupplierDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SuppliersDetail.Designer.cs">
-      <DependentUpon>SuppliersDetail.cs</DependentUpon>
+    <Compile Include="SupplierDetailsForm.Designer.cs">
+      <DependentUpon>SupplierDetailsForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Categories.resx">
-      <DependentUpon>Categories.cs</DependentUpon>
+    <EmbeddedResource Include="CategoriesForm.resx">
+      <DependentUpon>CategoriesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CategoriesDetail.resx">
-      <DependentUpon>CategoriesDetail.cs</DependentUpon>
+    <EmbeddedResource Include="CategoryDetailsForm.resx">
+      <DependentUpon>CategoryDetailsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Customers.resx">
-      <DependentUpon>Customers.cs</DependentUpon>
+    <EmbeddedResource Include="CustomersForm.resx">
+      <DependentUpon>CustomersForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomerDetail.resx">
-      <DependentUpon>CustomerDetail.cs</DependentUpon>
+    <EmbeddedResource Include="CustomerDetailsForm.resx">
+      <DependentUpon>CustomerDetailsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Products.resx">
-      <DependentUpon>Products.cs</DependentUpon>
+    <EmbeddedResource Include="ProductsForm.resx">
+      <DependentUpon>ProductsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProductsDetail.resx">
-      <DependentUpon>ProductsDetail.cs</DependentUpon>
+    <EmbeddedResource Include="ProductDetailsForm.resx">
+      <DependentUpon>ProductDetailsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -153,11 +153,11 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Suppliers.resx">
-      <DependentUpon>Suppliers.cs</DependentUpon>
+    <EmbeddedResource Include="SuppliersForm.resx">
+      <DependentUpon>SuppliersForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SuppliersDetail.resx">
-      <DependentUpon>SuppliersDetail.cs</DependentUpon>
+    <EmbeddedResource Include="SupplierDetailsForm.resx">
+      <DependentUpon>SupplierDetailsForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">

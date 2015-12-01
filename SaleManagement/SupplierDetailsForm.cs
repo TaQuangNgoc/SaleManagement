@@ -9,11 +9,14 @@ using System.Windows.Forms;
 
 namespace SaleManagement
 {
-    public partial class SuppliersDetail : Form
+    public partial class SupplierDetailsForm : Form
     {
         private bool IsUpdate = true; // if Form is Insert State, IsUpdate= false;
         private decimal supplierID;
-        public SuppliersDetail()
+
+        public static SupplierDetailsForm Create
+
+        public SupplierDetailsForm()
         {
             InitializeComponent();
         }

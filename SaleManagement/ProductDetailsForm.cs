@@ -10,12 +10,13 @@ using System.Windows.Forms;
 
 namespace SaleManagement
 {
-    public partial class ProductsDetail : Form
+    public partial class ProductDetailsForm : Form
     {
         private bool IsUpdate = true; // if Form is Insert State, IsUpdate= false;
         private decimal productID;
         private string imageLocation = "";
-        public ProductsDetail()
+
+        public ProductDetailsForm()
         {
             InitializeComponent();
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;

@@ -1,6 +1,6 @@
 ﻿namespace SaleManagement
 {
-    partial class CustomerDetail
+    partial class CustomerDetailsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerDetail));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerDetailsForm));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.dateOfBirthDAT = new System.Windows.Forms.DateTimePicker();
             this.phoneTxt = new System.Windows.Forms.TextBox();

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SaleManagement
 {
-    public partial class Products : Form
+    public partial class ProductsForm : Form
     {
-        public Products()
+        public ProductsForm()
         {
             InitializeComponent();
             UnitPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
@@ -24,7 +24,7 @@ namespace SaleManagement
         private void insertButton_Click(object sender, EventArgs e)
         {
            
-            ProductsDetail FroductsDetailForm = new ProductsDetail();
+            ProductDetailsForm FroductsDetailForm = new ProductDetailsForm();
             FroductsDetailForm.displayForInsert();
             LoadDataToGrid();
         }
@@ -45,7 +45,7 @@ namespace SaleManagement
                 else
                 {
                     DataRow DataRowDetail = Grv.GetDataRow(Grv.FocusedRowHandle);
-                    ProductsDetail FroductsDetailForm = new ProductsDetail();
+                    ProductDetailsForm FroductsDetailForm = new ProductDetailsForm();
                     FroductsDetailForm.displayForUpdate(DataRowDetail);
                     LoadDataToGrid();
                 }

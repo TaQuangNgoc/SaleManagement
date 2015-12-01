@@ -1,6 +1,6 @@
 ﻿namespace SaleManagement
 {
-    partial class CategoriesDetail
+    partial class CategoryDetailsForm
     {
         /// <summary>
         /// Required designer variable.

@@ -9,23 +9,23 @@ using System.Windows.Forms;
 
 namespace SaleManagement
 {
-    public partial class CustomerDetail : Form
+    public partial class CustomerDetailsForm : Form
     {
         private bool IsForUpdate;
         private decimal customerID;
 
-        public static CustomerDetail CreateInsertForm()
+        public static CustomerDetailsForm CreateInsertForm()
         {
-            var form = new CustomerDetail();
+            var form = new CustomerDetailsForm();
             form.IsForUpdate = false;
             form.ShowDialog();
 
             return form;
         }
 
-        public static CustomerDetail CreateUpdateForm(DataRow DataRowDetail)
+        public static CustomerDetailsForm CreateUpdateForm(DataRow DataRowDetail)
         {
-            var form = new CustomerDetail();
+            var form = new CustomerDetailsForm();
             form.IsForUpdate = true;
 
             form.transferDataRowDetailToForm(DataRowDetail);
@@ -35,7 +35,7 @@ namespace SaleManagement
             return form;
         }
 
-        private CustomerDetail()
+        private CustomerDetailsForm()
         {
             InitializeComponent();
         }

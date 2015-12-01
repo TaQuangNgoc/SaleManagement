@@ -1,6 +1,6 @@
 ﻿namespace SaleManagement
 {
-    partial class Suppliers
+    partial class SuppliersForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Suppliers));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SuppliersForm));
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.insertButton = new DevExpress.XtraEditors.SimpleButton();

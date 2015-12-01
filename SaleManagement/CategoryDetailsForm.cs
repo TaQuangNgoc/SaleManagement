@@ -9,11 +9,12 @@ using System.Windows.Forms;
 
 namespace SaleManagement
 {
-    public partial class CategoriesDetail : Form
+    public partial class CategoryDetailsForm : Form
     {
         private bool IsUpdate = true; // if Form is Insert State, IsUpdate= false;
         private decimal categoryID;
-        public CategoriesDetail()
+
+        public CategoryDetailsForm()
         {
             InitializeComponent();
         }

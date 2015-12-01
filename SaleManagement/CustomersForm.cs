@@ -9,16 +9,16 @@ using System.Windows.Forms;
 
 namespace SaleManagement
 {
-    public partial class Customers : Form
+    public partial class CustomersForm : Form
     {
-        public Customers()
+        public CustomersForm()
         {
             InitializeComponent();
         }
 
         private void insertButton_Click(object sender, EventArgs e)
         {
-            CustomerDetail CustomersDetailForm = CustomerDetail.CreateInsertForm();
+            CustomerDetailsForm CustomersDetailForm = CustomerDetailsForm.CreateInsertForm();
             LoadDataToGrid();
         }
 
@@ -44,7 +44,7 @@ namespace SaleManagement
                 else
                 {
                     DataRow dataRowDetail = Grv.GetDataRow(Grv.FocusedRowHandle);
-                    CustomerDetail CustomersDetailForm = CustomerDetail.CreateUpdateForm(dataRowDetail);
+                    CustomerDetailsForm CustomersDetailForm = CustomerDetailsForm.CreateUpdateForm(dataRowDetail);
                     LoadDataToGrid();
                 }
             }

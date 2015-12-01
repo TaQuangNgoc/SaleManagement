@@ -9,24 +9,24 @@ using System.Windows.Forms;
 
 namespace SaleManagement
 {
-    public partial class Suppliers : Form
+    public partial class CategoriesForm : Form
     {
-        public Suppliers()
+        public CategoriesForm()
         {
             InitializeComponent();
         }
 
         private void insertButton_Click(object sender, EventArgs e)
         {
-            SuppliersDetail SupplersDetailForm = new SuppliersDetail();
-            SupplersDetailForm.displayForInsert();
+            CategoriesDetail CategoriesDetailForm = new CategoriesDetail();
+            CategoriesDetailForm.displayForInsert();
             LoadDataToGrid();
         }
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            try
-            {
+             try
+                {
                 var rowCount = Grv.SelectedRowsCount;
                 if (rowCount == 0)
                 {
@@ -39,18 +39,19 @@ namespace SaleManagement
                 else
                 {
                     DataRow DataRowDetail = Grv.GetDataRow(Grv.FocusedRowHandle);
-                    SuppliersDetail CategoriesDetailForm = new SuppliersDetail();
+                    CategoriesDetail CategoriesDetailForm = new CategoriesDetail();
                     CategoriesDetailForm.displayForUpdate(DataRowDetail);
                     LoadDataToGrid();
                 }
             }
-            catch (Exception v_e)
+            catch (Exception )
             {
                 MessageBox.Show("Some errors occured!");
             }
+           
         }
 
-        private void Suppliers_Load(object sender, EventArgs e)
+        private void Categories_Load(object sender, EventArgs e)
         {
             LoadDataToGrid();
         }
@@ -58,7 +59,12 @@ namespace SaleManagement
         private void LoadDataToGrid()
         {
             DataAccess da = new DataAccess();
-            Grc.DataSource = da.SuppliersDataTable();
+            Grc.DataSource = da.CategoriesDataTable();
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -77,32 +83,26 @@ namespace SaleManagement
                     {
                         decimal j = 0;
                         for (int i = 0; i < rowCount; i++)
-                        {
-                            DataRow DataRowDetail = Grv.GetDataRow(Grv.GetSelectedRows()[i]);
-                            decimal SupplierID = decimal.Parse(DataRowDetail["SupplierID"].ToString());
-                            DataAccess da = new DataAccess();
-                            if (!da.IsDeleteSuppliers(SupplierID))
-                            {
-                                MessageBox.Show("Company named " + DataRowDetail["CompanyName"].ToString() + " have some Products, so you can not perform this task!");
-                                j++;
-                            }
-                        }
+			            {
+			                 DataRow DataRowDetail =Grv.GetDataRow(Grv.GetSelectedRows()[i]);
+                                decimal CategoryID = decimal.Parse(DataRowDetail["CategoryID"].ToString());
+                                DataAccess da = new DataAccess();
+                                if (!da.IsDeleteCategories(CategoryID))
+                                {
+                                    MessageBox.Show("Category "+ DataRowDetail["CategoryName"].ToString()+" have some Products, so you can not perform this task!");
+                                    j++;
+                                }
+			            }
 
-                        MessageBox.Show("Delete " + (rowCount - j) + " record(s) successfully!");
-                       
+                        MessageBox.Show("Delete "+( rowCount-j) + " record(s) successfully!");                   
+                        LoadDataToGrid();
                     }
-                    LoadDataToGrid();
                 }
             }
-            catch (Exception)
+            catch (Exception )
             {
-
+                
             }
-        }
-
-        private void exitButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

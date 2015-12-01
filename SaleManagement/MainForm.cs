@@ -12,10 +12,10 @@ namespace SaleManagement
 {
     public partial class MainForm : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-        Categories categoriesForm;
-        Products productsForm;
-        Suppliers suppliersForm;
-        Customers customersForm;
+        CategoriesForm categoriesForm;
+        ProductsForm productsForm;
+        SuppliersForm suppliersForm;
+        CustomersForm customersForm;
         public MainForm()
         {
             InitializeComponent();
@@ -54,7 +54,7 @@ namespace SaleManagement
         {
              if (categoriesForm == null || !IsFormOpen(categoriesForm))
              {
-                 categoriesForm = new Categories();
+                 categoriesForm = new CategoriesForm();
                  categoriesForm.MdiParent = this;
                  categoriesForm.Show();
              }
@@ -68,7 +68,7 @@ namespace SaleManagement
         {
             if (productsForm == null || !IsFormOpen(productsForm))
             {
-                productsForm = new Products();
+                productsForm = new ProductsForm();
                 productsForm.MdiParent = this;
                 productsForm.Show();
             }
@@ -82,7 +82,7 @@ namespace SaleManagement
         {
             if (suppliersForm == null || !IsFormOpen(suppliersForm))
             {
-                suppliersForm = new Suppliers();
+                suppliersForm = new SuppliersForm();
                 suppliersForm.MdiParent = this;
                 suppliersForm.Show();
             }
@@ -96,7 +96,7 @@ namespace SaleManagement
         {
             if (customersForm == null || !IsFormOpen(customersForm))
             {
-                customersForm = new Customers();
+                customersForm = new CustomersForm();
                 customersForm.MdiParent = this;
                 customersForm.Show();
             }

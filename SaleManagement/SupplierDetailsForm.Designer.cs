@@ -1,6 +1,6 @@
 ﻿namespace SaleManagement
 {
-    partial class SuppliersDetail
+    partial class SupplierDetailsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SuppliersDetail));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SupplierDetailsForm));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.CompanyNameTxt = new System.Windows.Forms.TextBox();
             this.m_lbl_nghiep_vu = new DevExpress.XtraEditors.LabelControl();
