@@ -43,8 +43,8 @@ namespace SaleManagement
                 myCommand.CommandText = _query;
                 myCommand.Parameters.AddRange(sqlParameter);
                 myCommand.ExecuteNonQuery();                
-                myAdapter.SelectCommand = myCommand;
-                myAdapter.Fill(ds);
+               // myAdapter.SelectCommand = myCommand;
+               // myAdapter.Fill(ds);
               //  dataTable = ds.Tables[0];
             }
             catch (SqlException e)

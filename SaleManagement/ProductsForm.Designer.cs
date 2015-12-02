@@ -207,7 +207,10 @@
             this.Grv.DetailHeight = 500;
             this.Grv.FocusedCardTopFieldIndex = 0;
             this.Grv.GridControl = this.Grc;
+            this.Grv.MaximumCardColumns = 3;
+            this.Grv.MaximumCardRows = 2;
             this.Grv.Name = "Grv";
+            this.Grv.OptionsBehavior.AutoHorzWidth = true;
             this.Grv.OptionsBehavior.Editable = false;
             this.Grv.OptionsBehavior.FieldAutoHeight = true;
             this.Grv.PaintStyleName = "Flat";
