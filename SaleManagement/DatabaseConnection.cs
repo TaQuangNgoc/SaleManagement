@@ -53,7 +53,6 @@ namespace SaleManagement
 
         public void ExecuteInsertQuery(string query, SqlParameter[] sqlParameter)
         {
-            DataSet dataSet = new DataSet();
             try
             {
                 OpenConnection();
@@ -61,7 +60,6 @@ namespace SaleManagement
                 command.Parameters.AddRange(sqlParameter);
                 command.ExecuteNonQuery();
                 adapter.InsertCommand = command;
-                adapter.Fill(dataSet);
             }
             catch (SqlException)
             {
@@ -75,7 +73,6 @@ namespace SaleManagement
 
         public void ExecuteUpdateQuery(string query, SqlParameter[] sqlParameter)
         {
-            DataSet dataSet = new DataSet();
             try
             {
                 OpenConnection();
@@ -83,7 +80,6 @@ namespace SaleManagement
                 command.Parameters.AddRange(sqlParameter);
                 command.ExecuteNonQuery();
                 adapter.UpdateCommand = command;
-                adapter.Fill(dataSet);
             }
             catch (SqlException)
             {
@@ -97,8 +93,6 @@ namespace SaleManagement
 
         public void ExecuteDeleteQuery(string query, SqlParameter[] sqlParameter)
         {
-
-            DataSet dataSet = new DataSet();
             try
             {
                 OpenConnection();
@@ -106,7 +100,6 @@ namespace SaleManagement
                 command.Parameters.AddRange(sqlParameter);
                 command.ExecuteNonQuery();
                 adapter.DeleteCommand = command;
-                adapter.Fill(dataSet);
             }
             catch (SqlException)
             {

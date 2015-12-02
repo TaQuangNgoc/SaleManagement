@@ -80,7 +80,7 @@ namespace SaleManagement
                     DialogResult dialogResult = MessageBox.Show("Are you sure that you want to continue to  perform this task?", "Warning", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        decimal j = 0;
+                        int j = 0;
                         for (int i = 0; i < rowCount; i++)
                         {
                             DataRow DataRowDetail = Grv.GetDataRow(Grv.GetSelectedRows()[i]);

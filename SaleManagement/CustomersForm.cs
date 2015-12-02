@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,9 +14,12 @@ namespace SaleManagement
 {
     public partial class CustomersForm : Form
     {
+        private DataAccess dataAccess;
+
         public CustomersForm()
         {
             InitializeComponent();
+            dataAccess = new DataAccess();
         }
 
         private void insertButton_Click(object sender, EventArgs e)
@@ -27,7 +31,7 @@ namespace SaleManagement
         private void LoadDataToGrid()
         {
             DataAccess da = new DataAccess();
-            Grc.DataSource = da.CustomersDataTable();
+            Grc.DataSource = da.SelectCustomers();
         }
 
         private void updateButton_Click(object sender, EventArgs e)
@@ -63,13 +67,17 @@ namespace SaleManagement
                     DialogResult dialogResult = MessageBox.Show("Are you sure that you want to continue to  perform this task?", "Warning", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        decimal j = 0;
+                        int j = 0;
                         for (int i = 0; i < rowCount; i++)
                         {
                             DataRow DataRowDetail = Grv.GetDataRow(Grv.GetSelectedRows()[i]);
-                            decimal customerID = decimal.Parse(DataRowDetail["CustomerID"].ToString());
+                            int customerID = int.Parse(DataRowDetail["CustomerID"].ToString());
                             DataAccess da = new DataAccess();
-                            if (!da.IsDeleteCustomers(customerID))
+                            try
+                            {
+                                da.DeleteCustomer(customerID);
+                            }
+                            catch (SqlException)
                             {
                                 MessageBox.Show("Customer named " + DataRowDetail["FirstName"].ToString() + " can not delete!");
                                 j++;

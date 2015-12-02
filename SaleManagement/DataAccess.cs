@@ -190,48 +190,54 @@ namespace SaleManagement
 
         #region Customers
 
-        public string InsertCustomersString(string lastName, string firstName, string address, string phone,DateTime dateOfBirth )
+        public void InsertCustomer(string lastName, string firstName, string address, string phone, DateTime dateOfBirth)
         {
-            return string.Format("INSERT INTO [Customers]" + " VALUES (N'" + lastName + "', N'" + firstName + "', N'" + address + "', '" + phone + "','" + dateOfBirth.ToString("yyyy-MM-dd") + "')");
+            string query = "INSERT INTO [Customers]" + " VALUES (" + "@lastName" + ", " + "@firstName" + ", " + "@address" + ", " + "@phone" + "," + "@dateOfBirth" + ")";
+            var parameters = new SqlParameter[5];
+            parameters[0] = new SqlParameter("@lastName", SqlDbType.NVarChar);
+            parameters[0].Value = lastName;
+            parameters[1] = new SqlParameter("@firstName", SqlDbType.NVarChar);
+            parameters[1].Value = firstName;
+            parameters[2] = new SqlParameter("@address", SqlDbType.NVarChar);
+            parameters[2].Value = address;
+            parameters[3] = new SqlParameter("@phone", SqlDbType.NVarChar);
+            parameters[3].Value = phone;
+            parameters[4] = new SqlParameter("@dateOfBirth", SqlDbType.Date);
+            parameters[4].Value = dateOfBirth;
+            connection.ExecuteInsertQuery(query, parameters);
         }
 
-        public bool IsInsertCustomers(string lastName, string firstName, string address, string phone, DateTime dateOfBirth)
+        public void UpdateCustomer(string lastName, string firstName, string address, string phone, DateTime dateOfBirth, int customerID)
         {
-            string query = InsertCustomersString(lastName, firstName, address, phone, dateOfBirth);
-            return true;// conn.ExcuteQuery(query);
-
+            string query = "UPDATE [Customers] SET [LastName] = " + "@lastName" + ", [FirstName] = " + "@firstName" + ", [Address] = " + "@address" + ", [Phone] = " + "@phone" + ", [DateOfBirth] = " + "@dateOfBirth" + " WHERE [CustomerID] = " + "@customerID";
+            var parameters = new SqlParameter[6];
+            parameters[0] = new SqlParameter("@lastName", SqlDbType.NVarChar);
+            parameters[0].Value = lastName;
+            parameters[1] = new SqlParameter("@firstName", SqlDbType.NVarChar);
+            parameters[1].Value = firstName;
+            parameters[2] = new SqlParameter("@address", SqlDbType.NVarChar);
+            parameters[2].Value = address;
+            parameters[3] = new SqlParameter("@phone", SqlDbType.NVarChar);
+            parameters[3].Value = phone;
+            parameters[4] = new SqlParameter("@dateOfBirth", SqlDbType.Date);
+            parameters[4].Value = dateOfBirth;
+            parameters[5] = new SqlParameter("@customerID", SqlDbType.Int);
+            parameters[5].Value = customerID;
+            connection.ExecuteInsertQuery(query, parameters);
         }
 
-        private string UpdateCustomerString(string lastName, string firstName, string address, string phone, DateTime dateOfBirth, decimal customerID)
+        public void DeleteCustomer(int customerID)
         {
-            return string.Format("UPDATE Customers SET LastName=N'" + lastName + "', FirstName= N'" + firstName + "', Address=N'" + address + "', Phone='" + phone + "', DateOfBirth='" + dateOfBirth.ToString("yyyy-MM-dd") + "' WHERE CustomerID= " + customerID.ToString());
+            string query = "DELETE FROM [Customers] WHERE [CustomerID] = " + "@customerID";
+            var parameters = new SqlParameter[1];
+            parameters[0] = new SqlParameter("@customerID", SqlDbType.Int);
+            parameters[0].Value = customerID;
+            connection.ExecuteDeleteQuery(query, parameters);
         }
 
-        public bool IsUpdateCustomers(string lastName, string firstName, string address, string phone, DateTime dateOfBirth, decimal customerID)
+        public DataTable SelectCustomers()
         {
-            string query = UpdateCustomerString(lastName, firstName, address, phone, dateOfBirth, customerID);
-            return true;// conn.ExcuteQuery(query);
-        }
-
-        private string DeleteCustomersString(decimal customerID)
-        {
-            return string.Format("Delete from Customers where CustomerID=" + customerID);
-        }
-
-        public bool IsDeleteCustomers(decimal customerID)
-        {
-            string query = DeleteCustomersString(customerID);
-            return true;// conn.ExcuteQuery(query);
-        }
-
-        public string SelectCustomersString()
-        {
-            return string.Format("SELECT * FROM Customers");
-        }
-
-        public DataTable CustomersDataTable()
-        {
-            string query = SelectCustomersString();
+            string query = "SELECT * FROM Customers";
             return connection.ExecuteSelectQuery(query, new SqlParameter[0]);
         }
         #endregion
