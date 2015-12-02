@@ -10,108 +10,120 @@ namespace SaleManagement
 {
     public class DataAccess
     {
-
-        private DatabaseConnection conn;
+        private readonly DatabaseConnection connection;
 
         public DataAccess()
         {
-            conn = new DatabaseConnection();
+            connection = new DatabaseConnection();
         }
 
         #region Categories
 
-        public string InsertCategoriesString(string CategoryName, string Description)
+        public bool CategoryNameExists(string categoryName)
         {
-            return string.Format("INSERT INTO [Categories]" + " VALUES (N'" + CategoryName + "', N'"+ Description+"')");
+            string query = "SELECT TOP 1 * FROM [Categories] WHERE [CategoryName] = " + "@categoryName";
+            var parameters = new SqlParameter[1];
+            parameters[0] = new SqlParameter("@categoryName", categoryName);
+            var table = connection.ExecuteSelectQuery(query, parameters);
+            return table.Rows.Count == 1;
         }
 
-        public bool IsInsertCategories(string CategoryName, string Description)
+        public void InsertCategory(string categoryName, string description)
         {
-            string query = InsertCategoriesString(CategoryName, Description);
-            return conn.ExcuteQuery(query);
-
+            string query = "INSERT INTO [Categories]" + " VALUES (" + "@categoryName" + ", " + "@description" + ")";
+            var parameters = new SqlParameter[2];
+            parameters[0] = new SqlParameter("@categoryName", SqlDbType.NVarChar);
+            parameters[0].Value = categoryName;
+            parameters[1] = new SqlParameter("@description", SqlDbType.NVarChar);
+            parameters[1].Value = description;
+            connection.ExecuteInsertQuery(query, parameters);
         }
 
-        private string UpdateCategoriesString(string CategoryName, string Description, decimal CategoryID)
+        public void UpdateCategory(string categoryName, string description, int categoryID)
         {
-            return string.Format("UPDATE CATEGORIES SET CATEGORYNAME=N'" + CategoryName + "', DESCRIPTION= N'"+Description+"' WHERE CATEGORYID= " + CategoryID.ToString() );
+            string query = "UPDATE [Categories] SET [CategoryName] = " + "@categoryName" + ", [Description] = " + "@description" + " WHERE [CategoryID] = " + "@categoryID";
+            var parameters = new SqlParameter[3];
+            parameters[0] = new SqlParameter("@categoryName", SqlDbType.NVarChar);
+            parameters[0].Value = categoryName;
+            parameters[1] = new SqlParameter("@description", SqlDbType.NVarChar);
+            parameters[1].Value = description;
+            parameters[2] = new SqlParameter("@description", SqlDbType.Int);
+            parameters[2].Value = categoryID;
+            connection.ExecuteUpdateQuery(query, parameters);
         }
 
-        public bool IsUpdateCategories(string CategoryName, string Description, decimal CategoryID)
+        public void DeleteCategory(int categoryID)
         {
-            string query = UpdateCategoriesString(CategoryName, Description, CategoryID);
-            return conn.ExcuteQuery(query);
+            string query = "DELETE FROM [Categories] WHERE [CategoryID] = @" + "categoryID";
+            var parameters = new SqlParameter[1];
+            parameters[0] = new SqlParameter("@categoryID", SqlDbType.Int);
+            parameters[0].Value = categoryID;
+            connection.ExecuteDeleteQuery(query, parameters);
         }
 
-        private string DeleteCategoriesString(decimal CategoryID)
+        public DataTable SelectCategories()
         {
-            return string.Format("Delete from Categories where CategoryID="+ CategoryID);
-        }
-
-        public bool IsDeleteCategories(decimal CategoryID)
-        {
-            string query = DeleteCategoriesString(CategoryID);
-            return conn.ExcuteQuery(query);
-        }
-
-        public string SelectCategoriesString()
-        {
-            return string.Format("SELECT * FROM CATEGORIES");
-        }
-
-        public DataTable CategoriesDataTable()
-        {
-            string query = SelectCategoriesString();
-            return conn.ExecuteSelectQuery(query);
+            string query = "SELECT * FROM [Categories]";
+            var parameters = new SqlParameter[0];
+            return connection.ExecuteSelectQuery(query, parameters);
         }
 
         #endregion
 
         #region Suppliers
 
-        public string InsertSuppliersString(string CompanyName, string Phone, string Address)
+        public bool CompanyNameExists(string companyName)
         {
-            return string.Format("INSERT INTO [Suppliers]" + " VALUES (N'" + CompanyName + "', N'" + Phone + "', N'"+Address+"' )");
+            string query = "SELECT TOP 1 * FROM [Suppliers] WHERE [CompanyName] = " + "@companyName";
+            var parameters = new SqlParameter[1];
+            parameters[0] = new SqlParameter("@companyName", SqlDbType.NVarChar);
+            parameters[0].Value = companyName;
+            var table = connection.ExecuteSelectQuery(query, parameters);
+            return table.Rows.Count == 1;
         }
 
-        public bool IsInsertSuppliers(string CompanyName, string Phone, string Address)
+        public void InsertSupplier(string companyName, string phone, string address)
         {
-            string query = InsertSuppliersString(CompanyName, Phone, Address);
-            return conn.ExcuteQuery(query);
-
+            string query = "INSERT INTO [Suppliers]" + " VALUES (" + "@companyName" + ", " + "@phone" + ", " + "@address" + ")";
+            var parameters = new SqlParameter[3];
+            parameters[0] = new SqlParameter("@companyName", SqlDbType.NVarChar);
+            parameters[0].Value = companyName;
+            parameters[1] = new SqlParameter("@phone", SqlDbType.NVarChar);
+            parameters[1].Value = phone;
+            parameters[2] = new SqlParameter("@address", SqlDbType.NVarChar);
+            parameters[2].Value = address;
+            connection.ExecuteInsertQuery(query, parameters);
         }
 
-        private string UpdateSuppliersString(string CompanyName, string Phone, string Address, decimal SupplierID)
+        public void UpdateSupplier(string companyName, string phone, string address, int supplierID)
         {
-            return string.Format("UPDATE Suppliers SET CompanyName=N'" + CompanyName + "', Phone= '" + Phone + "', Address=N'" + Address + "' WHERE SupplierID= " + SupplierID.ToString());
+            string query = "UPDATE [Suppliers] SET [CompanyName] = " + "@companyName" + ", [Phone] = " + "@phone" + ", [Address] = " + "address" + " WHERE [SupplierID] = " + "@supplierID";
+            var parameters = new SqlParameter[4];
+            parameters[0] = new SqlParameter("@companyName", SqlDbType.NVarChar);
+            parameters[0].Value = companyName;
+            parameters[1] = new SqlParameter("@phone", SqlDbType.NVarChar);
+            parameters[1].Value = phone;
+            parameters[2] = new SqlParameter("@address", SqlDbType.NVarChar);
+            parameters[2].Value = address;
+            parameters[3] = new SqlParameter("@supplierID", SqlDbType.Int);
+            parameters[3].Value = supplierID;
+            connection.ExecuteUpdateQuery(query, parameters);
         }
 
-        public bool IsUpdateSuppliers(string CompanyName, string Phone, string Address, decimal SupplierID)
+        public void DeleteSupplier(int supplierID)
         {
-            string query = UpdateSuppliersString(CompanyName, Phone, Address, SupplierID);
-            return conn.ExcuteQuery(query);
+            string query = "DELETE FROM [Suppliers] WHERE [SupplierID] = " + "@supplierID";
+            var parameters = new SqlParameter[1];
+            parameters[0] = new SqlParameter("@supplierID", SqlDbType.Int);
+            parameters[0].Value = supplierID;
+            connection.ExecuteDeleteQuery(query, parameters);
         }
 
-        private string DeleteSuppliersString(decimal SupplierID)
+        public DataTable SelectSuppliers()
         {
-            return string.Format("Delete from Suppliers where SupplierID=" + SupplierID);
-        }
-
-        public bool IsDeleteSuppliers(decimal SupplierID)
-        {
-            string query = DeleteSuppliersString(SupplierID);
-            return conn.ExcuteQuery(query);
-        }
-
-        public string SelectSuppliersString()
-        {
-            return string.Format("SELECT * FROM Suppliers");
-        }
-
-        public DataTable SuppliersDataTable()
-        {
-            string query = SelectSuppliersString();
-            return conn.ExecuteSelectQuery(query);
+            string query = "SELECT * FROM [Suppliers]";
+            var parameters = new SqlParameter[0];
+            return connection.ExecuteSelectQuery(query, parameters);
         }
        
         #endregion
@@ -126,7 +138,7 @@ namespace SaleManagement
         public DataTable ProductsDataTable()
         {
             string query = SelectProductsString();
-            return conn.ExecuteSelectQuery(query);
+            return connection.ExecuteSelectQuery(query, new SqlParameter[0]);
         }
 
         public string InsertProductsString(string productName, decimal supplierID, decimal categoryID, string unitPrice, string unitsINStock, Byte[] image)
@@ -139,7 +151,7 @@ namespace SaleManagement
             SqlParameter[] sqlParameter = new SqlParameter[1];
             sqlParameter[0] = new SqlParameter("@image", image);
             string query = InsertProductsString(productName, supplierID, categoryID, unitPrice, unitsInStock, image);
-            return conn.ExecuteSelectQuery(query, sqlParameter);
+            return true;// conn.ExecuteSelectQuery(query, sqlParameter);
         }
 
         private string UpdateProductsString(string productName, decimal supplierID, decimal categoryID, string unitPrice, string unitsInStock,Byte[] image, decimal productID)
@@ -152,7 +164,7 @@ namespace SaleManagement
             SqlParameter[] sqlParameter = new SqlParameter[1];
             sqlParameter[0] = new SqlParameter("@image", image);
             string query = UpdateProductsString(productName, supplierID, categoryID, unitPrice, unitsOfStock,image, productID);
-            return conn.ExecuteSelectQuery(query, sqlParameter);
+            return true;// conn.ExecuteSelectQuery(query, sqlParameter);
         }
 
         private string DeleteProductsString(decimal productID)
@@ -163,7 +175,7 @@ namespace SaleManagement
         public bool IsDeleteProducts(decimal productID)
         {
             string query = DeleteProductsString(productID);
-            return conn.ExcuteQuery(query);
+            return true;// conn.ExcuteQuery(query);
         }
 
 
@@ -180,7 +192,7 @@ namespace SaleManagement
         public bool IsInsertCustomers(string lastName, string firstName, string address, string phone, DateTime dateOfBirth)
         {
             string query = InsertCustomersString(lastName, firstName, address, phone, dateOfBirth);
-            return conn.ExcuteQuery(query);
+            return true;// conn.ExcuteQuery(query);
 
         }
 
@@ -192,7 +204,7 @@ namespace SaleManagement
         public bool IsUpdateCustomers(string lastName, string firstName, string address, string phone, DateTime dateOfBirth, decimal customerID)
         {
             string query = UpdateCustomerString(lastName, firstName, address, phone, dateOfBirth, customerID);
-            return conn.ExcuteQuery(query);
+            return true;// conn.ExcuteQuery(query);
         }
 
         private string DeleteCustomersString(decimal customerID)
@@ -203,7 +215,7 @@ namespace SaleManagement
         public bool IsDeleteCustomers(decimal customerID)
         {
             string query = DeleteCustomersString(customerID);
-            return conn.ExcuteQuery(query);
+            return true;// conn.ExcuteQuery(query);
         }
 
         public string SelectCustomersString()
@@ -214,7 +226,7 @@ namespace SaleManagement
         public DataTable CustomersDataTable()
         {
             string query = SelectCustomersString();
-            return conn.ExecuteSelectQuery(query);
+            return connection.ExecuteSelectQuery(query, new SqlParameter[0]);
         }
         #endregion
     }

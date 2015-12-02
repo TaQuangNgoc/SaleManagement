@@ -12,7 +12,8 @@ namespace SaleManagement
     public partial class SupplierDetailsForm : Form
     {
         private bool isForUpdate;
-        private decimal supplierID;
+        private int supplierID;
+        private DataAccess dataAccess;
 
         public static SupplierDetailsForm CreateInsertForm()
         {
@@ -38,18 +39,7 @@ namespace SaleManagement
         private SupplierDetailsForm()
         {
             InitializeComponent();
-        }
-
-        internal void displayForInsert()
-        {
-            isForUpdate = false;
-            this.ShowDialog();
-        }
-
-        internal void displayForUpdate(DataRow DataRowDetail)
-        {
-            transferDataRowDetailToForm(DataRowDetail);
-            this.ShowDialog();
+            dataAccess = new DataAccess();
         }
 
         private void transferDataRowDetailToForm(DataRow DataRowDetail)
@@ -57,42 +47,34 @@ namespace SaleManagement
             CompanyNameTxt.Text = DataRowDetail["CompanyName"].ToString();
             PhoneTxt.Text = DataRowDetail["Phone"].ToString();
             AddressTxt.Text = DataRowDetail["Address"].ToString();
-            supplierID = decimal.Parse(DataRowDetail["SupplierID"].ToString());
+            supplierID = int.Parse(DataRowDetail["SupplierID"].ToString());
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if (isForUpdate == false)
+            string companyName = CompanyNameTxt.Text,
+                    phone = PhoneTxt.Text,
+                    address = AddressTxt.Text;
+
+            bool companyNameExist = dataAccess.CompanyNameExists(companyName);
+            if (companyNameExist)
             {
-                DataAccess da = new DataAccess();
-                if (da.IsInsertSuppliers(CompanyNameTxt.Text, PhoneTxt.Text, AddressTxt.Text))
-                {
-                    MessageBox.Show(" Insert Succeed!");
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("This action isn't done because there are 2 record have same name!");
-                }
+                MessageBox.Show("Company name exists. Please select another name.");
+                return;
             }
+
+            if (isForUpdate)
+                dataAccess.UpdateSupplier(companyName, phone, address, supplierID);
             else
-            {
-                DataAccess da = new DataAccess();
-                if (da.IsUpdateSuppliers(CompanyNameTxt.Text, PhoneTxt.Text, AddressTxt.Text, supplierID))
-                {
-                    MessageBox.Show("Update Succeed!");
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("This action isn't done because there are 2 record have same name!");
-                }
-            }
+                dataAccess.InsertSupplier(companyName, phone, address);
+            
+            MessageBox.Show("Success.");
+            Close();
         }
 
         private void exitButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

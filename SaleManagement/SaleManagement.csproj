@@ -71,6 +71,7 @@
     <Compile Include="CategoriesForm.Designer.cs">
       <DependentUpon>CategoriesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Category.cs" />
     <Compile Include="CategoryDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +124,7 @@
     <Compile Include="SupplierDetailsForm.Designer.cs">
       <DependentUpon>SupplierDetailsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Test.cs" />
     <EmbeddedResource Include="CategoriesForm.resx">
       <DependentUpon>CategoriesForm.cs</DependentUpon>
     </EmbeddedResource>

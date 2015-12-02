@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -11,9 +12,12 @@ namespace SaleManagement
 {
     public partial class SuppliersForm : Form
     {
+        private DataAccess dataAccess;
+
         public SuppliersForm()
         {
             InitializeComponent();
+            dataAccess = new DataAccess();
         }
 
         private void insertButton_Click(object sender, EventArgs e)
@@ -56,7 +60,7 @@ namespace SaleManagement
         private void LoadDataToGrid()
         {
             DataAccess da = new DataAccess();
-            Grc.DataSource = da.SuppliersDataTable();
+            Grc.DataSource = da.SelectSuppliers();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -80,9 +84,13 @@ namespace SaleManagement
                     for (int i = 0; i < selectedRowCount; i++)
                     {
                         DataRow DataRowDetail = Grv.GetDataRow(Grv.GetSelectedRows()[i]);
-                        decimal SupplierID = decimal.Parse(DataRowDetail["SupplierID"].ToString());
-                        DataAccess da = new DataAccess();
-                        if (!da.IsDeleteSuppliers(SupplierID))
+                        int SupplierID = int.Parse(DataRowDetail["SupplierID"].ToString());
+
+                        try
+                        {
+                            dataAccess.DeleteSupplier(SupplierID);
+                        }
+                        catch (SqlException)
                         {
                             MessageBox.Show("Company named " + DataRowDetail["CompanyName"].ToString() + " have some Products, so you can not perform this task!");
                             j++;

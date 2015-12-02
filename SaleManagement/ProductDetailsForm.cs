@@ -12,13 +12,36 @@ namespace SaleManagement
 {
     public partial class ProductDetailsForm : Form
     {
-        private bool IsUpdate = true; // if Form is Insert State, IsUpdate= false;
-        private decimal productID;
+        private bool isForUpdate;
+        private int productID;
         private string imageLocation = "";
+        private DataAccess dataAccess;
 
-        public ProductDetailsForm()
+        public static ProductDetailsForm CreateInsertForm()
+        {
+            var form = new ProductDetailsForm();
+            form.isForUpdate = false;
+            form.ShowDialog();
+
+            return form;
+        }
+
+        public static ProductDetailsForm CreateUpdateForm(DataRow selectedRow)
+        {
+            var form = new ProductDetailsForm();
+            form.isForUpdate = true;
+
+            form.TransferDataRowDetailToForm(selectedRow);
+
+            form.ShowDialog();
+
+            return form;
+        }
+
+        private ProductDetailsForm()
         {
             InitializeComponent();
+            dataAccess = new DataAccess();
         }
 
         private void ProductsDetail_Load(object sender, EventArgs e)
@@ -29,39 +52,24 @@ namespace SaleManagement
 
         private void LoadDataToCategryNameSLE()
         {
-            DataAccess da = new DataAccess();
-            categoryNameSLE.Properties.DataSource = da.CategoriesDataTable();
+            categoryNameSLE.Properties.DataSource = dataAccess.SelectCategories();
             categoryNameSLE.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
         }
 
         private void LoadDataToCompanyNameSLE()
         {
-            DataAccess da = new DataAccess();
-            companyNameSLE.Properties.DataSource = da.SuppliersDataTable();
+            companyNameSLE.Properties.DataSource = dataAccess.SelectSuppliers();
             companyNameSLE.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
         }
 
-
-        internal void displayForInsert()
-        {
-            IsUpdate = false;
-            this.ShowDialog();
-        }
-
-        internal void displayForUpdate(DataRow DataRowDetail)
-        {
-            transferDataRowDetailToForm(DataRowDetail);
-            this.ShowDialog();
-        }
-
-        private void transferDataRowDetailToForm(DataRow DataRowDetail)
+        private void TransferDataRowDetailToForm(DataRow DataRowDetail)
         {
             productNameTxt.Text = DataRowDetail["ProductName"].ToString();
             companyNameSLE.EditValue = decimal.Parse(DataRowDetail["SupplierID"].ToString());
             categoryNameSLE.EditValue = decimal.Parse(DataRowDetail["CategoryID"].ToString());
             unitPriceTxt.Text = DataRowDetail["UnitPrice"].ToString();
             unitsInStockTxt.Text = DataRowDetail["UnitsInStock"].ToString();
-            productID= decimal.Parse(DataRowDetail["ProductID"].ToString());
+            productID= int.Parse(DataRowDetail["ProductID"].ToString());
             if(DataRowDetail["Picture"].ToString()!="")
             getAndPresentImage((byte[])(DataRowDetail["Picture"]));
             else
@@ -80,7 +88,7 @@ namespace SaleManagement
         {
             byte[] image = null;
             image= handleImageFileAndConvertToImageType(imageLocation);
-            if (IsUpdate == false)
+            if (isForUpdate == false)
             {
                 DataAccess da = new DataAccess();
                 if (da.IsInsertProducts(productNameTxt.Text,decimal.Parse(companyNameSLE.EditValue.ToString()),decimal.Parse(categoryNameSLE.EditValue.ToString()),unitPriceTxt.Text,unitsInStockTxt.Text, image))

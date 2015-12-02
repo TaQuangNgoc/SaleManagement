@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -11,9 +12,12 @@ namespace SaleManagement
 {
     public partial class CategoriesForm : Form
     {
+        private DataAccess dataAccess;
+
         public CategoriesForm()
         {
             InitializeComponent();
+            dataAccess = new DataAccess();
         }
 
         private void insertButton_Click(object sender, EventArgs e)
@@ -24,9 +28,9 @@ namespace SaleManagement
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-             try
-                {
-                var rowCount = Grv.SelectedRowsCount;
+            try
+            {
+                var rowCount = gridView.SelectedRowsCount;
                 if (rowCount == 0)
                 {
                     MessageBox.Show("You have to choose one Category to update!");
@@ -37,16 +41,16 @@ namespace SaleManagement
                 }
                 else
                 {
-                    DataRow selectedRow = Grv.GetDataRow(Grv.FocusedRowHandle);
+                    DataRow selectedRow = gridView.GetDataRow(gridView.FocusedRowHandle);
                     CategoryDetailsForm.CreateUpdateForm(selectedRow);
                     LoadDataToGrid();
                 }
             }
-            catch (Exception )
+            catch (Exception)
             {
-                MessageBox.Show("Some errors occured!");
+                throw;
             }
-           
+
         }
 
         private void Categories_Load(object sender, EventArgs e)
@@ -56,8 +60,7 @@ namespace SaleManagement
 
         private void LoadDataToGrid()
         {
-            DataAccess da = new DataAccess();
-            Grc.DataSource = da.CategoriesDataTable();
+            gridControl.DataSource = dataAccess.SelectCategories();
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -69,7 +72,7 @@ namespace SaleManagement
         {
             try
             {
-                decimal rowCount = Grv.SelectedRowsCount;
+                decimal rowCount = gridView.SelectedRowsCount;
                 if (rowCount == 0)
                 {
                     MessageBox.Show("You have to choose at lease 1 Category to delete!");
@@ -79,27 +82,32 @@ namespace SaleManagement
                     DialogResult dialogResult = MessageBox.Show("Are you sure that you want to continue to  perform this task?", "Warning", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        decimal j = 0;
+                        int failNumber = 0;
                         for (int i = 0; i < rowCount; i++)
-			            {
-			                 DataRow DataRowDetail =Grv.GetDataRow(Grv.GetSelectedRows()[i]);
-                                decimal CategoryID = decimal.Parse(DataRowDetail["CategoryID"].ToString());
-                                DataAccess da = new DataAccess();
-                                if (!da.IsDeleteCategories(CategoryID))
-                                {
-                                    MessageBox.Show("Category "+ DataRowDetail["CategoryName"].ToString()+" have some Products, so you can not perform this task!");
-                                    j++;
-                                }
-			            }
+                        {
+                            DataRow DataRowDetail = gridView.GetDataRow(gridView.GetSelectedRows()[i]);
+                            int categoryID = int.Parse(DataRowDetail["CategoryID"].ToString());
+                            DataAccess da = new DataAccess();
 
-                        MessageBox.Show("Delete "+( rowCount-j) + " record(s) successfully!");                   
+                            try
+                            {
+                                dataAccess.DeleteCategory(categoryID);
+                            }
+                            catch (SqlException)
+                            {
+                                MessageBox.Show("Category " + DataRowDetail["CategoryName"].ToString() + " have some Products, so you can not perform this task!");
+                                failNumber++;
+                            }
+                        }
+
+                        MessageBox.Show("Delete " + (rowCount - failNumber) + " record(s) successfully!");
                         LoadDataToGrid();
                     }
                 }
             }
-            catch (Exception )
+            catch (Exception)
             {
-                
+                throw;
             }
         }
     }

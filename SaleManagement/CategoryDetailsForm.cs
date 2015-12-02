@@ -12,8 +12,9 @@ namespace SaleManagement
     public partial class CategoryDetailsForm : Form
     {
         private bool isForUpdate;
-        private decimal categoryID;
-        
+        private int categoryID;
+        private DataAccess dataAccess;
+
         public static CategoryDetailsForm CreateInsertForm()
         {
             var form = new CategoryDetailsForm();
@@ -28,7 +29,7 @@ namespace SaleManagement
             var form = new CategoryDetailsForm();
             form.isForUpdate = true;
 
-            form.transferDataRowDetailToForm(selectedRow);
+            form.TransferDataRowDetailToForm(selectedRow);
 
             form.ShowDialog();
 
@@ -38,48 +39,40 @@ namespace SaleManagement
         private CategoryDetailsForm()
         {
             InitializeComponent();
+            dataAccess = new DataAccess();
         }
 
-        private void m_cmd_luu_Click(object sender, EventArgs e)
+        private void TransferDataRowDetailToForm(DataRow dataRow)
         {
-            if (isForUpdate == false)
+            categoryTxt.Text = dataRow["CategoryName"].ToString();
+            descriptionTxt.Text = dataRow["Description"].ToString();
+            categoryID = int.Parse(dataRow["CategoryID"].ToString());
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            string categoryName = categoryTxt.Text,
+                    description = descriptionTxt.Text;
+
+            bool categoryNameExists = dataAccess.CategoryNameExists(categoryName);
+            if (categoryNameExists)
             {
-                    DataAccess da = new DataAccess();
-                    if (da.IsInsertCategories(categoryTxt.Text, descriptionTxt.Text))
-                    {
-                        MessageBox.Show(" Insert Succeed!");
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("This action isn't done because there are 2 record have same name!");
-                    }             
+                MessageBox.Show("Category name exists. Please select another name.");
+                return;
             }
+
+            if (isForUpdate)
+                dataAccess.UpdateCategory(categoryName, description, categoryID);
             else
-            {             
-                    DataAccess da = new DataAccess();
-                    if (da.IsUpdateCategories(categoryTxt.Text, descriptionTxt.Text, categoryID))
-                    {
-                        MessageBox.Show("Update Succeed!");
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("This action isn't done because there are 2 record have same name!");
-                    }         
-            }
+                dataAccess.InsertCategory(categoryName, description);
+
+            MessageBox.Show("Success.");
+            Close();
         }
 
-        private void transferDataRowDetailToForm(DataRow DataRowDetail)
+        private void exitButton_Click(object sender, EventArgs e)
         {
-            categoryTxt.Text = DataRowDetail["CategoryName"].ToString();
-            descriptionTxt.Text = DataRowDetail["Description"].ToString();
-            categoryID = decimal.Parse(DataRowDetail["CategoryID"].ToString());
-        }
-
-        private void m_cmd_huy_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            Close();
         }
     }
 }

@@ -34,10 +34,11 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
-            this.Grc = new DevExpress.XtraGrid.GridControl();
-            this.Grv = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridControl = new DevExpress.XtraGrid.GridControl();
+            this.gridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.m_pnl_out_place_dm = new System.Windows.Forms.Panel();
             this.insertButton = new DevExpress.XtraEditors.SimpleButton();
             this.updateButton = new DevExpress.XtraEditors.SimpleButton();
@@ -47,15 +48,14 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
             this.panelControl4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Grc)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Grv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
             this.m_pnl_out_place_dm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
@@ -110,36 +110,36 @@
             // 
             // panelControl4
             // 
-            this.panelControl4.Controls.Add(this.Grc);
+            this.panelControl4.Controls.Add(this.gridControl);
             this.panelControl4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl4.Location = new System.Drawing.Point(2, 2);
             this.panelControl4.Name = "panelControl4";
             this.panelControl4.Size = new System.Drawing.Size(644, 234);
             this.panelControl4.TabIndex = 31;
             // 
-            // Grc
+            // gridControl
             // 
-            this.Grc.Cursor = System.Windows.Forms.Cursors.Default;
-            this.Grc.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Grc.Location = new System.Drawing.Point(2, 2);
-            this.Grc.MainView = this.Grv;
-            this.Grc.Name = "Grc";
-            this.Grc.Size = new System.Drawing.Size(640, 230);
-            this.Grc.TabIndex = 27;
-            this.Grc.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.Grv});
+            this.gridControl.Cursor = System.Windows.Forms.Cursors.Default;
+            this.gridControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl.Location = new System.Drawing.Point(2, 2);
+            this.gridControl.MainView = this.gridView;
+            this.gridControl.Name = "gridControl";
+            this.gridControl.Size = new System.Drawing.Size(640, 230);
+            this.gridControl.TabIndex = 27;
+            this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView});
             // 
-            // Grv
+            // gridView
             // 
-            this.Grv.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn3,
             this.gridColumn6,
             this.gridColumn1});
-            this.Grv.GridControl = this.Grc;
-            this.Grv.Name = "Grv";
-            this.Grv.OptionsBehavior.Editable = false;
-            this.Grv.OptionsSelection.MultiSelect = true;
-            this.Grv.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            this.gridView.GridControl = this.gridControl;
+            this.gridView.Name = "gridView";
+            this.gridView.OptionsBehavior.Editable = false;
+            this.gridView.OptionsSelection.MultiSelect = true;
+            this.gridView.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             // 
             // gridColumn3
             // 
@@ -155,6 +155,14 @@
             this.gridColumn6.Caption = "CategoryID";
             this.gridColumn6.FieldName = "CategoryID";
             this.gridColumn6.Name = "gridColumn6";
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "Desciption";
+            this.gridColumn1.FieldName = "Description";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 2;
             // 
             // m_pnl_out_place_dm
             // 
@@ -318,21 +326,13 @@
             this.imageList2.Images.SetKeyName(20, "");
             this.imageList2.Images.SetKeyName(21, "");
             // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "Desciption";
-            this.gridColumn1.FieldName = "Description";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 2;
-            // 
-            // Categories
+            // CategoriesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(652, 326);
             this.Controls.Add(this.panelControl1);
-            this.Name = "Categories";
+            this.Name = "CategoriesForm";
             this.Text = "Categories";
             this.Load += new System.EventHandler(this.Categories_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
@@ -341,8 +341,8 @@
             this.panelControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
             this.panelControl4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Grc)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Grv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
             this.m_pnl_out_place_dm.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
@@ -357,8 +357,8 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.PanelControl panelControl3;
         private DevExpress.XtraEditors.PanelControl panelControl4;
-        private DevExpress.XtraGrid.GridControl Grc;
-        private DevExpress.XtraGrid.Views.Grid.GridView Grv;
+        private DevExpress.XtraGrid.GridControl gridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         internal System.Windows.Forms.Panel m_pnl_out_place_dm;

@@ -21,7 +21,10 @@ namespace SaleManagement
             InitializeComponent();
             xtraTabbedMdiManager1.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
             ribbon.SelectedPage = ribbonPage1;
-           
+#if DEBUG
+            Test.RunTest();
+            return;
+#endif
         }
 
         //form in tag

@@ -119,7 +119,7 @@ namespace SaleManagement
             this.m_cmd_huy.Size = new System.Drawing.Size(98, 41);
             this.m_cmd_huy.TabIndex = 1;
             this.m_cmd_huy.Text = "Exit";
-            this.m_cmd_huy.Click += new System.EventHandler(this.m_cmd_huy_Click);
+            this.m_cmd_huy.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // m_cmd_luu
             // 
@@ -137,7 +137,7 @@ namespace SaleManagement
             this.m_cmd_luu.Size = new System.Drawing.Size(98, 41);
             this.m_cmd_luu.TabIndex = 0;
             this.m_cmd_luu.Text = "Save";
-            this.m_cmd_luu.Click += new System.EventHandler(this.m_cmd_luu_Click);
+            this.m_cmd_luu.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // labelControl1
             // 
