@@ -20,52 +20,22 @@ namespace SaleManagement
 
         private void insertButton_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
-            CategoryDetailsForm CategoriesDetailForm = new CategoryDetailsForm();
-            CategoriesDetailForm.displayForInsert();
-=======
             CategoryDetailsForm.CreateInsertForm();
->>>>>>> origin/master
             LoadDataToGrid();
         }
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-             
-             try
-<<<<<<< HEAD
-             {                
-                 Point pt = Grv.GridControl.PointToClient(Control.MousePosition);
-                 DoRowDoubleClick(Grv, pt);
-             }
-             catch (Exception)
-             {
-                 MessageBox.Show("Some errors occured!");
-             }
-=======
-                {
-                var rowCount = Grv.SelectedRowsCount;
-                if (rowCount == 0)
-                {
-                    MessageBox.Show("You have to choose one Category to update!");
-                }
-                else if (rowCount > 1)
-                {
-                    MessageBox.Show("You have to choose only one Category to update!");
-                }
-                else
-                {
-                    DataRow selectedRow = Grv.GetDataRow(Grv.FocusedRowHandle);
-                    CategoryDetailsForm.CreateUpdateForm(selectedRow);
-                    LoadDataToGrid();
-                }
-            }
-            catch (Exception )
+            try
             {
-                MessageBox.Show("Some errors occured!");
+                DataRow selectedRow = Grv.GetDataRow(Grv.FocusedRowHandle);
+                CategoryDetailsForm.CreateUpdateForm(selectedRow);
+                LoadDataToGrid();
             }
->>>>>>> origin/master
-           
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         private void Categories_Load(object sender, EventArgs e)
@@ -128,9 +98,8 @@ namespace SaleManagement
             GridHitInfo info = view.CalcHitInfo(pt);
             if (info.InRow || info.InRowCell)
             {
-                DataRow DataRowDetail = Grv.GetDataRow(Grv.FocusedRowHandle);
-                CategoryDetailsForm CategoriesDetailForm = new CategoryDetailsForm();
-                CategoriesDetailForm.displayForUpdate(DataRowDetail);
+                DataRow selectedRow = Grv.GetDataRow(Grv.FocusedRowHandle);
+                CategoryDetailsForm.CreateUpdateForm(selectedRow);
                 LoadDataToGrid();            
             }
             else MessageBox.Show("You have to choose one Category to update!");

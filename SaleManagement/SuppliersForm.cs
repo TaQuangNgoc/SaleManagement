@@ -132,8 +132,8 @@ namespace SaleManagement
             GridHitInfo info = view.CalcHitInfo(pt);
             if (info.InRow || info.InRowCell)
             {
-                DataRow DataRowDetail = Grv.GetDataRow(Grv.FocusedRowHandle);
-                CustomerDetailsForm CustomersDetailForm = CustomerDetailsForm.CreateUpdateForm(DataRowDetail);
+                DataRow selectedRow = Grv.GetDataRow(Grv.FocusedRowHandle);
+                SupplierDetailsForm.CreateUpdateForm(selectedRow);
                 LoadDataToGrid();
             }
             else MessageBox.Show("You have to choose one Category to update!");

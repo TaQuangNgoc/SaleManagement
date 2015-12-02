@@ -33,9 +33,10 @@ namespace SaleManagement
         private void updateButton_Click(object sender, EventArgs e)
         {
             try
-            {              
-                Point Point = Grv.GridControl.PointToClient(Control.MousePosition);
-                DoRowDoubleClick(Grv, Point);
+            {
+                DataRow selectedRow = Grv.GetDataRow(Grv.FocusedRowHandle);
+                CustomerDetailsForm.CreateUpdateForm(selectedRow);
+                LoadDataToGrid();
             }
             catch (Exception)
             {
@@ -110,8 +111,8 @@ namespace SaleManagement
             GridHitInfo info = view.CalcHitInfo(pt);
             if (info.InRow || info.InRowCell)
             {
-                DataRow DataRowDetail = Grv.GetDataRow(Grv.FocusedRowHandle);
-                CustomerDetailsForm CustomersDetailForm = CustomerDetailsForm.CreateUpdateForm(DataRowDetail);
+                DataRow selectedRow = Grv.GetDataRow(Grv.FocusedRowHandle);
+                CustomerDetailsForm.CreateUpdateForm(selectedRow);
                 LoadDataToGrid();
             }
             else MessageBox.Show("You have to choose one Category to update!");
