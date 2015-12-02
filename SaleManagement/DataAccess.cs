@@ -125,60 +125,66 @@ namespace SaleManagement
             var parameters = new SqlParameter[0];
             return connection.ExecuteSelectQuery(query, parameters);
         }
-       
+
         #endregion
 
         #region Products
 
-        public string SelectProductsString()
+        public void InsertProduct(string productName, int supplierID, int categoryID, decimal unitPrice, int unitsInStock, byte[] image)
         {
-            return string.Format("SELECT * FROM ProductsView");
+            string query = "INSERT INTO [Products]" + " VALUES (" + "@productName" + ", " + "@supplierID" + ", " + "@categoryID" + "," + "@unitPrice" + "," + "@unitsInStock" + ", " + "@image" + ")";
+            var parameters = new SqlParameter[6];
+            parameters[0] = new SqlParameter("@productName", SqlDbType.NVarChar);
+            parameters[0].Value = productName;
+            parameters[1] = new SqlParameter("@supplierID", SqlDbType.Int);
+            parameters[1].Value = supplierID;
+            parameters[2] = new SqlParameter("@categoryID", SqlDbType.Int);
+            parameters[2].Value = categoryID;
+            parameters[3] = new SqlParameter("@unitPrice", SqlDbType.NVarChar);
+            parameters[3].Value = unitPrice;
+            parameters[4] = new SqlParameter("@unitsInStock", SqlDbType.Int);
+            parameters[4].Value = unitsInStock;
+            parameters[5] = new SqlParameter("@image", SqlDbType.Image);
+            parameters[5].Value = image;
+            connection.ExecuteInsertQuery(query, parameters);
         }
 
-        public DataTable ProductsDataTable()
+        public void UpdateProduct(string productName, int supplierID, int categoryID, decimal unitPrice, int unitsInStock, byte[] image, int productID)
         {
-            string query = SelectProductsString();
-            return connection.ExecuteSelectQuery(query, new SqlParameter[0]);
+            string query = "UPDATE [Products] SET [ProductName] = " + "@productName" + "', [SupplierID] = " + "@supplierID" + ", [CategoryID] = " + "@categoryID" + ", [UnitPrice] = " + "@unitPrice" + ", [UnitsInStock] = " + "@unitsInStock" + ", [Picture] = " + "@image" + "WHERE [ProductID] = " + "@productID";
+            var parameters = new SqlParameter[6];
+            parameters[0] = new SqlParameter("@productName", SqlDbType.NVarChar);
+            parameters[0].Value = productName;
+            parameters[1] = new SqlParameter("@supplierID", SqlDbType.Int);
+            parameters[1].Value = supplierID;
+            parameters[2] = new SqlParameter("@categoryID", SqlDbType.Int);
+            parameters[2].Value = categoryID;
+            parameters[3] = new SqlParameter("@unitPrice", SqlDbType.NVarChar);
+            parameters[3].Value = unitPrice;
+            parameters[4] = new SqlParameter("@unitsInStock", SqlDbType.Int);
+            parameters[4].Value = unitsInStock;
+            parameters[5] = new SqlParameter("@image", SqlDbType.Image);
+            parameters[5].Value = image;
+            parameters[6] = new SqlParameter("@productID", SqlDbType.Int);
+            parameters[6].Value = productID;
+            connection.ExecuteUpdateQuery(query, parameters);
         }
 
-        public string InsertProductsString(string productName, decimal supplierID, decimal categoryID, string unitPrice, string unitsINStock, Byte[] image)
+        public void DeleteProducts(int productID)
         {
-            return string.Format("INSERT INTO [Products]" + " VALUES (N'" + productName + "', " + supplierID + ", " + categoryID + ","+ unitPrice+ ","+ unitsINStock+", @image )");
+            string query = "DELETE FROM [Products] WHERE [ProductID] = " + "@productID";
+            var parameters = new SqlParameter[1];
+            parameters[0] = new SqlParameter("@productID", SqlDbType.Int);
+            parameters[0].Value = productID;
+            connection.ExecuteDeleteQuery(query, parameters);
         }
 
-        public bool IsInsertProducts(string productName, decimal supplierID, decimal categoryID, string unitPrice, string unitsInStock, Byte[] image)
+        public DataTable SelectProducts()
         {
-            SqlParameter[] sqlParameter = new SqlParameter[1];
-            sqlParameter[0] = new SqlParameter("@image", image);
-            string query = InsertProductsString(productName, supplierID, categoryID, unitPrice, unitsInStock, image);
-            return true;// conn.ExecuteSelectQuery(query, sqlParameter);
+            string query = "SELECT * FROM [ProductsView]";
+            var parameters = new SqlParameter[0];
+            return connection.ExecuteSelectQuery(query, parameters);
         }
-
-        private string UpdateProductsString(string productName, decimal supplierID, decimal categoryID, string unitPrice, string unitsInStock,Byte[] image, decimal productID)
-        {
-            return string.Format("UPDATE Products SET ProductName=N'" + productName + "', SupplierID= " + supplierID + ", CategoryID=" + categoryID + ", UnitPrice=" + unitPrice + ",UnitsInStock=" + unitsInStock + ", Picture=@image WHERE ProductID= " + productID);
-        }
-
-        public bool IsUpdateProducts(string productName, decimal supplierID, decimal categoryID, string unitPrice, string unitsOfStock,Byte[] image, decimal productID)
-        {
-            SqlParameter[] sqlParameter = new SqlParameter[1];
-            sqlParameter[0] = new SqlParameter("@image", image);
-            string query = UpdateProductsString(productName, supplierID, categoryID, unitPrice, unitsOfStock,image, productID);
-            return true;// conn.ExecuteSelectQuery(query, sqlParameter);
-        }
-
-        private string DeleteProductsString(decimal productID)
-        {
-            return string.Format("Delete from Products where ProductID=" + productID);
-        }
-
-        public bool IsDeleteProducts(decimal productID)
-        {
-            string query = DeleteProductsString(productID);
-            return true;// conn.ExcuteQuery(query);
-        }
-
-
 
         #endregion
 

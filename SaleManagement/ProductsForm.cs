@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -62,7 +63,7 @@ namespace SaleManagement
         private void LoadDataToGrid()
         {
             DataAccess da = new DataAccess();
-            Grc.DataSource = da.ProductsDataTable();
+            Grc.DataSource = da.SelectProducts();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -83,9 +84,13 @@ namespace SaleManagement
                         for (int i = 0; i < rowCount; i++)
                         {
                             DataRow DataRowDetail = Grv.GetDataRow(Grv.GetSelectedRows()[i]);
-                            decimal ProductID = decimal.Parse(DataRowDetail["ProductID"].ToString());
+                            int ProductID = int.Parse(DataRowDetail["ProductID"].ToString());
                             DataAccess da = new DataAccess();
-                            if (!da.IsDeleteProducts(ProductID))
+                            try
+                            {
+                                da.DeleteProducts(ProductID);
+                            }
+                            catch (SqlException)
                             {
                                 MessageBox.Show("Product named " + DataRowDetail["ProductName"].ToString() + " can not delete!");
                                 j++;

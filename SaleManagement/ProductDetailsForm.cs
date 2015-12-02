@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -69,9 +70,9 @@ namespace SaleManagement
             categoryNameSLE.EditValue = decimal.Parse(DataRowDetail["CategoryID"].ToString());
             unitPriceTxt.Text = DataRowDetail["UnitPrice"].ToString();
             unitsInStockTxt.Text = DataRowDetail["UnitsInStock"].ToString();
-            productID= int.Parse(DataRowDetail["ProductID"].ToString());
-            if(DataRowDetail["Picture"].ToString()!="")
-            getAndPresentImage((byte[])(DataRowDetail["Picture"]));
+            productID = int.Parse(DataRowDetail["ProductID"].ToString());
+            if (DataRowDetail["Picture"].ToString() != "")
+                getAndPresentImage((byte[])(DataRowDetail["Picture"]));
             else
             {
                 pictureBox.Image = null;
@@ -80,40 +81,26 @@ namespace SaleManagement
 
         private void getAndPresentImage(byte[] imageByte)
         {
-                MemoryStream ms = new MemoryStream(imageByte);
-                pictureBox.Image = Image.FromStream(ms);
+            MemoryStream ms = new MemoryStream(imageByte);
+            pictureBox.Image = Image.FromStream(ms);
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            byte[] image = null;
-            image= handleImageFileAndConvertToImageType(imageLocation);
-            if (isForUpdate == false)
-            {
-                DataAccess da = new DataAccess();
-                if (da.IsInsertProducts(productNameTxt.Text,decimal.Parse(companyNameSLE.EditValue.ToString()),decimal.Parse(categoryNameSLE.EditValue.ToString()),unitPriceTxt.Text,unitsInStockTxt.Text, image))
-                {
-                    MessageBox.Show(" Insert Succeed!");
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("This action isn't done because there are 2 record have same name!");
-                }
-            }
+            string productName = productNameTxt.Text;
+            int supplierID = int.Parse(companyNameSLE.EditValue.ToString()),
+                categoryID = int.Parse(categoryNameSLE.EditValue.ToString()),
+                unitsInStock = int.Parse(unitsInStockTxt.Text);
+            decimal unitPrice = decimal.Parse(unitPriceTxt.Text);
+            byte[] image = handleImageFileAndConvertToImageType(imageLocation);
+
+            if (isForUpdate)
+                dataAccess.UpdateProduct(productName, supplierID, categoryID, unitPrice, unitsInStock, image, productID);
             else
-            {
-                DataAccess da = new DataAccess();
-                if (da.IsUpdateProducts(productNameTxt.Text, decimal.Parse(companyNameSLE.EditValue.ToString()), decimal.Parse(categoryNameSLE.EditValue.ToString()), unitPriceTxt.Text, unitsInStockTxt.Text,image, productID))
-                {
-                    MessageBox.Show("Update Succeed!");
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("This action isn't done because there are 2 record have same name!");
-                }
-            }
+                dataAccess.InsertProduct(productName, supplierID, categoryID, unitPrice, unitsInStock, image);
+
+            MessageBox.Show("Success.");
+            Close();
         }
 
         private byte[] handleImageFileAndConvertToImageType(string imageLocation)
@@ -127,7 +114,7 @@ namespace SaleManagement
 
         private void exitButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void BrowseButton_Click(object sender, EventArgs e)
@@ -140,7 +127,7 @@ namespace SaleManagement
             {
                 imageLocation = dialog.FileName.ToString();
                 pictureBox.ImageLocation = imageLocation;
-            }     
+            }
         }
     }
 }
