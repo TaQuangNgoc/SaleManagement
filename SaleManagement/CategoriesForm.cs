@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,20 +30,16 @@ namespace SaleManagement
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var rowCount = gridView.SelectedRowsCount;
+             try
+                {
+                int rowCount = Grv.SelectedRowsCount;
                 if (rowCount == 0)
                 {
                     MessageBox.Show("You have to choose one Category to update!");
                 }
-                else if (rowCount > 1)
-                {
-                    MessageBox.Show("You have to choose only one Category to update!");
-                }
                 else
                 {
-                    DataRow selectedRow = gridView.GetDataRow(gridView.FocusedRowHandle);
+                    DataRow selectedRow = Grv.GetDataRow(gridView.FocusedRowHandle);
                     CategoryDetailsForm.CreateUpdateForm(selectedRow);
                     LoadDataToGrid();
                 }
@@ -50,7 +48,6 @@ namespace SaleManagement
             {
                 throw;
             }
-
         }
 
         private void Categories_Load(object sender, EventArgs e)
@@ -84,21 +81,21 @@ namespace SaleManagement
                     {
                         int failNumber = 0;
                         for (int i = 0; i < rowCount; i++)
-                        {
+			            {
                             DataRow DataRowDetail = gridView.GetDataRow(gridView.GetSelectedRows()[i]);
                             int categoryID = int.Parse(DataRowDetail["CategoryID"].ToString());
-                            DataAccess da = new DataAccess();
+                                DataAccess da = new DataAccess();
 
                             try
                             {
                                 dataAccess.DeleteCategory(categoryID);
                             }
                             catch (SqlException)
-                            {
+                                {
                                 MessageBox.Show("Category " + DataRowDetail["CategoryName"].ToString() + " have some Products, so you can not perform this task!");
                                 failNumber++;
-                            }
-                        }
+                                }
+			            }
 
                         MessageBox.Show("Delete " + (rowCount - failNumber) + " record(s) successfully!");
                         LoadDataToGrid();
@@ -110,5 +107,40 @@ namespace SaleManagement
                 throw;
             }
         }
+
+
+        private void DoRowDoubleClick(GridView view, Point pt)
+        {
+            GridHitInfo info = view.CalcHitInfo(pt);
+            if (info.InRow || info.InRowCell)
+            {
+                DataRow selectedRow = Grv.GetDataRow(Grv.FocusedRowHandle);
+                CategoryDetailsForm.CreateUpdateForm(selectedRow);
+                LoadDataToGrid();            
+            }
+            else MessageBox.Show("You have to choose one Category to update!");
+        }
+
+        private void Grv_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                GridView view = (GridView)sender;
+                Point pt = view.GridControl.PointToClient(Control.MousePosition);
+                DoRowDoubleClick(view, pt);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Some errors occured!");
+            }
+            }
+
+        private void Grv_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
+        {
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+        }
+
+       
     }
 }

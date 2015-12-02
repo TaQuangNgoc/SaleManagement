@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -32,21 +34,9 @@ namespace SaleManagement
         {
             try
             {
-                var rowCount = Grv.SelectedRowsCount;
-                if (rowCount == 0)
-                {
-                    MessageBox.Show("You have to choose one Category to update!");
-                }
-                else if (rowCount > 1)
-                {
-                    MessageBox.Show("You have to choose only one Category to update!");
-                }
-                else
-                {
-                    DataRow dataRowDetail = Grv.GetDataRow(Grv.FocusedRowHandle);
-                    CustomerDetailsForm CustomersDetailForm = CustomerDetailsForm.CreateUpdateForm(dataRowDetail);
-                    LoadDataToGrid();
-                }
+                DataRow selectedRow = Grv.GetDataRow(Grv.FocusedRowHandle);
+                CustomerDetailsForm.CreateUpdateForm(selectedRow);
+                LoadDataToGrid();
             }
             catch (Exception)
             {
@@ -100,6 +90,38 @@ namespace SaleManagement
         private void Customers_Load(object sender, EventArgs e)
         {
             LoadDataToGrid();
+        }
+
+        private void Grv_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                GridView view = (GridView)sender;
+                Point pt = view.GridControl.PointToClient(Control.MousePosition);
+                DoRowDoubleClick(view, pt);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Some errors occured!");
+            }
+        }
+
+        private void DoRowDoubleClick(GridView view, Point pt)
+        {
+            GridHitInfo info = view.CalcHitInfo(pt);
+            if (info.InRow || info.InRowCell)
+            {
+                DataRow selectedRow = Grv.GetDataRow(Grv.FocusedRowHandle);
+                CustomerDetailsForm.CreateUpdateForm(selectedRow);
+                LoadDataToGrid();
+            }
+            else MessageBox.Show("You have to choose one Category to update!");
+        }
+
+        private void Grv_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
+        {
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();
         }
     }
 }

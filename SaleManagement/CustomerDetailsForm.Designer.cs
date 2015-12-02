@@ -191,7 +191,7 @@
             this.exitButton.Size = new System.Drawing.Size(98, 41);
             this.exitButton.TabIndex = 1;
             this.exitButton.Text = "Exit";
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+           
             // 
             // saveButton
             // 
