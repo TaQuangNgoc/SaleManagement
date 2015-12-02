@@ -50,9 +50,9 @@ namespace SaleManagement
                     LoadDataToGrid();
                 }
             }
-            catch (Exception v_e)
+            catch (Exception)
             {
-                MessageBox.Show("Some errors occured!");
+                throw;
             }
         }
 

@@ -1,4 +1,6 @@
-﻿namespace SaleManagement
+﻿using System;
+
+namespace SaleManagement
 {
     partial class CategoryDetailsForm
     {

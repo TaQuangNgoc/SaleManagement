@@ -11,17 +11,42 @@ namespace SaleManagement
 {
     public partial class CategoryDetailsForm : Form
     {
-        private bool IsUpdate = true; // if Form is Insert State, IsUpdate= false;
+        private bool isForUpdate;
         private decimal categoryID;
+        
+        public static CategoryDetailsForm CreateInsertForm()
+        {
+            var form = new CategoryDetailsForm();
+            form.isForUpdate = false;
+            form.ShowDialog();
 
-        public CategoryDetailsForm()
+            return form;
+        }
+
+        public static CategoryDetailsForm CreateUpdateForm(DataRow selectedRow)
+        {
+            var form = new CategoryDetailsForm();
+            form.isForUpdate = true;
+
+            form.transferDataRowDetailToForm(selectedRow);
+
+            form.ShowDialog();
+
+            return form;
+        }
+
+        private CategoryDetailsForm()
         {
             InitializeComponent();
         }
 
         private void m_cmd_luu_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             if (isInputOK())
+=======
+            if (isForUpdate == false)
+>>>>>>> origin/master
             {
                 if (IsUpdate == false)
                 {
@@ -56,6 +81,7 @@ namespace SaleManagement
             }
         }
 
+<<<<<<< HEAD
         private bool isInputOK()
         {
             if (categoryTxt.Text != "")
@@ -69,17 +95,13 @@ namespace SaleManagement
             this.ShowDialog();
         }
 
+=======
+>>>>>>> origin/master
         private void transferDataRowDetailToForm(DataRow DataRowDetail)
         {
             categoryTxt.Text = DataRowDetail["CategoryName"].ToString();
             descriptionTxt.Text = DataRowDetail["Description"].ToString();
             categoryID = decimal.Parse(DataRowDetail["CategoryID"].ToString());
-        }
-
-        internal void displayForInsert()
-        {
-            IsUpdate = false;
-            this.ShowDialog();
         }
 
         private void m_cmd_huy_Click(object sender, EventArgs e)

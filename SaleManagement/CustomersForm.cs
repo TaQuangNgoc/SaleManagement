@@ -39,7 +39,7 @@ namespace SaleManagement
             }
             catch (Exception)
             {
-                MessageBox.Show("Some errors occured!");
+                throw;
             }
         }
 
