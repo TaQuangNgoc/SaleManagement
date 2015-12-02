@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -109,6 +111,32 @@ namespace SaleManagement
         {
             if (e.Info.IsRowIndicator && e.RowHandle >= 0)
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
+        }
+
+        private void Grv_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                GridView view = (GridView)sender;
+                Point pt = view.GridControl.PointToClient(Control.MousePosition);
+                DoRowDoubleClick(view, pt);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Some errors occured!");
+            }
+        }
+
+        private void DoRowDoubleClick(GridView view, Point pt)
+        {
+            GridHitInfo info = view.CalcHitInfo(pt);
+            if (info.InRow || info.InRowCell)
+            {
+                DataRow DataRowDetail = Grv.GetDataRow(Grv.FocusedRowHandle);
+                CustomerDetailsForm CustomersDetailForm = CustomerDetailsForm.CreateUpdateForm(DataRowDetail);
+                LoadDataToGrid();
+            }
+            else MessageBox.Show("You have to choose one Category to update!");
         }
     }
 }

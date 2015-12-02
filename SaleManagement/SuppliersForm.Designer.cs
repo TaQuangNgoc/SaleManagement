@@ -347,6 +347,7 @@
             this.Grv.OptionsView.ShowFooter = true;
             this.Grv.PaintStyleName = "Flat";
             this.Grv.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.Grv_CustomDrawRowIndicator);
+            this.Grv.DoubleClick += new System.EventHandler(this.Grv_DoubleClick);
             // 
             // gridColumn3
             // 
