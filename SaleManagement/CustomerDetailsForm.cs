@@ -92,6 +92,7 @@ namespace SaleManagement
             if (lastNameTxt.Text != "" && firstNameTxt.Text != "" && phoneTxt.Text != "" && addressTxt.Text != "")
                 return true;
             return false;
+
         }
 
     }

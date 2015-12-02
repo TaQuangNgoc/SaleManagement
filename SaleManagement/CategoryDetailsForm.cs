@@ -51,6 +51,10 @@ namespace SaleManagement
 
         private void saveButton_Click(object sender, EventArgs e)
         {
+            if (categoryTxt.Text == "") 
+            {
+                MessageBox.Show("category is empty");
+            }
             string categoryName = categoryTxt.Text,
                     description = descriptionTxt.Text;
 

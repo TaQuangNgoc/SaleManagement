@@ -39,7 +39,7 @@ namespace SaleManagement
                 }
                 else
                 {
-                    DataRow selectedRow = Grv.GetDataRow(gridView.FocusedRowHandle);
+                    DataRow selectedRow = Grv.GetDataRow(Grv.FocusedRowHandle);
                     CategoryDetailsForm.CreateUpdateForm(selectedRow);
                     LoadDataToGrid();
                 }
@@ -57,7 +57,7 @@ namespace SaleManagement
 
         private void LoadDataToGrid()
         {
-            gridControl.DataSource = dataAccess.SelectCategories();
+           Grc.DataSource = dataAccess.SelectCategories();
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -69,7 +69,7 @@ namespace SaleManagement
         {
             try
             {
-                decimal rowCount = gridView.SelectedRowsCount;
+                decimal rowCount = Grv.SelectedRowsCount;
                 if (rowCount == 0)
                 {
                     MessageBox.Show("You have to choose at lease 1 Category to delete!");
@@ -82,7 +82,7 @@ namespace SaleManagement
                         int failNumber = 0;
                         for (int i = 0; i < rowCount; i++)
 			            {
-                            DataRow DataRowDetail = gridView.GetDataRow(gridView.GetSelectedRows()[i]);
+                            DataRow DataRowDetail = Grv.GetDataRow(Grv.GetSelectedRows()[i]);
                             int categoryID = int.Parse(DataRowDetail["CategoryID"].ToString());
                                 DataAccess da = new DataAccess();
 

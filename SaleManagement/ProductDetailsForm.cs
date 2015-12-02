@@ -91,6 +91,7 @@ namespace SaleManagement
             if (isForUpdate == false)
             {
                 DataAccess da = new DataAccess();
+
                 if (da.IsInsertProducts(productNameTxt.Text,decimal.Parse(companyNameSLE.EditValue.ToString()),decimal.Parse(categoryNameSLE.EditValue.ToString()),unitPriceTxt.Text,unitsInStockTxt.Text, image))
                 {
                     MessageBox.Show(" Insert Succeed!");
