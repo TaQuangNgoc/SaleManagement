@@ -13,7 +13,7 @@ namespace SaleManagement
     {
         private bool isForUpdate;
         private decimal categoryID;
-        
+
         public static CategoryDetailsForm CreateInsertForm()
         {
             var form = new CategoryDetailsForm();
@@ -42,46 +42,43 @@ namespace SaleManagement
 
         private void m_cmd_luu_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
+
             if (isInputOK())
-=======
-            if (isForUpdate == false)
->>>>>>> origin/master
             {
-                if (IsUpdate == false)
-                {
-                    DataAccess da = new DataAccess();
-                    if (da.IsInsertCategories(categoryTxt.Text, descriptionTxt.Text))
-                    {
-                        MessageBox.Show(" Insert Succeed!");
-                        this.Close();
+                if (isForUpdate == false)
+                {                 
+                        DataAccess da = new DataAccess();
+                        if (da.IsInsertCategories(categoryTxt.Text, descriptionTxt.Text))
+                        {
+                            MessageBox.Show(" Insert Succeed!");
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("This action isn't done because there are 2 record have same name!");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("This action isn't done because there are 2 record have same name!");
+                        DataAccess da = new DataAccess();
+                        if (da.IsUpdateCategories(categoryTxt.Text, descriptionTxt.Text, categoryID))
+                        {
+                            MessageBox.Show("Update Succeed!");
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("This action isn't done because there are 2 record have same name!");
+                        }
                     }
                 }
-                else
-                {
-                    DataAccess da = new DataAccess();
-                    if (da.IsUpdateCategories(categoryTxt.Text, descriptionTxt.Text, categoryID))
-                    {
-                        MessageBox.Show("Update Succeed!");
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("This action isn't done because there are 2 record have same name!");
-                    }
-                }
-            }
+            
             else
             {
                 MessageBox.Show("You have to check your information!");
             }
         }
 
-<<<<<<< HEAD
         private bool isInputOK()
         {
             if (categoryTxt.Text != "")
@@ -89,14 +86,15 @@ namespace SaleManagement
             return false;
         }
 
+
+      
         internal void displayForUpdate(DataRow DataRowDetail)
         {
             transferDataRowDetailToForm(DataRowDetail);
             this.ShowDialog();
         }
 
-=======
->>>>>>> origin/master
+
         private void transferDataRowDetailToForm(DataRow DataRowDetail)
         {
             categoryTxt.Text = DataRowDetail["CategoryName"].ToString();
