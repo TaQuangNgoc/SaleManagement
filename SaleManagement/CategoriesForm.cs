@@ -57,7 +57,7 @@ namespace SaleManagement
 
         private void LoadDataToGrid()
         {
-           Grc.DataSource = dataAccess.SelectCategories();
+            Grc.DataSource = dataAccess.SelectCategories();
         }
 
         private void exitButton_Click(object sender, EventArgs e)
