@@ -79,7 +79,7 @@ namespace SaleManagement
                     DialogResult dialogResult = MessageBox.Show("Are you sure that you want to continue to  perform this task?", "Warning", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        int failNumber = 0;
+                        int failToDeletedCount = 0;
                         for (int i = 0; i < rowCount; i++)
 			            {
                             DataRow DataRowDetail = Grv.GetDataRow(Grv.GetSelectedRows()[i]);
@@ -93,11 +93,11 @@ namespace SaleManagement
                             catch (SqlException)
                                 {
                                 MessageBox.Show("Category " + DataRowDetail["CategoryName"].ToString() + " have some Products, so you can not perform this task!");
-                                failNumber++;
+                                failToDeletedCount++;
                                 }
 			            }
 
-                        MessageBox.Show("Delete " + (rowCount - failNumber) + " record(s) successfully!");
+                        MessageBox.Show("Delete " + (rowCount - failToDeletedCount) + " record(s) successfully!");
                         LoadDataToGrid();
                     }
                 }
