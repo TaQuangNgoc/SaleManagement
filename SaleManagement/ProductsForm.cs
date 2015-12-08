@@ -1,17 +1,8 @@
-﻿using DevExpress.XtraEditors.Repository;
-using DevExpress.XtraGrid.Views.Card;
-using DevExpress.XtraGrid.Views.Grid;
-using DevExpress.XtraGrid.Views.Grid.ViewInfo;
-using DevExpress.Utils;
+﻿using DevExpress.Utils;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SaleManagement
@@ -46,9 +37,17 @@ namespace SaleManagement
 
         private void updateButton_Click(object sender, EventArgs e)
         {
+            ShowUpdateForm();
+        }
+
+        private void ShowUpdateForm()
+        {
+            Debug.Assert(gridView.FocusedRowHandle != -1);
+
+            DataRow selected;
             try
             {
-                ShowUpdateForm();
+                selected = gridView.GetFocusedDataRow();
             }
             catch (NullReferenceException)
             {
@@ -56,23 +55,18 @@ namespace SaleManagement
                     throw;
 
                 MessageBox.Show("There's no item to update.", "Error");
+                return;
             }
-        }
 
-        private void ShowUpdateForm()
-        {
-            Debug.Assert(gridView.FocusedRowHandle != -1);
-
-            DataRow selected = gridView.GetFocusedDataRow();
             ProductDetailsForm.CreateUpdateForm(selected);
             LoadDataToGrid();
         }
-
+        
         private void cardView_DoubleClick(object sender, EventArgs e)
         {
             var localMousePosition = gridControl.PointToClient(MousePosition);
-            var gridHitInfo = cardView.CalcHitInfo(localMousePosition);
-            var clickedOnCard = gridHitInfo.InCard;
+            var cardHitInfo = cardView.CalcHitInfo(localMousePosition);
+            var clickedOnCard = cardHitInfo.InCard;
 
             if (clickedOnCard)
                 ShowUpdateForm();
@@ -84,13 +78,26 @@ namespace SaleManagement
             if (dialogResult != DialogResult.Yes)
                 return;
 
-            DataRow selected = gridView.GetFocusedDataRow();
+            DataRow selected;
+            try
+            {
+                selected = gridView.GetFocusedDataRow();
+            }
+            catch (NullReferenceException)
+            {
+                if (gridView.RowCount != 0)
+                    throw;
+
+                MessageBox.Show("There's nothing to delete.", "Error");
+                return;
+            }
+
             var idString = (string)selected["ProductID"];
             int id;
 
             try
             {
-                 id = int.Parse(idString);
+                id = int.Parse(idString);
             }
             catch (Exception)
             {

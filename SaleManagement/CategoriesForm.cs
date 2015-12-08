@@ -1,14 +1,8 @@
 ﻿using DevExpress.XtraGrid.Views.Grid;
-using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SaleManagement
@@ -27,6 +21,11 @@ namespace SaleManagement
             exitButton.Click += (s, e) => Close();
         }
 
+        private void LoadDataToGrid()
+        {
+            gridControl.DataSource = dataAccess.SelectCategories();
+        }
+
         private void insertButton_Click(object sender, EventArgs e)
         {
             CategoryDetailsForm.CreateInsertForm();
@@ -35,73 +34,82 @@ namespace SaleManagement
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            if (Grv.FocusedRowHandle == -1)
+            try
             {
-                MessageBox.Show("You have to choose one Category to update!");
-                return;
+                ShowUpdateForm();
             }
+            catch (NullReferenceException)
+            {
+                if (gridView.RowCount != 0)
+                    throw;
 
-            ShowUpdateForm();
+                MessageBox.Show("There's no item to update.", "Error");
+            }
         }
 
         private void ShowUpdateForm()
         {
-            Debug.Assert(Grv.FocusedRowHandle != -1);
+            Debug.Assert(gridView.FocusedRowHandle != -1);
 
-            DataRow selected = Grv.GetDataRow(Grv.FocusedRowHandle);
+            DataRow selected = gridView.GetFocusedDataRow();
             CategoryDetailsForm.CreateUpdateForm(selected);
             LoadDataToGrid();
         }
 
-        private void LoadDataToGrid()
+        private void gridView_DoubleClick(object sender, EventArgs e)
         {
-            Grc.DataSource = dataAccess.SelectCategories();
-        }
-
-        private void deleteButton_Click(object sender, EventArgs e)
-        {
-            int rowCount = Grv.SelectedRowsCount;
-            if (rowCount == 0)
-            {
-                MessageBox.Show("You have to choose at lease 1 Category to delete!");
-            }
-            else
-            {
-                DialogResult dialogResult = MessageBox.Show("Are you sure that you want to continue to perform this task?", "Warning", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    int failNumber = 0;
-                    for (int i = 0; i < rowCount; i++)
-                    {
-                        DataRow DataRowDetail = Grv.GetDataRow(Grv.GetSelectedRows()[i]);
-                        int categoryID = int.Parse(DataRowDetail["CategoryID"].ToString());
-                        DataAccess da = new DataAccess();
-
-                        try
-                        {
-                            dataAccess.DeleteCategory(categoryID);
-                        }
-                        catch (SqlException)
-                        {
-                            MessageBox.Show("Category " + DataRowDetail["CategoryName"].ToString() + " have some Products, so you can not perform this task!");
-                            failNumber++;
-                        }
-                    }
-
-                    MessageBox.Show("Delete " + (rowCount - failNumber) + " record(s) successfully!");
-                    LoadDataToGrid();
-                }
-            }
-        }
-
-        private void Grv_DoubleClick(object sender, EventArgs e)
-        {
-            var localMousePosition = Grc.PointToClient(MousePosition);
-            var gridHitInfo = Grv.CalcHitInfo(localMousePosition);
+            var localMousePosition = gridControl.PointToClient(MousePosition);
+            var gridHitInfo = gridView.CalcHitInfo(localMousePosition);
             var clickedOnRow = gridHitInfo.InRow;
 
             if (clickedOnRow)
                 ShowUpdateForm();
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            var dialogResult = MessageBox.Show("Are you sure?", "Warning", MessageBoxButtons.YesNo);
+            if (dialogResult != DialogResult.Yes)
+                return;
+
+            DataRow selected;
+            try
+            {
+                selected = gridView.GetFocusedDataRow();
+            }
+            catch (NullReferenceException)
+            {
+                if (gridView.RowCount != 0)
+                    throw;
+
+                MessageBox.Show("There's nothing to delete.", "Error");
+                return;
+            }
+
+            var idString = (string)selected["CategoryID"];
+            int id;
+
+            try
+            {
+                id = int.Parse(idString);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Incorrect format of category ID. Contact your database administrator.", "Error");
+                return;
+            }
+
+            try
+            {
+                dataAccess.DeleteProducts(id);
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("An error has occured when trying to delete the item from database.", "Error");
+            }
+
+            MessageBox.Show("Deleted.");
+            LoadDataToGrid();
         }
 
         private void Grv_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
