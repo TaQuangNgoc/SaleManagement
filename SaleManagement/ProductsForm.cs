@@ -31,27 +31,20 @@ namespace SaleManagement
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            try
+            var rowCount = Grv.SelectedRowsCount;
+            if (rowCount == 0)
             {
-                var rowCount = Grv.SelectedRowsCount;
-                if (rowCount == 0)
-                {
-                    MessageBox.Show("You have to choose one Category to update!");
-                }
-                else if (rowCount > 1)
-                {
-                    MessageBox.Show("You have to choose only one Category to update!");
-                }
-                else
-                {
-                    DataRow selectedRow = Grv.GetDataRow(Grv.FocusedRowHandle);
-                    ProductDetailsForm.CreateUpdateForm(selectedRow);
-                    LoadDataToGrid();
-                }
+                MessageBox.Show("You have to choose one Category to update!");
             }
-            catch (Exception)
+            else if (rowCount > 1)
             {
-                throw;
+                MessageBox.Show("You have to choose only one Category to update!");
+            }
+            else
+            {
+                DataRow selectedRow = Grv.GetDataRow(Grv.FocusedRowHandle);
+                ProductDetailsForm.CreateUpdateForm(selectedRow);
+                LoadDataToGrid();
             }
         }
 

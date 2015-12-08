@@ -87,12 +87,15 @@ namespace SaleManagement
 
         private void saveButton_Click(object sender, EventArgs e)
         {
+
             string productName = productNameTxt.Text;
             int supplierID = int.Parse(companyNameSLE.EditValue.ToString()),
                 categoryID = int.Parse(categoryNameSLE.EditValue.ToString()),
                 unitsInStock = int.Parse(unitsInStockTxt.Text);
             decimal unitPrice = decimal.Parse(unitPriceTxt.Text);
-            byte[] image = handleImageFileAndConvertToImageType(imageLocation);
+            
+            ImageConverter imageConverter = new ImageConverter();
+            byte[] image = (byte[])imageConverter.ConvertTo(pictureBox.Image, typeof(byte[]));
 
             if (isForUpdate)
                 dataAccess.UpdateProduct(productName, supplierID, categoryID, unitPrice, unitsInStock, image, productID);

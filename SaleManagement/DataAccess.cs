@@ -151,8 +151,8 @@ namespace SaleManagement
 
         public void UpdateProduct(string productName, int supplierID, int categoryID, decimal unitPrice, int unitsInStock, byte[] image, int productID)
         {
-            string query = "UPDATE [Products] SET [ProductName] = " + "@productName" + "', [SupplierID] = " + "@supplierID" + ", [CategoryID] = " + "@categoryID" + ", [UnitPrice] = " + "@unitPrice" + ", [UnitsInStock] = " + "@unitsInStock" + ", [Picture] = " + "@image" + "WHERE [ProductID] = " + "@productID";
-            var parameters = new SqlParameter[6];
+            string query = "UPDATE [Products] SET [ProductName] = " + "@productName" + ", [SupplierID] = " + "@supplierID" + ", [CategoryID] = " + "@categoryID" + ", [UnitPrice] = " + "@unitPrice" + ", [UnitsInStock] = " + "@unitsInStock" + ", [Picture] = " + "@image" + " WHERE [ProductID] = " + "@productID";
+            var parameters = new SqlParameter[7];
             parameters[0] = new SqlParameter("@productName", SqlDbType.NVarChar);
             parameters[0].Value = productName;
             parameters[1] = new SqlParameter("@supplierID", SqlDbType.Int);

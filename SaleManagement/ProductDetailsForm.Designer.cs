@@ -86,7 +86,7 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(715, 385);
+            this.groupControl1.Size = new System.Drawing.Size(715, 431);
             this.groupControl1.TabIndex = 11;
             this.groupControl1.Text = "Product Detail";
             // 
@@ -94,17 +94,17 @@
             // 
             this.groupControl2.Controls.Add(this.pictureBox);
             this.groupControl2.Controls.Add(this.BrowseButton);
-            this.groupControl2.Location = new System.Drawing.Point(426, 59);
+            this.groupControl2.Location = new System.Drawing.Point(426, 64);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(263, 297);
+            this.groupControl2.Size = new System.Drawing.Size(263, 320);
             this.groupControl2.TabIndex = 22;
             this.groupControl2.Text = "Picture";
             // 
             // pictureBox
             // 
-            this.pictureBox.Location = new System.Drawing.Point(25, 70);
+            this.pictureBox.Location = new System.Drawing.Point(26, 52);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(216, 211);
+            this.pictureBox.Size = new System.Drawing.Size(215, 236);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox.TabIndex = 20;
             this.pictureBox.TabStop = false;
@@ -112,9 +112,9 @@
             // BrowseButton
             // 
             this.BrowseButton.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
-            this.BrowseButton.Location = new System.Drawing.Point(61, 0);
+            this.BrowseButton.Location = new System.Drawing.Point(71, 0);
             this.BrowseButton.Name = "BrowseButton";
-            this.BrowseButton.Size = new System.Drawing.Size(142, 38);
+            this.BrowseButton.Size = new System.Drawing.Size(142, 20);
             this.BrowseButton.TabIndex = 21;
             this.BrowseButton.Text = "Browse";
             this.BrowseButton.Click += new System.EventHandler(this.BrowseButton_Click);
@@ -122,7 +122,7 @@
             // companyNameSLE
             // 
             this.companyNameSLE.EditValue = "";
-            this.companyNameSLE.Location = new System.Drawing.Point(122, 126);
+            this.companyNameSLE.Location = new System.Drawing.Point(122, 136);
             this.companyNameSLE.Name = "companyNameSLE";
             this.companyNameSLE.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -159,7 +159,7 @@
             // categoryNameSLE
             // 
             this.categoryNameSLE.EditValue = "";
-            this.categoryNameSLE.Location = new System.Drawing.Point(122, 196);
+            this.categoryNameSLE.Location = new System.Drawing.Point(122, 211);
             this.categoryNameSLE.Name = "categoryNameSLE";
             this.categoryNameSLE.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -195,21 +195,21 @@
             // 
             // unitsInStockTxt
             // 
-            this.unitsInStockTxt.Location = new System.Drawing.Point(122, 336);
+            this.unitsInStockTxt.Location = new System.Drawing.Point(122, 362);
             this.unitsInStockTxt.Name = "unitsInStockTxt";
             this.unitsInStockTxt.Size = new System.Drawing.Size(258, 20);
             this.unitsInStockTxt.TabIndex = 18;
             // 
             // unitPriceTxt
             // 
-            this.unitPriceTxt.Location = new System.Drawing.Point(122, 268);
+            this.unitPriceTxt.Location = new System.Drawing.Point(122, 289);
             this.unitPriceTxt.Name = "unitPriceTxt";
             this.unitPriceTxt.Size = new System.Drawing.Size(258, 20);
             this.unitPriceTxt.TabIndex = 17;
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(12, 339);
+            this.labelControl6.Location = new System.Drawing.Point(12, 365);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(66, 13);
             this.labelControl6.TabIndex = 16;
@@ -217,7 +217,7 @@
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(12, 271);
+            this.labelControl5.Location = new System.Drawing.Point(12, 292);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(45, 13);
             this.labelControl5.TabIndex = 15;
@@ -225,7 +225,7 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(12, 199);
+            this.labelControl4.Location = new System.Drawing.Point(12, 214);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(75, 13);
             this.labelControl4.TabIndex = 14;
@@ -233,7 +233,7 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(12, 129);
+            this.labelControl1.Location = new System.Drawing.Point(12, 139);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(75, 13);
             this.labelControl1.TabIndex = 13;
@@ -241,14 +241,14 @@
             // 
             // productNameTxt
             // 
-            this.productNameTxt.Location = new System.Drawing.Point(122, 59);
+            this.productNameTxt.Location = new System.Drawing.Point(122, 64);
             this.productNameTxt.Name = "productNameTxt";
             this.productNameTxt.Size = new System.Drawing.Size(258, 20);
             this.productNameTxt.TabIndex = 12;
             // 
             // m_lbl_nghiep_vu
             // 
-            this.m_lbl_nghiep_vu.Location = new System.Drawing.Point(12, 62);
+            this.m_lbl_nghiep_vu.Location = new System.Drawing.Point(12, 67);
             this.m_lbl_nghiep_vu.Name = "m_lbl_nghiep_vu";
             this.m_lbl_nghiep_vu.Size = new System.Drawing.Size(67, 13);
             this.m_lbl_nghiep_vu.TabIndex = 4;
@@ -256,14 +256,14 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(29, 97);
+            this.labelControl3.Location = new System.Drawing.Point(29, 104);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(0, 13);
             this.labelControl3.TabIndex = 2;
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(29, 106);
+            this.labelControl2.Location = new System.Drawing.Point(29, 114);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(0, 13);
             this.labelControl2.TabIndex = 1;
@@ -273,9 +273,9 @@
             this.panelControl2.Controls.Add(this.exitButton);
             this.panelControl2.Controls.Add(this.saveButton);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl2.Location = new System.Drawing.Point(0, 385);
+            this.panelControl2.Location = new System.Drawing.Point(0, 431);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(715, 51);
+            this.panelControl2.Size = new System.Drawing.Size(715, 39);
             this.panelControl2.TabIndex = 10;
             // 
             // exitButton
@@ -290,9 +290,9 @@
             this.exitButton.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.exitButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.exitButton.Image = ((System.Drawing.Image)(resources.GetObject("exitButton.Image")));
-            this.exitButton.Location = new System.Drawing.Point(503, 6);
+            this.exitButton.Location = new System.Drawing.Point(515, 1);
             this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(98, 41);
+            this.exitButton.Size = new System.Drawing.Size(86, 36);
             this.exitButton.TabIndex = 1;
             this.exitButton.Text = "Exit";
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
@@ -308,18 +308,18 @@
             this.saveButton.Appearance.Options.UseForeColor = true;
             this.saveButton.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.saveButton.Image = ((System.Drawing.Image)(resources.GetObject("saveButton.Image")));
-            this.saveButton.Location = new System.Drawing.Point(71, 6);
+            this.saveButton.Location = new System.Drawing.Point(85, 0);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(98, 41);
+            this.saveButton.Size = new System.Drawing.Size(86, 36);
             this.saveButton.TabIndex = 0;
             this.saveButton.Text = "Save";
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // ProductDetailsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(715, 436);
+            this.ClientSize = new System.Drawing.Size(715, 470);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.panelControl2);
             this.Name = "ProductDetailsForm";
