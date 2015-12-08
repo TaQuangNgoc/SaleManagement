@@ -54,7 +54,7 @@ namespace SaleManagement
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if (this.HasBlankField())
+            if (this.HasBlankFields())
             {
                 MessageBox.Show("Please fill in all fields.", "Error");
                 return;
@@ -87,7 +87,7 @@ namespace SaleManagement
             Close();
         }
 
-        private bool HasBlankField()
+        private bool HasBlankFields()
         {
             return lastNameTxt.Text == ""
                 || firstNameTxt.Text == ""
@@ -95,5 +95,9 @@ namespace SaleManagement
                 || addressTxt.Text == "";
         }
 
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

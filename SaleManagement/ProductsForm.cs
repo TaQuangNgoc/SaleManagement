@@ -2,11 +2,13 @@
 using DevExpress.XtraGrid.Views.Card;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using DevExpress.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,130 +18,97 @@ namespace SaleManagement
 {
     public partial class ProductsForm : Form
     {
+        private DataAccess dataAccess;
+
         public ProductsForm()
         {
             InitializeComponent();
-            UnitPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            UnitPrice.DisplayFormat.FormatString = "c";
-            //RepositoryItemPictureEdit repository = new RepositoryItemPictureEdit();
-            //PictureColumn.ColumnEdit = repository;
+
+            dataAccess = new DataAccess();
+
+            this.Load += (s, e) => LoadDataToGrid();
+            exitButton.Click += (s, e) => Close();
+
+            unitPriceColumn.DisplayFormat.FormatType = FormatType.Custom;
+            unitPriceColumn.DisplayFormat.FormatString = "c";
+        }
+
+        private void LoadDataToGrid()
+        {
+            gridControl.DataSource = dataAccess.SelectProducts();
         }
 
         private void insertButton_Click(object sender, EventArgs e)
         {
-
             ProductDetailsForm.CreateInsertForm();
             LoadDataToGrid();
         }
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            var rowCount = Grv.SelectedRowsCount;
-            if (rowCount == 0)
+            try
             {
-                MessageBox.Show("You have to choose one Category to update!");
+                ShowUpdateForm();
             }
-            else if (rowCount > 1)
+            catch (NullReferenceException)
             {
-                MessageBox.Show("You have to choose only one Category to update!");
-            }
-            else
-            {
-                DataRow selectedRow = Grv.GetDataRow(Grv.FocusedRowHandle);
-                ProductDetailsForm.CreateUpdateForm(selectedRow);
-                LoadDataToGrid();
+                if (gridView.RowCount != 0)
+                    throw;
+
+                MessageBox.Show("There's no item to update.", "Error");
             }
         }
 
-        private void Products_Load(object sender, EventArgs e)
+        private void ShowUpdateForm()
         {
+            Debug.Assert(gridView.FocusedRowHandle != -1);
+
+            DataRow selected = gridView.GetFocusedDataRow();
+            ProductDetailsForm.CreateUpdateForm(selected);
             LoadDataToGrid();
         }
 
-        private void LoadDataToGrid()
+        private void cardView_DoubleClick(object sender, EventArgs e)
         {
-            DataAccess da = new DataAccess();
-            Grc.DataSource = da.SelectProducts();
+            var localMousePosition = gridControl.PointToClient(MousePosition);
+            var gridHitInfo = cardView.CalcHitInfo(localMousePosition);
+            var clickedOnCard = gridHitInfo.InCard;
+
+            if (clickedOnCard)
+                ShowUpdateForm();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
+            var dialogResult = MessageBox.Show("Are you sure?", "Warning", MessageBoxButtons.YesNo);
+            if (dialogResult != DialogResult.Yes)
+                return;
+
+            DataRow selected = gridView.GetFocusedDataRow();
+            var idString = (string)selected["ProductID"];
+            int id;
+
             try
             {
-                decimal rowCount = Grv.SelectedRowsCount;
-                if (rowCount == 0)
-                {
-                    MessageBox.Show("You have to choose at lease 1 Product to delete!");
-                }
-                else
-                {
-                    DialogResult dialogResult = MessageBox.Show("Are you sure that you want to continue to perform this task?", "Warning", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        int j = 0;
-                        for (int i = 0; i < rowCount; i++)
-                        {
-                            DataRow DataRowDetail = Grv.GetDataRow(Grv.GetSelectedRows()[i]);
-                            int ProductID = int.Parse(DataRowDetail["ProductID"].ToString());
-                            DataAccess da = new DataAccess();
-                            try
-                            {
-                                da.DeleteProducts(ProductID);
-                            }
-                            catch (SqlException)
-                            {
-                                MessageBox.Show("Product named " + DataRowDetail["ProductName"].ToString() + " can not delete!");
-                                j++;
-                            }
-                        }
-
-                        MessageBox.Show("Delete " + (rowCount - j) + " record(s) successfully!");
-
-                    }
-                    LoadDataToGrid();
-                }
+                 id = int.Parse(idString);
             }
             catch (Exception)
             {
-
+                MessageBox.Show("Incorrect format of product ID. Contact your database administrator.", "Error");
+                return;
             }
-        }
 
-        private void exitButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void Grc_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Grv_DoubleClick(object sender, EventArgs e)
-        {
             try
             {
-                CardView view = (CardView)sender;
-                Point pt = view.GridControl.PointToClient(Control.MousePosition);
-                DoRowDoubleClick(view, pt);
+                dataAccess.DeleteProducts(id);
             }
-            catch (Exception ex)
+            catch (SqlException)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("An error has occured when trying to delete the item from database.", "Error");
             }
-        }
 
-
-        private void DoRowDoubleClick(CardView view, Point pt)
-        {
-            var info = view.CalcHitInfo(pt);
-            if (info.InCard)
-            {
-                DataRow selectedRow = Grv.GetDataRow(Grv.FocusedRowHandle);
-                ProductDetailsForm.CreateUpdateForm(selectedRow);
-                LoadDataToGrid();
-            }
-            else MessageBox.Show("You have to choose one product to update!");
+            MessageBox.Show("Deleted.");
+            LoadDataToGrid();
         }
     }
 }

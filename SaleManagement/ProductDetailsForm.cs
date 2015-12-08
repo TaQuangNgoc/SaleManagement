@@ -43,14 +43,6 @@ namespace SaleManagement
         {
             InitializeComponent();
             dataAccess = new DataAccess();
-
-            comboBox.DisplayMember = "CompanyName";
-            comboBox.ValueMember = "SupplierID";
-
-            DataTable dt = dataAccess.SelectSuppliers();
-          
-            comboBox.DataSource = dt;
-            dt.Rows.Add(-1, "chua xac dinh");
         }
 
         private void ProductsDetail_Load(object sender, EventArgs e)
@@ -75,8 +67,6 @@ namespace SaleManagement
         {
             productNameTxt.Text = DataRowDetail["ProductName"].ToString();
             companyNameSLE.EditValue = decimal.Parse(DataRowDetail["SupplierID"].ToString());
-            //comboBox.SelectedValue = decimal.Parse(DataRowDetail["SupplierID"].ToString());
-            comboBox.SelectedValue = -1;
             categoryNameSLE.EditValue = decimal.Parse(DataRowDetail["CategoryID"].ToString());
             unitPriceTxt.Text = DataRowDetail["UnitPrice"].ToString();
             unitsInStockTxt.Text = DataRowDetail["UnitsInStock"].ToString();
@@ -107,14 +97,8 @@ namespace SaleManagement
             int supplierID, categoryID, unitsInStock;
             decimal unitPrice;
             
-            /*
+            
             bool validSupplierID = int.TryParse(companyNameSLE.EditValue.ToString(), out supplierID),
-                validCategoryID = int.TryParse(categoryNameSLE.EditValue.ToString(), out categoryID),
-                validUnitsInStock = int.TryParse(unitsInStockTxt.Text, out unitsInStock),
-                validUnitPrice = decimal.TryParse(unitPriceTxt.Text, out unitPrice);*/
-            Console.WriteLine(comboBox.SelectedValue.ToString());
-            Console.WriteLine(categoryNameSLE.EditValue.ToString());
-            bool validSupplierID = int.TryParse(comboBox.SelectedValue.ToString(), out supplierID),
                 validCategoryID = int.TryParse(categoryNameSLE.EditValue.ToString(), out categoryID),
                 validUnitsInStock = int.TryParse(unitsInStockTxt.Text, out unitsInStock),
                 validUnitPrice = decimal.TryParse(unitPriceTxt.Text, out unitPrice);

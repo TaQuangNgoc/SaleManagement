@@ -60,7 +60,7 @@ namespace SaleManagement
                 decimal rowCount = Grv.SelectedRowsCount;
                 if (rowCount == 0)
                 {
-                    MessageBox.Show("You have to choose at lease 1 Category to delete!");
+                    MessageBox.Show("You have to choose at least 1 category to delete!");
                 }
                 else
                 {

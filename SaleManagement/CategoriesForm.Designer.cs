@@ -439,7 +439,6 @@
             this.exitButton.Size = new System.Drawing.Size(99, 36);
             this.exitButton.TabIndex = 20;
             this.exitButton.Text = "Exit";
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // panelControl2
             // 
@@ -449,7 +448,6 @@
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(648, 46);
             this.panelControl2.TabIndex = 30;
-            this.panelControl2.Enter += new System.EventHandler(this.panelControl2_Enter);
             // 
             // labelControl1
             // 
@@ -523,7 +521,6 @@
             this.Controls.Add(this.panelControl1);
             this.Name = "CategoriesForm";
             this.Text = "Categories";
-            this.Load += new System.EventHandler(this.Categories_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grvCard)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Grc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Grv)).EndInit();
