@@ -43,6 +43,14 @@ namespace SaleManagement
         {
             InitializeComponent();
             dataAccess = new DataAccess();
+
+            comboBox.DisplayMember = "CompanyName";
+            comboBox.ValueMember = "SupplierID";
+
+            DataTable dt = dataAccess.SelectSuppliers();
+          
+            comboBox.DataSource = dt;
+            dt.Rows.Add(-1, "chua xac dinh");
         }
 
         private void ProductsDetail_Load(object sender, EventArgs e)
@@ -67,6 +75,8 @@ namespace SaleManagement
         {
             productNameTxt.Text = DataRowDetail["ProductName"].ToString();
             companyNameSLE.EditValue = decimal.Parse(DataRowDetail["SupplierID"].ToString());
+            //comboBox.SelectedValue = decimal.Parse(DataRowDetail["SupplierID"].ToString());
+            comboBox.SelectedValue = -1;
             categoryNameSLE.EditValue = decimal.Parse(DataRowDetail["CategoryID"].ToString());
             unitPriceTxt.Text = DataRowDetail["UnitPrice"].ToString();
             unitsInStockTxt.Text = DataRowDetail["UnitsInStock"].ToString();
@@ -87,12 +97,34 @@ namespace SaleManagement
 
         private void saveButton_Click(object sender, EventArgs e)
         {
+            if (productNameTxt.Text == "" || unitPriceTxt.Text == "" || unitsInStockTxt.Text == "")
+            {
+                MessageBox.Show("Invalid field.", "Error");
+                return;
+            }
 
             string productName = productNameTxt.Text;
-            int supplierID = int.Parse(companyNameSLE.EditValue.ToString()),
-                categoryID = int.Parse(categoryNameSLE.EditValue.ToString()),
-                unitsInStock = int.Parse(unitsInStockTxt.Text);
-            decimal unitPrice = decimal.Parse(unitPriceTxt.Text);
+            int supplierID, categoryID, unitsInStock;
+            decimal unitPrice;
+            
+            /*
+            bool validSupplierID = int.TryParse(companyNameSLE.EditValue.ToString(), out supplierID),
+                validCategoryID = int.TryParse(categoryNameSLE.EditValue.ToString(), out categoryID),
+                validUnitsInStock = int.TryParse(unitsInStockTxt.Text, out unitsInStock),
+                validUnitPrice = decimal.TryParse(unitPriceTxt.Text, out unitPrice);*/
+            Console.WriteLine(comboBox.SelectedValue.ToString());
+            Console.WriteLine(categoryNameSLE.EditValue.ToString());
+            bool validSupplierID = int.TryParse(comboBox.SelectedValue.ToString(), out supplierID),
+                validCategoryID = int.TryParse(categoryNameSLE.EditValue.ToString(), out categoryID),
+                validUnitsInStock = int.TryParse(unitsInStockTxt.Text, out unitsInStock),
+                validUnitPrice = decimal.TryParse(unitPriceTxt.Text, out unitPrice);
+
+            if (!validSupplierID || !validCategoryID || !validUnitsInStock || !validUnitPrice)
+            {
+                MessageBox.Show("Invalid field.", "Error");
+                return;
+            }
+
             
             ImageConverter imageConverter = new ImageConverter();
             byte[] image = (byte[])imageConverter.ConvertTo(pictureBox.Image, typeof(byte[]));

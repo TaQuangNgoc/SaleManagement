@@ -30,7 +30,8 @@ namespace SaleManagement
 
         private void LoadDataToGrid()
         {
-            Grc.DataSource = dataAccess.SelectCustomers();
+            DataAccess da = new DataAccess();
+            Grc.DataSource = da.SelectCustomers();
         }
 
         private void updateButton_Click(object sender, EventArgs e)
@@ -49,47 +50,48 @@ namespace SaleManagement
 
         private void exitButton_Click(object sender, EventArgs e)
         {
-            Close();
+            this.Close();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
             try
             {
-                int selectedRowCount = Grv.SelectedRowsCount;
-                if (selectedRowCount == 0)
+                decimal rowCount = Grv.SelectedRowsCount;
+                if (rowCount == 0)
                 {
-                    MessageBox.Show("You have to choose a category to delete.");
-                    return;
+                    MessageBox.Show("You have to choose at lease 1 Category to delete!");
                 }
-
-                string message = "Are you sure that you want to continue to perform this task?";
-                DialogResult dialogResult = MessageBox.Show(message, "Warning", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.No)
-                    return;
-
-                int failToDeletedCount = 0;
-                for (int i = 0; i < selectedRowCount; i++)
+                else
                 {
-                    DataRow DataRowDetail = Grv.GetDataRow(Grv.GetSelectedRows()[i]);
-                    int customerID = int.Parse(DataRowDetail["CustomerID"].ToString());
-                    try
+                    DialogResult dialogResult = MessageBox.Show("Are you sure that you want to continue to perform this task?", "Warning", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
                     {
-                        dataAccess.DeleteCustomer(customerID);
-                    }
-                    catch (SqlException)
-                    {
-                        MessageBox.Show("Customer named " + DataRowDetail["FirstName"].ToString() + " can not be deleted!");
-                        failToDeletedCount++;
+                        int j = 0;
+                        for (int i = 0; i < rowCount; i++)
+                        {
+                            DataRow DataRowDetail = Grv.GetDataRow(Grv.GetSelectedRows()[i]);
+                            int customerID = int.Parse(DataRowDetail["CustomerID"].ToString());
+                            DataAccess da = new DataAccess();
+                            try
+                            {
+                                da.DeleteCustomer(customerID);
+                            }
+                            catch (SqlException)
+                            {
+                                MessageBox.Show("Customer named " + DataRowDetail["FirstName"].ToString() + " can not delete!");
+                                j++;
+                            }
+                        }
+
+                        MessageBox.Show("Delete " + (rowCount - j) + " record(s) successfully!");
+                        LoadDataToGrid();
                     }
                 }
-
-                MessageBox.Show("Delete " + (selectedRowCount - failToDeletedCount) + " record(s) successfully!");
-                LoadDataToGrid();
             }
             catch (Exception)
             {
-                throw;
+
             }
         }
 

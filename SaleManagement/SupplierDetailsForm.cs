@@ -52,22 +52,36 @@ namespace SaleManagement
 
         private void saveButton_Click(object sender, EventArgs e)
         {
+            if (CompanyNameTxt.Text == "" || PhoneTxt.Text == "" || AddressTxt.Text == "")
+            {
+                MessageBox.Show("Please fill in all the fields.", "Error");
+                return;
+            }
+
+            if (PhoneTxt.Text.Any((c) => !char.IsDigit(c)))
+            {
+                MessageBox.Show("Phone number must consist only numbers.");
+                return;
+            }
+
             string companyName = CompanyNameTxt.Text,
                     phone = PhoneTxt.Text,
                     address = AddressTxt.Text;
 
-            bool companyNameExist = dataAccess.CompanyNameExists(companyName);
-            if (companyNameExist)
-            {
-                MessageBox.Show("Company name exists. Please select another name.");
-                return;
-            }
 
             if (isForUpdate)
                 dataAccess.UpdateSupplier(companyName, phone, address, supplierID);
             else
+            {
+                bool companyNameExist = dataAccess.CompanyNameExists(companyName);
+                if (companyNameExist)
+                {
+                    MessageBox.Show("Company name exists. Please select another name.");
+                    return;
+                }
                 dataAccess.InsertSupplier(companyName, phone, address);
-            
+            }
+
             MessageBox.Show("Success.");
             Close();
         }

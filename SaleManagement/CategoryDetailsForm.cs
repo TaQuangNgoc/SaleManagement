@@ -53,22 +53,24 @@ namespace SaleManagement
         {
             if (categoryTxt.Text == "") 
             {
-                MessageBox.Show("category is empty");
+                MessageBox.Show("Category is empty");
+                return;
             }
             string categoryName = categoryTxt.Text,
                     description = descriptionTxt.Text;
 
-            bool categoryNameExists = dataAccess.CategoryNameExists(categoryName);
-            if (categoryNameExists)
-            {
-                MessageBox.Show("Category name exists. Please select another name.");
-                return;
-            }
-
             if (isForUpdate)
                 dataAccess.UpdateCategory(categoryName, description, categoryID);
             else
+            {
+                bool categoryNameExists = dataAccess.CategoryNameExists(categoryName);
+                if (categoryNameExists)
+                {
+                    MessageBox.Show("Category name exists. Please select another name.");
+                    return;
+                }
                 dataAccess.InsertCategory(categoryName, description);
+            }
 
             MessageBox.Show("Success.");
             Close();

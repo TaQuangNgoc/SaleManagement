@@ -1,4 +1,7 @@
 ﻿using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraGrid.Views.Card;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -70,7 +73,7 @@ namespace SaleManagement
                 }
                 else
                 {
-                    DialogResult dialogResult = MessageBox.Show("Are you sure that you want to continue to  perform this task?", "Warning", MessageBoxButtons.YesNo);
+                    DialogResult dialogResult = MessageBox.Show("Are you sure that you want to continue to perform this task?", "Warning", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
                         int j = 0;
@@ -105,6 +108,38 @@ namespace SaleManagement
         private void exitButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void Grc_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Grv_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                CardView view = (CardView)sender;
+                Point pt = view.GridControl.PointToClient(Control.MousePosition);
+                DoRowDoubleClick(view, pt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
+        private void DoRowDoubleClick(CardView view, Point pt)
+        {
+            var info = view.CalcHitInfo(pt);
+            if (info.InCard)
+            {
+                DataRow selectedRow = Grv.GetDataRow(Grv.FocusedRowHandle);
+                ProductDetailsForm.CreateUpdateForm(selectedRow);
+                LoadDataToGrid();
+            }
+            else MessageBox.Show("You have to choose one product to update!");
         }
     }
 }

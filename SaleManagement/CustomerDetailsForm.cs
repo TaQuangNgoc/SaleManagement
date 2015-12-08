@@ -12,7 +12,8 @@ namespace SaleManagement
     public partial class CustomerDetailsForm : Form
     {
         private bool isForUpdate;
-        private decimal customerID;
+        private int customerID;
+        private DataAccess dataAccess;
 
         public static CustomerDetailsForm CreateInsertForm()
         {
@@ -38,6 +39,7 @@ namespace SaleManagement
         private CustomerDetailsForm()
         {
             InitializeComponent();
+            dataAccess = new DataAccess();
         }
 
         private void transferDataRowDetailToForm(DataRow DataRowDetail)
@@ -47,52 +49,50 @@ namespace SaleManagement
             addressTxt.Text = DataRowDetail["Address"].ToString();
             phoneTxt.Text = DataRowDetail["Phone"].ToString();
             dateOfBirthDAT.Value = Convert.ToDateTime(DataRowDetail["DateOfBirth"].ToString());
-            customerID = decimal.Parse(DataRowDetail["CustomerID"].ToString());
+            customerID = int.Parse(DataRowDetail["CustomerID"].ToString());
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if (isInputOK())
+            if (this.HasBlankField())
             {
-                if (isForUpdate == false)
-                {
-                    DataAccess da = new DataAccess();
-                    if (da.IsInsertCustomers(lastNameTxt.Text, firstNameTxt.Text, addressTxt.Text, phoneTxt.Text, dateOfBirthDAT.Value))
-                    {
-                        MessageBox.Show(" Insert Succeed!");
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("This action isn't done because there are 2 record have same name!");
-                    }
-                }
-                else
-                {
-                    DataAccess da = new DataAccess();
-                    if (da.IsUpdateCustomers(lastNameTxt.Text, firstNameTxt.Text, addressTxt.Text, phoneTxt.Text, dateOfBirthDAT.Value, customerID))
-                    {
-                        MessageBox.Show("Update Succeed!");
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("This action isn't done because there are 2 record have same name!");
-                    }
-                }
+                MessageBox.Show("Please fill in all fields.", "Error");
+                return;
             }
+
+            if (phoneTxt.Text.Any((c) => !char.IsDigit(c)))
+            {
+                MessageBox.Show("Phone number must consist only numbers.");
+                return;
+            }
+
+            string lastName = lastNameTxt.Text,
+                firstName = firstNameTxt.Text,
+                address = addressTxt.Text,
+                phone = phoneTxt.Text;
+            DateTime dateOfBirth = dateOfBirthDAT.Value;
+
+            if (dateOfBirth > DateTime.Today)
+            {
+                MessageBox.Show("Hư cấu.");
+                return;
+            }
+
+            if (isForUpdate)
+                dataAccess.UpdateCustomer(lastName, firstName, address, phone, dateOfBirth, customerID);
             else
-            {
-                MessageBox.Show("You have to check your information!");
-            }
+                dataAccess.InsertCustomer(lastName, firstName, address, phone, dateOfBirth);
+
+            MessageBox.Show("Success.");
+            Close();
         }
 
-        private bool isInputOK()
+        private bool HasBlankField()
         {
-            if (lastNameTxt.Text != "" && firstNameTxt.Text != "" && phoneTxt.Text != "" && addressTxt.Text != "")
-                return true;
-            return false;
-
+            return lastNameTxt.Text == ""
+                || firstNameTxt.Text == ""
+                || phoneTxt.Text == ""
+                || addressTxt.Text == "";
         }
 
     }

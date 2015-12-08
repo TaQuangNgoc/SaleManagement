@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductsForm));
             this.cardView1 = new DevExpress.XtraGrid.Views.Card.CardView();
@@ -42,7 +41,7 @@
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.PictureColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
-            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
+            this.imageList2 = new System.Windows.Forms.ImageList();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.insertButton = new DevExpress.XtraEditors.SimpleButton();
@@ -50,11 +49,11 @@
             this.exitButton = new DevExpress.XtraEditors.SimpleButton();
             this.m_pnl_out_place_dm = new System.Windows.Forms.Panel();
             this.updateButton = new DevExpress.XtraEditors.SimpleButton();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.imageList1 = new System.Windows.Forms.ImageList();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.ImageList = new System.Windows.Forms.ImageList(this.components);
+            this.ImageList = new System.Windows.Forms.ImageList();
             ((System.ComponentModel.ISupportInitialize)(this.cardView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Grc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Grv)).BeginInit();
@@ -144,6 +143,7 @@
             this.Grc.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.Grv,
             this.cardView1});
+            this.Grc.DoubleClick += new System.EventHandler(this.Grc_DoubleClick);
             // 
             // Grv
             // 
@@ -215,6 +215,7 @@
             this.Grv.OptionsBehavior.FieldAutoHeight = true;
             this.Grv.PaintStyleName = "Flat";
             this.Grv.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Auto;
+            this.Grv.DoubleClick += new System.EventHandler(this.Grv_DoubleClick);
             // 
             // gridColumn3
             // 
