@@ -13,7 +13,7 @@ namespace SaleManagement
     {
         private SqlDataAdapter adapter;
         private SqlConnection connection;
-        private readonly string connectionString = "Data Source=27.118.16.60\\sqlexpress;Initial Catalog=SaleManagement;User id=kstn;Password=sa";
+        private readonly string connectionString = "Data Source=anhpt-pc\\sqlexpressr2;Initial Catalog=SaleManagement;User id=sa;Password=sa123456";
 
         public DatabaseConnection()
         {

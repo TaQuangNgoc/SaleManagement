@@ -47,7 +47,7 @@ namespace SaleManagement
             parameters[0].Value = categoryName;
             parameters[1] = new SqlParameter("@description", SqlDbType.NVarChar);
             parameters[1].Value = description;
-            parameters[2] = new SqlParameter("@description", SqlDbType.Int);
+            parameters[2] = new SqlParameter("@categoryID", SqlDbType.Int);
             parameters[2].Value = categoryID;
             connection.ExecuteUpdateQuery(query, parameters);
         }
@@ -97,7 +97,7 @@ namespace SaleManagement
 
         public void UpdateSupplier(string companyName, string phone, string address, int supplierID)
         {
-            string query = "UPDATE [Suppliers] SET [CompanyName] = " + "@companyName" + ", [Phone] = " + "@phone" + ", [Address] = " + "address" + " WHERE [SupplierID] = " + "@supplierID";
+            string query = "UPDATE [Suppliers] SET [CompanyName] = " + "@companyName" + ", [Phone] = " + "@phone" + ", [Address] = " + "@address" + " WHERE [SupplierID] = " + "@supplierID";
             var parameters = new SqlParameter[4];
             parameters[0] = new SqlParameter("@companyName", SqlDbType.NVarChar);
             parameters[0].Value = companyName;

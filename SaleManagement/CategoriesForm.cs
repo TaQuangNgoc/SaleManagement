@@ -30,8 +30,8 @@ namespace SaleManagement
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-             try
-                {
+            try
+            {
                 int rowCount = Grv.SelectedRowsCount;
                 if (rowCount == 0)
                 {
@@ -76,26 +76,26 @@ namespace SaleManagement
                 }
                 else
                 {
-                    DialogResult dialogResult = MessageBox.Show("Are you sure that you want to continue to  perform this task?", "Warning", MessageBoxButtons.YesNo);
+                    DialogResult dialogResult = MessageBox.Show("Are you sure that you want to continue to perform this task?", "Warning", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
                         int failNumber = 0;
                         for (int i = 0; i < rowCount; i++)
-			            {
+                        {
                             DataRow DataRowDetail = Grv.GetDataRow(Grv.GetSelectedRows()[i]);
                             int categoryID = int.Parse(DataRowDetail["CategoryID"].ToString());
-                                DataAccess da = new DataAccess();
+                            DataAccess da = new DataAccess();
 
                             try
                             {
                                 dataAccess.DeleteCategory(categoryID);
                             }
                             catch (SqlException)
-                                {
+                            {
                                 MessageBox.Show("Category " + DataRowDetail["CategoryName"].ToString() + " have some Products, so you can not perform this task!");
                                 failNumber++;
-                                }
-			            }
+                            }
+                        }
 
                         MessageBox.Show("Delete " + (rowCount - failNumber) + " record(s) successfully!");
                         LoadDataToGrid();
@@ -116,7 +116,7 @@ namespace SaleManagement
             {
                 DataRow selectedRow = Grv.GetDataRow(Grv.FocusedRowHandle);
                 CategoryDetailsForm.CreateUpdateForm(selectedRow);
-                LoadDataToGrid();            
+                LoadDataToGrid();
             }
             else MessageBox.Show("You have to choose one Category to update!");
         }
@@ -133,7 +133,7 @@ namespace SaleManagement
             {
                 MessageBox.Show("Some errors occured!");
             }
-            }
+        }
 
         private void Grv_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
         {
@@ -141,6 +141,11 @@ namespace SaleManagement
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
         }
 
-       
+        private void panelControl2_Enter(object sender, EventArgs e)
+        {
+            LoadDataToGrid();
+        }
+
+
     }
 }

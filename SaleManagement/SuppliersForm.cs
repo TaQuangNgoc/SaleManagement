@@ -45,7 +45,7 @@ namespace SaleManagement
             try
             {
                 DataRow selectedRow = Grv.GetDataRow(Grv.FocusedRowHandle);
-                SupplierDetailsForm.CreateUpdateForm(selectedRow);
+                var form = SupplierDetailsForm.CreateUpdateForm(selectedRow);
                 LoadDataToGrid();
             }
             catch (Exception)

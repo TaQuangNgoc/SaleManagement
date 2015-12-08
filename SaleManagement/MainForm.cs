@@ -64,6 +64,7 @@ namespace SaleManagement
              else
              {
                  categoriesForm.Focus();
+
              }
         }
 

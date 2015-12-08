@@ -64,7 +64,7 @@ namespace SaleManagement
                 }
                 else
                 {
-                    DialogResult dialogResult = MessageBox.Show("Are you sure that you want to continue to  perform this task?", "Warning", MessageBoxButtons.YesNo);
+                    DialogResult dialogResult = MessageBox.Show("Are you sure that you want to continue to perform this task?", "Warning", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
                         int j = 0;

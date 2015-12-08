@@ -12,7 +12,6 @@ namespace SaleManagement
     {
         public static void RunTest()
         {
-            SelectQueryTest();
         }
 
         private static void SelectQueryTest()

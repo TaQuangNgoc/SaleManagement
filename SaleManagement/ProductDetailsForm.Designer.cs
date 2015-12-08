@@ -54,6 +54,7 @@
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.exitButton = new DevExpress.XtraEditors.SimpleButton();
             this.saveButton = new DevExpress.XtraEditors.SimpleButton();
+            this.comboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -70,6 +71,7 @@
             // groupControl1
             // 
             this.groupControl1.CaptionImage = ((System.Drawing.Image)(resources.GetObject("groupControl1.CaptionImage")));
+            this.groupControl1.Controls.Add(this.comboBox);
             this.groupControl1.Controls.Add(this.groupControl2);
             this.groupControl1.Controls.Add(this.companyNameSLE);
             this.groupControl1.Controls.Add(this.categoryNameSLE);
@@ -122,7 +124,7 @@
             // companyNameSLE
             // 
             this.companyNameSLE.EditValue = "";
-            this.companyNameSLE.Location = new System.Drawing.Point(122, 136);
+            this.companyNameSLE.Location = new System.Drawing.Point(122, 123);
             this.companyNameSLE.Name = "companyNameSLE";
             this.companyNameSLE.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -131,6 +133,7 @@
             this.companyNameSLE.Properties.View = this.searchLookUpEdit1View;
             this.companyNameSLE.Size = new System.Drawing.Size(258, 20);
             this.companyNameSLE.TabIndex = 19;
+            this.companyNameSLE.Visible = false;
             // 
             // searchLookUpEdit1View
             // 
@@ -315,6 +318,14 @@
             this.saveButton.Text = "Save";
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
+            // comboBox
+            // 
+            this.comboBox.FormattingEnabled = true;
+            this.comboBox.Location = new System.Drawing.Point(198, 149);
+            this.comboBox.Name = "comboBox";
+            this.comboBox.Size = new System.Drawing.Size(121, 22);
+            this.comboBox.TabIndex = 23;
+            // 
             // ProductDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
@@ -369,5 +380,6 @@
         private DevExpress.XtraEditors.SimpleButton BrowseButton;
         private System.Windows.Forms.PictureBox pictureBox;
         private DevExpress.XtraEditors.GroupControl groupControl2;
+        private System.Windows.Forms.ComboBox comboBox;
     }
 }
