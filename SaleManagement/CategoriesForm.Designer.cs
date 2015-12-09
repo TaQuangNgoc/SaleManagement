@@ -187,7 +187,7 @@
             this.gridView.OptionsView.EnableAppearanceOddRow = true;
             this.gridView.OptionsView.ShowFooter = true;
             this.gridView.PaintStyleName = "Flat";
-            this.gridView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.Grv_CustomDrawRowIndicator);
+            this.gridView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridView_CustomDrawRowIndicator);
             this.gridView.DoubleClick += new System.EventHandler(this.gridView_DoubleClick);
             // 
             // categoryNameColumn

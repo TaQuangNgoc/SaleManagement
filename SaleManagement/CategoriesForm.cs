@@ -101,7 +101,7 @@ namespace SaleManagement
 
             try
             {
-                dataAccess.DeleteProducts(id);
+                dataAccess.DeleteCategory(id);
             }
             catch (SqlException)
             {
@@ -112,7 +112,7 @@ namespace SaleManagement
             LoadDataToGrid();
         }
 
-        private void Grv_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
+        private void gridView_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
         {
             if (e.Info.IsRowIndicator && e.RowHandle >= 0)
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();

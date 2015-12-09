@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,16 @@ namespace SaleManagement
         public SuppliersForm()
         {
             InitializeComponent();
+
             dataAccess = new DataAccess();
+
+            this.Load += (s, e) => LoadDataToGrid();
+            exitButton.Click += (s, e) => Close();
+        }
+
+        private void LoadDataToGrid()
+        {
+            gridControl.DataSource = dataAccess.SelectSuppliers();
         }
 
         private void insertButton_Click(object sender, EventArgs e)
@@ -30,121 +40,88 @@ namespace SaleManagement
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            int selectedRowCount = Grv.SelectedRowsCount;
-            if (selectedRowCount == 0)
-            {
-                MessageBox.Show("Please select a category to update.");
-                return;
-            }
-            if (selectedRowCount > 1)
-            {
-                MessageBox.Show("You can only choose one category to update.");
-                return;
-            }
-
             try
             {
-                DataRow selectedRow = Grv.GetDataRow(Grv.FocusedRowHandle);
-                var form = SupplierDetailsForm.CreateUpdateForm(selectedRow);
-                LoadDataToGrid();
+                ShowUpdateForm();
             }
-            catch (Exception)
+            catch (NullReferenceException)
             {
-                throw;
+                if (gridView.RowCount != 0)
+                    throw;
+
+                MessageBox.Show("There's no item to update.", "Error");
             }
         }
 
-        private void Suppliers_Load(object sender, EventArgs e)
+        private void ShowUpdateForm()
         {
+            Debug.Assert(gridView.FocusedRowHandle != -1);
+
+            DataRow selected = gridView.GetFocusedDataRow();
+            SupplierDetailsForm.CreateUpdateForm(selected);
             LoadDataToGrid();
         }
 
-        private void LoadDataToGrid()
+        private void gridView_DoubleClick(object sender, EventArgs e)
         {
-            DataAccess da = new DataAccess();
-            Grc.DataSource = da.SelectSuppliers();
+            var localMousePosition = gridControl.PointToClient(MousePosition);
+            var gridHitInfo = gridView.CalcHitInfo(localMousePosition);
+            var clickedOnRow = gridHitInfo.InRow;
+
+            if (clickedOnRow)
+                ShowUpdateForm();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            int selectedRowCount = Grv.SelectedRowsCount;
-            if (selectedRowCount == 0)
+            var dialogResult = MessageBox.Show("Are you sure?", "Warning", MessageBoxButtons.YesNo);
+            if (dialogResult != DialogResult.Yes)
+                return;
+
+            DataRow selected;
+            try
             {
-                MessageBox.Show("Please select a category to delete.");
+                selected = gridView.GetFocusedDataRow();
+            }
+            catch (NullReferenceException)
+            {
+                if (gridView.RowCount != 0)
+                    throw;
+
+                MessageBox.Show("There's nothing to delete.", "Error");
+                return;
+            }
+
+            var idString = (string)selected["SupplierID"];
+            int id;
+
+            try
+            {
+                id = int.Parse(idString);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Incorrect format of supplier ID. Contact your database administrator.", "Error");
                 return;
             }
 
             try
             {
-                bool plural = selectedRowCount > 1;
-                string itemType = (plural) ? "categories" : "category",
-                     warningMessage = "Are you sure that you want to delete the selected " + itemType + "?";
-                var dialogResult = MessageBox.Show(warningMessage, "Warning", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    decimal j = 0;
-                    for (int i = 0; i < selectedRowCount; i++)
-                    {
-                        DataRow DataRowDetail = Grv.GetDataRow(Grv.GetSelectedRows()[i]);
-                        int SupplierID = int.Parse(DataRowDetail["SupplierID"].ToString());
-
-                        try
-                        {
-                            dataAccess.DeleteSupplier(SupplierID);
-                        }
-                        catch (SqlException)
-                        {
-                            MessageBox.Show("Company named " + DataRowDetail["CompanyName"].ToString() + " have some Products, so you can not perform this task!");
-                            j++;
-                        }
-                    }
-
-                    MessageBox.Show("Delete " + (selectedRowCount - j) + " record(s) successfully!");
-
-                    LoadDataToGrid();
-                }
+                dataAccess.DeleteSupplier(id);
             }
-            catch (Exception)
+            catch (SqlException)
             {
-                throw;
+                MessageBox.Show("An error has occured when trying to delete the item from database.", "Error");
             }
+
+            MessageBox.Show("Deleted.");
+            LoadDataToGrid();
         }
 
-        private void exitButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void Grv_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        private void gridView_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
             if (e.Info.IsRowIndicator && e.RowHandle >= 0)
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
-        }
-
-        private void Grv_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                GridView view = (GridView)sender;
-                Point pt = view.GridControl.PointToClient(Control.MousePosition);
-                DoRowDoubleClick(view, pt);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Some errors occured!");
-            }
-        }
-
-        private void DoRowDoubleClick(GridView view, Point pt)
-        {
-            GridHitInfo info = view.CalcHitInfo(pt);
-            if (info.InRow || info.InRowCell)
-            {
-                DataRow selectedRow = Grv.GetDataRow(Grv.FocusedRowHandle);
-                SupplierDetailsForm.CreateUpdateForm(selectedRow);
-                LoadDataToGrid();
-            }
-            else MessageBox.Show("You have to choose one Category to update!");
         }
     }
 }

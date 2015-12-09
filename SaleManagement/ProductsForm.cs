@@ -42,16 +42,16 @@ namespace SaleManagement
 
         private void ShowUpdateForm()
         {
-            Debug.Assert(gridView.FocusedRowHandle != -1);
+            Debug.Assert(cardView.FocusedRowHandle != -1);
 
             DataRow selected;
             try
             {
-                selected = gridView.GetFocusedDataRow();
+                selected = cardView.GetFocusedDataRow();
             }
             catch (NullReferenceException)
             {
-                if (gridView.RowCount != 0)
+                if (cardView.RowCount != 0)
                     throw;
 
                 MessageBox.Show("There's no item to update.", "Error");
@@ -81,11 +81,11 @@ namespace SaleManagement
             DataRow selected;
             try
             {
-                selected = gridView.GetFocusedDataRow();
+                selected = cardView.GetFocusedDataRow();
             }
             catch (NullReferenceException)
             {
-                if (gridView.RowCount != 0)
+                if (cardView.RowCount != 0)
                     throw;
 
                 MessageBox.Show("There's nothing to delete.", "Error");
