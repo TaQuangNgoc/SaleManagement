@@ -23,7 +23,8 @@ namespace SaleManagement
         {
             string query = "SELECT TOP 1 * FROM [Categories] WHERE [CategoryName] = " + "@categoryName";
             var parameters = new SqlParameter[1];
-            parameters[0] = new SqlParameter("@categoryName", categoryName);
+            parameters[0] = new SqlParameter("@categoryName", SqlDbType.NVarChar);
+            parameters[0].Value = categoryName;
             var table = connection.ExecuteSelectQuery(query, parameters);
             return table.Rows.Count == 1;
         }
@@ -241,5 +242,19 @@ namespace SaleManagement
             return connection.ExecuteSelectQuery(query, new SqlParameter[0]);
         }
         #endregion
+
+        public bool VerifyLoginDetails(string username, byte[] password)
+        {
+            throw new NotImplementedException();
+            string query = "SELECT TOP 1 * FROM [Employees]" + " [Username] = " + "@username"
+                                                        + " AND [Password] = " + "@password";
+            var parameters = new SqlParameter[2];
+            //parameters[0] = new SqlParameter("@username", SqlDbType.???);
+            parameters[0].Value = username;
+            parameters[1] = new SqlParameter("@password", SqlDbType.Binary);
+            parameters[1].Value = username;
+            var table = connection.ExecuteSelectQuery(query, parameters);
+            return table.Rows.Count == 1;
+        }
     }
 }

@@ -41,6 +41,9 @@
             this.reportPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.mdiManager = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
+            this.accountPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.logoutButton = new DevExpress.XtraBars.BarButtonItem();
+            this.accountPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mdiManager)).BeginInit();
             this.SuspendLayout();
@@ -53,13 +56,15 @@
             this.categoriesButton,
             this.productsButton,
             this.suppliersButton,
-            this.customersButton});
+            this.customersButton,
+            this.logoutButton});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 8;
+            this.ribbonControl.MaxItemId = 9;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.listingPage,
-            this.reportPage});
+            this.reportPage,
+            this.accountPage});
             this.ribbonControl.Size = new System.Drawing.Size(993, 163);
             this.ribbonControl.StatusBar = this.ribbonStatusBar;
             // 
@@ -138,6 +143,28 @@
             // 
             this.mdiManager.MdiParent = this;
             // 
+            // accountPage
+            // 
+            this.accountPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.accountPageGroup});
+            this.accountPage.Name = "accountPage";
+            this.accountPage.Text = "ACCOUNT";
+            // 
+            // logoutButton
+            // 
+            this.logoutButton.Caption = "LOG OUT";
+            this.logoutButton.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
+            this.logoutButton.Glyph = ((System.Drawing.Image)(resources.GetObject("logoutButton.Glyph")));
+            this.logoutButton.Id = 8;
+            this.logoutButton.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("logoutButton.LargeGlyph")));
+            this.logoutButton.Name = "logoutButton";
+            this.logoutButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.logoutButton_ItemClick);
+            // 
+            // accountPageGroup
+            // 
+            this.accountPageGroup.ItemLinks.Add(this.logoutButton);
+            this.accountPageGroup.Name = "accountPageGroup";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -171,5 +198,8 @@
         private DevExpress.XtraBars.BarButtonItem productsButton;
         private DevExpress.XtraBars.BarButtonItem suppliersButton;
         private DevExpress.XtraBars.BarButtonItem customersButton;
+        private DevExpress.XtraBars.BarButtonItem logoutButton;
+        private DevExpress.XtraBars.Ribbon.RibbonPage accountPage;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup accountPageGroup;
     }
 }

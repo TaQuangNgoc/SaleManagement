@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Windows.Forms;
-using DevExpress.XtraBars;
+﻿using DevExpress.XtraBars;
 using DevExpress.XtraTab;
-using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace SaleManagement
 {
@@ -22,12 +14,9 @@ namespace SaleManagement
         public MainForm()
         {
             InitializeComponent();
+
             mdiManager.ClosePageButtonShowMode = ClosePageButtonShowMode.InAllTabPageHeaders;
             ribbonControl.SelectedPage = listingPage;
-#if DEBUG
-            Test.RunTest();
-            return;
-#endif
         }
 
         private void categoriesButton_ItemClick(object sender, ItemClickEventArgs e)
@@ -82,6 +71,12 @@ namespace SaleManagement
                 customersForm.MdiParent = this;
                 customersForm.Show();
             }
+        }
+
+        private void logoutButton_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
         }
     }
 }
