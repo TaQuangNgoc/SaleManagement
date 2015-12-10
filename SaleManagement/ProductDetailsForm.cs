@@ -18,31 +18,43 @@ namespace SaleManagement
         private string imageLocation = "";
         private DataAccess dataAccess;
 
-        public static ProductDetailsForm CreateInsertForm()
+        public static DialogResult CreateInsertDialog()
         {
             var form = new ProductDetailsForm();
             form.isForUpdate = false;
-            form.ShowDialog();
 
-            return form;
+            return form.ShowDialog();
         }
 
-        public static ProductDetailsForm CreateUpdateForm(DataRow selectedRow)
+        public static DialogResult CreateUpdateDialog(DataRow selectedRow)
         {
             var form = new ProductDetailsForm();
             form.isForUpdate = true;
+            form.GetInfo(selectedRow);
 
-            form.TransferDataRowDetailToForm(selectedRow);
-
-            form.ShowDialog();
-
-            return form;
+            return form.ShowDialog();
         }
 
         private ProductDetailsForm()
         {
             InitializeComponent();
             dataAccess = new DataAccess();
+        }
+
+        private void GetInfo(DataRow DataRowDetail)
+        {
+            productNameTxt.Text = DataRowDetail["ProductName"].ToString();
+            companyNameSLE.EditValue = decimal.Parse(DataRowDetail["SupplierID"].ToString());
+            categoryNameSLE.EditValue = decimal.Parse(DataRowDetail["CategoryID"].ToString());
+            unitPriceTxt.Text = DataRowDetail["UnitPrice"].ToString();
+            unitsInStockTxt.Text = DataRowDetail["UnitsInStock"].ToString();
+            productID = int.Parse(DataRowDetail["ProductID"].ToString());
+            if (DataRowDetail["Picture"].ToString() != "")
+                getAndPresentImage((byte[])(DataRowDetail["Picture"]));
+            else
+            {
+                pictureBox.Image = null;
+            }
         }
 
         private void ProductsDetail_Load(object sender, EventArgs e)
@@ -61,22 +73,6 @@ namespace SaleManagement
         {
             companyNameSLE.Properties.DataSource = dataAccess.SelectSuppliers();
             companyNameSLE.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
-        }
-
-        private void TransferDataRowDetailToForm(DataRow DataRowDetail)
-        {
-            productNameTxt.Text = DataRowDetail["ProductName"].ToString();
-            companyNameSLE.EditValue = decimal.Parse(DataRowDetail["SupplierID"].ToString());
-            categoryNameSLE.EditValue = decimal.Parse(DataRowDetail["CategoryID"].ToString());
-            unitPriceTxt.Text = DataRowDetail["UnitPrice"].ToString();
-            unitsInStockTxt.Text = DataRowDetail["UnitsInStock"].ToString();
-            productID = int.Parse(DataRowDetail["ProductID"].ToString());
-            if (DataRowDetail["Picture"].ToString() != "")
-                getAndPresentImage((byte[])(DataRowDetail["Picture"]));
-            else
-            {
-                pictureBox.Image = null;
-            }
         }
 
         private void getAndPresentImage(byte[] imageByte)

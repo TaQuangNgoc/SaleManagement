@@ -72,7 +72,6 @@
     <Compile Include="CategoriesForm.Designer.cs">
       <DependentUpon>CategoriesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Category.cs" />
     <Compile Include="CategoryDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>

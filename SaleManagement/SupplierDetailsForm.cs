@@ -15,25 +15,21 @@ namespace SaleManagement
         private int supplierID;
         private DataAccess dataAccess;
 
-        public static SupplierDetailsForm CreateInsertForm()
+        public static DialogResult CreateInsertDialog()
         {
             var form = new SupplierDetailsForm();
             form.isForUpdate = false;
-            form.ShowDialog();
 
-            return form;
+            return form.ShowDialog();
         }
 
-        public static SupplierDetailsForm CreateUpdateForm(DataRow selectedRow)
+        public static DialogResult CreateUpdateDialog(DataRow selectedRow)
         {
             var form = new SupplierDetailsForm();
             form.isForUpdate = true;
+            form.GetInfo(selectedRow);
 
-            form.transferDataRowDetailToForm(selectedRow);
-
-            form.ShowDialog();
-
-            return form;
+            return form.ShowDialog();
         }
 
         private SupplierDetailsForm()
@@ -42,7 +38,7 @@ namespace SaleManagement
             dataAccess = new DataAccess();
         }
 
-        private void transferDataRowDetailToForm(DataRow DataRowDetail)
+        private void GetInfo(DataRow DataRowDetail)
         {
             CompanyNameTxt.Text = DataRowDetail["CompanyName"].ToString();
             PhoneTxt.Text = DataRowDetail["Phone"].ToString();
@@ -83,6 +79,7 @@ namespace SaleManagement
             }
 
             MessageBox.Show("Success.");
+            DialogResult = DialogResult.OK;
             Close();
         }
 

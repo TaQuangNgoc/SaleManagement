@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SaleManagement
@@ -15,25 +10,21 @@ namespace SaleManagement
         private int categoryID;
         private DataAccess dataAccess;
 
-        public static CategoryDetailsForm CreateInsertForm()
+        public static DialogResult CreateInsertDialog()
         {
             var form = new CategoryDetailsForm();
             form.isForUpdate = false;
-            form.ShowDialog();
 
-            return form;
+            return form.ShowDialog();
         }
 
-        public static CategoryDetailsForm CreateUpdateForm(DataRow selectedRow)
+        public static DialogResult CreateUpdateDialog(DataRow selectedRow)
         {
             var form = new CategoryDetailsForm();
             form.isForUpdate = true;
-
             form.TransferDataRowDetailToForm(selectedRow);
 
-            form.ShowDialog();
-
-            return form;
+            return form.ShowDialog();
         }
 
         private CategoryDetailsForm()
@@ -73,6 +64,7 @@ namespace SaleManagement
             }
 
             MessageBox.Show("Success.");
+            DialogResult = DialogResult.OK;
             Close();
         }
 

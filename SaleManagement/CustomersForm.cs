@@ -28,8 +28,10 @@ namespace SaleManagement
 
         private void insertButton_Click(object sender, EventArgs e)
         {
-            CustomerDetailsForm.CreateInsertForm();
-            LoadDataToGrid();
+            var result = CustomerDetailsForm.CreateInsertDialog();
+            bool inserted = result == DialogResult.OK;
+            if (inserted)
+                LoadDataToGrid();
         }
 
         private void updateButton_Click(object sender, EventArgs e)
@@ -52,8 +54,11 @@ namespace SaleManagement
             Debug.Assert(gridView.FocusedRowHandle != -1);
 
             DataRow selected = gridView.GetFocusedDataRow();
-            CustomerDetailsForm.CreateUpdateForm(selected);
-            LoadDataToGrid();
+
+            var result = CustomerDetailsForm.CreateUpdateDialog(selected);
+            bool inserted = result == DialogResult.OK;
+            if (inserted)
+                LoadDataToGrid();
         }
 
         private void gridView_DoubleClick(object sender, EventArgs e)
@@ -86,7 +91,7 @@ namespace SaleManagement
                 return;
             }
 
-            var idString = (string)selected["CustomerID"];
+            var idString = selected["CustomerID"].ToString();
             int id;
 
             try

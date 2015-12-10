@@ -31,23 +31,17 @@ namespace SaleManagement
 
         private void insertButton_Click(object sender, EventArgs e)
         {
-            ProductDetailsForm.CreateInsertForm();
-            LoadDataToGrid();
+            var result = ProductDetailsForm.CreateInsertDialog();
+            bool inserted = result == DialogResult.OK;
+            if (inserted)
+                LoadDataToGrid();
         }
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            ShowUpdateForm();
-        }
-
-        private void ShowUpdateForm()
-        {
-            Debug.Assert(cardView.FocusedRowHandle != -1);
-
-            DataRow selected;
             try
             {
-                selected = cardView.GetFocusedDataRow();
+                ShowUpdateForm();
             }
             catch (NullReferenceException)
             {
@@ -55,11 +49,19 @@ namespace SaleManagement
                     throw;
 
                 MessageBox.Show("There's no item to update.", "Error");
-                return;
             }
+        }
 
-            ProductDetailsForm.CreateUpdateForm(selected);
-            LoadDataToGrid();
+        private void ShowUpdateForm()
+        {
+            Debug.Assert(cardView.FocusedRowHandle != -1);
+
+            DataRow selected = cardView.GetFocusedDataRow();
+
+            var result = ProductDetailsForm.CreateUpdateDialog(selected);
+            bool inserted = result == DialogResult.OK;
+            if (inserted)
+                LoadDataToGrid();
         }
         
         private void cardView_DoubleClick(object sender, EventArgs e)
@@ -92,7 +94,7 @@ namespace SaleManagement
                 return;
             }
 
-            var idString = (string)selected["ProductID"];
+            var idString = selected["ProductID"].ToString();
             int id;
 
             try

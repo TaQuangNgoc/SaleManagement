@@ -1,14 +1,7 @@
-﻿using DevExpress.XtraGrid.Views.Grid;
-using DevExpress.XtraGrid.Views.Grid.ViewInfo;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SaleManagement
@@ -34,8 +27,10 @@ namespace SaleManagement
 
         private void insertButton_Click(object sender, EventArgs e)
         {
-            SupplierDetailsForm.CreateInsertForm();
-            LoadDataToGrid();
+            var result = SupplierDetailsForm.CreateInsertDialog();
+            bool inserted = result == DialogResult.OK;
+            if (inserted)
+                LoadDataToGrid();
         }
 
         private void updateButton_Click(object sender, EventArgs e)
@@ -58,8 +53,11 @@ namespace SaleManagement
             Debug.Assert(gridView.FocusedRowHandle != -1);
 
             DataRow selected = gridView.GetFocusedDataRow();
-            SupplierDetailsForm.CreateUpdateForm(selected);
-            LoadDataToGrid();
+
+            var result = SupplierDetailsForm.CreateUpdateDialog(selected);
+            bool inserted = result == DialogResult.OK;
+            if (inserted)
+                LoadDataToGrid();
         }
 
         private void gridView_DoubleClick(object sender, EventArgs e)
@@ -92,7 +90,7 @@ namespace SaleManagement
                 return;
             }
 
-            var idString = (string)selected["SupplierID"];
+            var idString = selected["SupplierID"].ToString();
             int id;
 
             try

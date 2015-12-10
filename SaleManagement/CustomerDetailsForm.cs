@@ -11,25 +11,21 @@ namespace SaleManagement
         private int customerID;
         private DataAccess dataAccess;
 
-        public static CustomerDetailsForm CreateInsertForm()
+        public static DialogResult CreateInsertDialog()
         {
             var form = new CustomerDetailsForm();
             form.isForUpdate = false;
-            form.ShowDialog();
 
-            return form;
+            return form.ShowDialog();
         }
 
-        public static CustomerDetailsForm CreateUpdateForm(DataRow selectedRow)
+        public static DialogResult CreateUpdateDialog(DataRow selectedRow)
         {
             var form = new CustomerDetailsForm();
             form.isForUpdate = true;
-
-            form.transferDataRowDetailToForm(selectedRow);
-
-            form.ShowDialog();
-
-            return form;
+            form.GetInfo(selectedRow);
+            
+            return form.ShowDialog();
         }
 
         private CustomerDetailsForm()
@@ -38,7 +34,7 @@ namespace SaleManagement
             dataAccess = new DataAccess();
         }
 
-        private void transferDataRowDetailToForm(DataRow DataRowDetail)
+        private void GetInfo(DataRow DataRowDetail)
         {
             lastNameTxt.Text = DataRowDetail["LastName"].ToString();
             firstNameTxt.Text = DataRowDetail["FirstName"].ToString();
@@ -80,6 +76,7 @@ namespace SaleManagement
                 dataAccess.InsertCustomer(lastName, firstName, address, phone, dateOfBirth);
 
             MessageBox.Show("Success.");
+            DialogResult = DialogResult.OK;
             Close();
         }
 
