@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SaleManagement.Report
@@ -24,9 +17,13 @@ namespace SaleManagement.Report
 
         private void LoadDataToGrid()
         {
-            DataAccess da = new DataAccess();
-            pivotGridControl.DataSource = da.TableReturnFromProcedureStatistics(ngayBatDauDTPicker.Value, ngayKetThucDTPicker.Value);
-           
+            var dataAccess = new DataAccess();
+            var procedureName = "[ProcedureStatistics]";
+            DateTime fromDate = ngayBatDauDTPicker.Value,
+                    toDate = ngayKetThucDTPicker.Value;
+
+            pivotGridControl.DataSource = dataAccess.ExecuteProcedure(procedureName, fromDate, toDate);
+
         }
 
         private void presentButton_Click(object sender, EventArgs e)

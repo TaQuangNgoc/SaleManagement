@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SaleManagement.Report
@@ -19,9 +12,12 @@ namespace SaleManagement.Report
 
         private void LoadDataToGrid()
         {
+            var dataAccess = new DataAccess();
+            var procedureName = "[Procedure10MatHangBanChayNhatTheoSoLuong]";
+            DateTime fromDate = ngayBatDauDTPicker.Value,
+                    toDate = ngayKetThucDTPicker.Value;
 
-            DataAccess da = new DataAccess();
-            gridControl.DataSource = da.TableReturnFromProcedure10MatHangBanChayNhatTheoSoLuong(ngayBatDauDTPicker.Value, ngayKetThucDTPicker.Value);
+            gridControl.DataSource = dataAccess.ExecuteProcedure(procedureName, fromDate, toDate);
         }
 
         private void _10FastestProducts_Load(object sender, EventArgs e)

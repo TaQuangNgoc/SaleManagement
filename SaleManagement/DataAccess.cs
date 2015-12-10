@@ -306,34 +306,73 @@ namespace SaleManagement
 
         #region Report
 
-        public DataTable TableReturnFromProcedureStatistics(DateTime NgayBatDau, DateTime NgayKetThuc)
+        public DataTable ExecuteProcedure(string procedureName, DateTime fromDate, DateTime toDate)
         {
-            return connection.TableReturnFromProcedureStatistics(NgayBatDau, NgayKetThuc);
+            var parameters = new SqlParameter[2];
+            parameters[0] = new SqlParameter("@NgayBatDau", fromDate);
+            parameters[0] = new SqlParameter("@NgayBatDau", toDate);
+
+            return connection.ExecuteProcedure(procedureName, parameters);
         }
 
-        public DataTable TableReturnFromProcedure10MatHangBanChayNhatTheoSoLuong(DateTime NgayBatDau, DateTime NgayKetThuc)
+        public DataTable TableReturnFromProcedureStatistics(DateTime fromDate, DateTime toDate)
         {
-            return connection.TableReturnFromProcedure10MatHangBanChayNhatTheoSoLuong(NgayBatDau, NgayKetThuc);
+            string procedure = "[ProcedureStatistics]";
+            var parameters = new SqlParameter[2];
+            parameters[0] = new SqlParameter("@NgayBatDau", fromDate);
+            parameters[0] = new SqlParameter("@NgayBatDau", toDate);
+
+            return connection.ExecuteProcedure(procedure, parameters);
         }
 
-        public DataTable TableReturnFromProcedureMatHangKhongBanDuoc(DateTime NgayBatDau, DateTime NgayKetThuc)
+        public DataTable TableReturnFromProcedure10MatHangBanChayNhatTheoSoLuong(DateTime fromDate, DateTime toDate)
         {
-            return connection.TableReturnFromProcedureMatHangKhongBanDuoc(NgayBatDau, NgayKetThuc);
+            string procedure = "[Procedure10MatHangBanChayNhatTheoSoLuong]";
+            var parameters = new SqlParameter[2];
+            parameters[0] = new SqlParameter("@NgayBatDau", fromDate);
+            parameters[0] = new SqlParameter("@NgayBatDau", toDate);
+
+            return connection.ExecuteProcedure(procedure, parameters);
         }
 
-        public DataTable TableReturnFromProcedure10MatHangBanCoDoanhSoLonNhat(DateTime NgayBatDau, DateTime NgayKetThuc)
+        public DataTable TableReturnFromProcedureMatHangKhongBanDuoc(DateTime fromDate, DateTime toDate)
         {
-            return connection.TableReturnFromProcedure10MatHangBanCoDoanhSoLonNhat(NgayBatDau, NgayKetThuc);
+            string procedure = "[ProcedureMatHangKhongBanDuoc]";
+            var parameters = new SqlParameter[2];
+            parameters[0] = new SqlParameter("@NgayBatDau", fromDate);
+            parameters[0] = new SqlParameter("@NgayBatDau", toDate);
+
+            return connection.ExecuteProcedure(procedure, parameters);
         }
 
-        public DataTable TableReturnFromProcedure10KhachHangMuaNhieuNhat(DateTime NgayBatDau, DateTime NgayKetThuc)
+        public DataTable TableReturnFromProcedure10MatHangBanCoDoanhSoLonNhat(DateTime fromDate, DateTime toDate)
         {
-            return connection.TableReturnFromProcedure10KhachHangMuaNhieuNhat(NgayBatDau, NgayKetThuc);
+            string procedure = "[Procedure10MatHangBanCoDoanhSoLonNhat]";
+            var parameters = new SqlParameter[2];
+            parameters[0] = new SqlParameter("@NgayBatDau", fromDate);
+            parameters[0] = new SqlParameter("@NgayBatDau", toDate);
+
+            return connection.ExecuteProcedure(procedure, parameters);
         }
 
-        public DataTable TableReturnFromProcedure10NhanVienBanDuocNhieuHangNhat(DateTime NgayBatDau, DateTime NgayKetThuc)
+        public DataTable TableReturnFromProcedure10KhachHangMuaNhieuNhat(DateTime fromDate, DateTime toDate)
         {
-            return connection.TableReturnFromProcedure10NhanVienBanDuocNhieuHangNhat(NgayBatDau, NgayKetThuc);
+            string procedure = "[Procedure10KhachHangMuaNhieuNhat]";
+            var parameters = new SqlParameter[2];
+            parameters[0] = new SqlParameter("@NgayBatDau", fromDate);
+            parameters[0] = new SqlParameter("@NgayBatDau", toDate);
+
+            return connection.ExecuteProcedure(procedure, parameters);
+        }
+
+        public DataTable TableReturnFromProcedure10NhanVienBanDuocNhieuHangNhat(DateTime fromDate, DateTime toDate)
+        {
+            string procedure = "[Procedure10NhanVienBanDuocNhieuHangNhat]";
+            var parameters = new SqlParameter[2];
+            parameters[0] = new SqlParameter("@NgayBatDau", fromDate);
+            parameters[0] = new SqlParameter("@NgayBatDau", toDate);
+
+            return connection.ExecuteProcedure(procedure, parameters);
         }
 
         public DataTable TableReturnFromProcedure10NhanVienBanDuocItHangNhat(DateTime NgayBatDau, DateTime NgayKetThuc)
