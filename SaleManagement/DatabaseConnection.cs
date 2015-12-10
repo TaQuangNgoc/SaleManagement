@@ -33,7 +33,7 @@ namespace SaleManagement
             try
             {
                 OpenConnection();
-                SqlCommand command = new SqlCommand(query, connection);
+                var command = new SqlCommand(query, connection);
                 command.Parameters.AddRange(sqlParameter);
                 command.ExecuteNonQuery();                
                 adapter.SelectCommand = command;
@@ -56,7 +56,7 @@ namespace SaleManagement
             try
             {
                 OpenConnection();
-                SqlCommand command = new SqlCommand(query, connection);
+                var command = new SqlCommand(query, connection);
                 command.Parameters.AddRange(sqlParameter);
                 command.ExecuteNonQuery();
                 adapter.InsertCommand = command;
@@ -76,7 +76,7 @@ namespace SaleManagement
             try
             {
                 OpenConnection();
-                SqlCommand command = new SqlCommand(query, connection);
+                var command = new SqlCommand(query, connection);
                 command.Parameters.AddRange(sqlParameter);
                 command.ExecuteNonQuery();
                 adapter.UpdateCommand = command;
@@ -96,7 +96,7 @@ namespace SaleManagement
             try
             {
                 OpenConnection();
-                SqlCommand command = new SqlCommand(query, connection);
+                var command = new SqlCommand(query, connection);
                 command.Parameters.AddRange(sqlParameter);
                 command.ExecuteNonQuery();
                 adapter.DeleteCommand = command;

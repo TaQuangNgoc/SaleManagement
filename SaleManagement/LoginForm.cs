@@ -12,7 +12,6 @@ namespace SaleManagement
     public partial class LoginForm : XtraForm
     {
         private DataAccess dataAccess;
-        private bool autoclose;
 
         public LoginForm()
         {
@@ -22,6 +21,7 @@ namespace SaleManagement
 
             idTextEdit.Enter += (s, e) => idTextEdit.SelectAll();
             passwordTextEdit.Enter += (s, e) => passwordTextEdit.SelectAll();
+            exitButton.Click += (s, e) => Close();
         }
 
         private void Login_Shown(object sender, EventArgs e)
@@ -95,13 +95,23 @@ namespace SaleManagement
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            var hasher = SHA256.Create();
+            var hasher = SHA1.Create();
             var passwordString = passwordTextEdit.Text + "RandomSalt";
-            var passwordBytes = Encoding.UTF8.GetBytes(passwordString);
+            var passwordBytes = Encoding.Unicode.GetBytes(passwordString);
             var password = hasher.ComputeHash(passwordBytes);
             string id = idTextEdit.Text;
 
+            if (autoLoginCheckEdit.Checked)
+                SavePassword(id, password);
+
             ValidateAndProceedToMainForm(id, password);
+        }
+
+        private void SavePassword(string id, byte[] password)
+        {
+            Settings.Default.ID = idTextEdit.Text;
+            Settings.Default.Password = Convert.ToBase64String(password);
+            Settings.Default.Save();
         }
     }
 }

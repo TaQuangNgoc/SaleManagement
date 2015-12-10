@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -245,14 +241,13 @@ namespace SaleManagement
 
         public bool VerifyLoginDetails(string username, byte[] password)
         {
-            throw new NotImplementedException();
-            string query = "SELECT TOP 1 * FROM [Employees]" + " [Username] = " + "@username"
+            string query = "SELECT TOP 1 * FROM [Employees] WHERE [Username] = " + "@username"
                                                         + " AND [Password] = " + "@password";
             var parameters = new SqlParameter[2];
-            //parameters[0] = new SqlParameter("@username", SqlDbType.???);
+            parameters[0] = new SqlParameter("@username", SqlDbType.NVarChar);
             parameters[0].Value = username;
             parameters[1] = new SqlParameter("@password", SqlDbType.Binary);
-            parameters[1].Value = username;
+            parameters[1].Value = password;
             var table = connection.ExecuteSelectQuery(query, parameters);
             return table.Rows.Count == 1;
         }
