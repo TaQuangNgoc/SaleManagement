@@ -65,6 +65,7 @@
     <Reference Include="UIAutomationClient" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account.cs" />
     <Compile Include="CategoriesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +78,12 @@
     </Compile>
     <Compile Include="CategoryDetailsForm.Designer.cs">
       <DependentUpon>CategoryDetailsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AccountDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AccountDetailsForm.Designer.cs">
+      <DependentUpon>AccountDetailsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomersForm.cs">
       <SubType>Form</SubType>
@@ -136,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CategoryDetailsForm.resx">
       <DependentUpon>CategoryDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AccountDetailsForm.resx">
+      <DependentUpon>AccountDetailsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomersForm.resx">
       <DependentUpon>CustomersForm.cs</DependentUpon>

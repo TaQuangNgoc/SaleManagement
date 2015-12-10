@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace SaleManagement
 {
@@ -239,6 +240,8 @@ namespace SaleManagement
         }
         #endregion
 
+        #region Account
+
         public bool VerifyLoginDetails(string username, byte[] password)
         {
             string query = "SELECT TOP 1 * FROM [Employees] WHERE [Username] = " + "@username"
@@ -249,7 +252,56 @@ namespace SaleManagement
             parameters[1] = new SqlParameter("@password", SqlDbType.Binary);
             parameters[1].Value = password;
             var table = connection.ExecuteSelectQuery(query, parameters);
+
+            Debug.Assert(table.Rows.Count < 2);
+
             return table.Rows.Count == 1;
         }
+
+        public Account GetAccountInfo(string username)
+        {
+            string query = "SELECT TOP 1 * FROM [Employees] WHERE [Username] = " + "@username";
+            var parameters = new SqlParameter[1];
+            parameters[0] = new SqlParameter("@username", SqlDbType.NVarChar);
+            parameters[0].Value = username;
+            var table = connection.ExecuteSelectQuery(query, parameters);
+
+            Debug.Assert(table.Rows.Count == 1);
+
+            var row = table.Rows[0];
+            string lastName = (string)row["LastName"],
+                firstName = (string)row["FirstName"],
+                address = (string)row["Address"],
+                phone = (string)row["Phone"];
+            var dateOfBirth = (DateTime)row["DateOfBirth"];
+            return new Account(username, lastName, firstName, address, phone, dateOfBirth);
+        }
+
+        public void UpdateAccount(Account account)
+        {
+            string query = "UPDATE [Employees] SET [LastName] = " + "@lastName" +
+                                                ", [FirstName] = " + "@firstName" +
+                                                ", [Address] = " + "@address" +
+                                                ", [Phone] = " + "@phone" + 
+                                                ", [DateOfBirth] = " + "@dateOfBirth" +
+                                                " WHERE [Username] = " + "@username";
+            var parameters = new SqlParameter[6];
+            parameters[0] = new SqlParameter("@lastName", SqlDbType.NVarChar);
+            parameters[0].Value = account.LastName;
+            parameters[1] = new SqlParameter("@firstName", SqlDbType.NVarChar);
+            parameters[1].Value = account.FirstName;
+            parameters[2] = new SqlParameter("@address", SqlDbType.NVarChar);
+            parameters[2].Value = account.Address;
+            parameters[3] = new SqlParameter("@phone", SqlDbType.NVarChar);
+            parameters[3].Value = account.Phone;
+            parameters[4] = new SqlParameter("@dateOfBirth", SqlDbType.DateTime);
+            parameters[4].Value = account.DateOfBirth;
+            parameters[5] = new SqlParameter("@username", SqlDbType.NVarChar);
+            parameters[5].Value = account.Username;
+
+            connection.ExecuteInsertQuery(query, parameters);
+        }
+
+        #endregion
     }
 }

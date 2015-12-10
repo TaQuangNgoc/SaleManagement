@@ -35,15 +35,16 @@
             this.productsButton = new DevExpress.XtraBars.BarButtonItem();
             this.suppliersButton = new DevExpress.XtraBars.BarButtonItem();
             this.customersButton = new DevExpress.XtraBars.BarButtonItem();
+            this.logoutButton = new DevExpress.XtraBars.BarButtonItem();
             this.listingPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.listingPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.reportPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.reportPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.accountPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.accountPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.mdiManager = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
-            this.accountPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.logoutButton = new DevExpress.XtraBars.BarButtonItem();
-            this.accountPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.editAccountButton = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mdiManager)).BeginInit();
             this.SuspendLayout();
@@ -57,9 +58,10 @@
             this.productsButton,
             this.suppliersButton,
             this.customersButton,
-            this.logoutButton});
+            this.logoutButton,
+            this.editAccountButton});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 9;
+            this.ribbonControl.MaxItemId = 11;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.listingPage,
@@ -104,6 +106,16 @@
             this.customersButton.Name = "customersButton";
             this.customersButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.customersButton_ItemClick);
             // 
+            // logoutButton
+            // 
+            this.logoutButton.Caption = "LOG OUT";
+            this.logoutButton.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
+            this.logoutButton.Glyph = ((System.Drawing.Image)(resources.GetObject("logoutButton.Glyph")));
+            this.logoutButton.Id = 8;
+            this.logoutButton.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("logoutButton.LargeGlyph")));
+            this.logoutButton.Name = "logoutButton";
+            this.logoutButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.logoutButton_ItemClick);
+            // 
             // listingPage
             // 
             this.listingPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -132,6 +144,19 @@
             // 
             this.reportPageGroup.Name = "reportPageGroup";
             // 
+            // accountPage
+            // 
+            this.accountPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.accountPageGroup});
+            this.accountPage.Name = "accountPage";
+            this.accountPage.Text = "ACCOUNT";
+            // 
+            // accountPageGroup
+            // 
+            this.accountPageGroup.ItemLinks.Add(this.editAccountButton);
+            this.accountPageGroup.ItemLinks.Add(this.logoutButton);
+            this.accountPageGroup.Name = "accountPageGroup";
+            // 
             // ribbonStatusBar
             // 
             this.ribbonStatusBar.Location = new System.Drawing.Point(0, 418);
@@ -143,27 +168,15 @@
             // 
             this.mdiManager.MdiParent = this;
             // 
-            // accountPage
+            // editAccountButton
             // 
-            this.accountPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.accountPageGroup});
-            this.accountPage.Name = "accountPage";
-            this.accountPage.Text = "ACCOUNT";
-            // 
-            // logoutButton
-            // 
-            this.logoutButton.Caption = "LOG OUT";
-            this.logoutButton.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
-            this.logoutButton.Glyph = ((System.Drawing.Image)(resources.GetObject("logoutButton.Glyph")));
-            this.logoutButton.Id = 8;
-            this.logoutButton.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("logoutButton.LargeGlyph")));
-            this.logoutButton.Name = "logoutButton";
-            this.logoutButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.logoutButton_ItemClick);
-            // 
-            // accountPageGroup
-            // 
-            this.accountPageGroup.ItemLinks.Add(this.logoutButton);
-            this.accountPageGroup.Name = "accountPageGroup";
+            this.editAccountButton.Caption = "EDIT INFO";
+            this.editAccountButton.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
+            this.editAccountButton.Glyph = ((System.Drawing.Image)(resources.GetObject("editAccountButton.Glyph")));
+            this.editAccountButton.Id = 10;
+            this.editAccountButton.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("editAccountButton.LargeGlyph")));
+            this.editAccountButton.Name = "editAccountButton";
+            this.editAccountButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.editAccountButton_ItemClick);
             // 
             // MainForm
             // 
@@ -201,5 +214,6 @@
         private DevExpress.XtraBars.BarButtonItem logoutButton;
         private DevExpress.XtraBars.Ribbon.RibbonPage accountPage;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup accountPageGroup;
+        private DevExpress.XtraBars.BarButtonItem editAccountButton;
     }
 }

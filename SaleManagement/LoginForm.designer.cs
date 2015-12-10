@@ -32,7 +32,7 @@
             this.autoLoginCheckEdit = new DevExpress.XtraEditors.CheckEdit();
             this.exitButton = new DevExpress.XtraEditors.SimpleButton();
             this.passwordTextEdit = new DevExpress.XtraEditors.TextEdit();
-            this.idTextEdit = new DevExpress.XtraEditors.TextEdit();
+            this.usernameTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.loginButton = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -48,7 +48,7 @@
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.autoLoginCheckEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.passwordTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.idTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usernameTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
@@ -66,7 +66,7 @@
             this.layoutControl1.Controls.Add(this.autoLoginCheckEdit);
             this.layoutControl1.Controls.Add(this.exitButton);
             this.layoutControl1.Controls.Add(this.passwordTextEdit);
-            this.layoutControl1.Controls.Add(this.idTextEdit);
+            this.layoutControl1.Controls.Add(this.usernameTextEdit);
             this.layoutControl1.Controls.Add(this.loginButton);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
@@ -104,13 +104,13 @@
             this.passwordTextEdit.StyleController = this.layoutControl1;
             this.passwordTextEdit.TabIndex = 9;
             // 
-            // idTextEdit
+            // usernameTextEdit
             // 
-            this.idTextEdit.Location = new System.Drawing.Point(88, 42);
-            this.idTextEdit.Name = "idTextEdit";
-            this.idTextEdit.Size = new System.Drawing.Size(220, 20);
-            this.idTextEdit.StyleController = this.layoutControl1;
-            this.idTextEdit.TabIndex = 8;
+            this.usernameTextEdit.Location = new System.Drawing.Point(88, 42);
+            this.usernameTextEdit.Name = "usernameTextEdit";
+            this.usernameTextEdit.Size = new System.Drawing.Size(220, 20);
+            this.usernameTextEdit.StyleController = this.layoutControl1;
+            this.usernameTextEdit.TabIndex = 8;
             // 
             // loginButton
             // 
@@ -196,7 +196,7 @@
             // 
             // idLayoutControlItem
             // 
-            this.idLayoutControlItem.Control = this.idTextEdit;
+            this.idLayoutControlItem.Control = this.usernameTextEdit;
             this.idLayoutControlItem.CustomizationFormText = "ID";
             this.idLayoutControlItem.Location = new System.Drawing.Point(27, 30);
             this.idLayoutControlItem.Name = "idLayoutControlItem";
@@ -251,7 +251,7 @@
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.autoLoginCheckEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.passwordTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.idTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usernameTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
@@ -276,7 +276,7 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
-        private DevExpress.XtraEditors.TextEdit idTextEdit;
+        private DevExpress.XtraEditors.TextEdit usernameTextEdit;
         private DevExpress.XtraLayout.LayoutControlItem idLayoutControlItem;
         private DevExpress.XtraEditors.TextEdit passwordTextEdit;
         private DevExpress.XtraLayout.LayoutControlItem passwordLayoutControlItem;

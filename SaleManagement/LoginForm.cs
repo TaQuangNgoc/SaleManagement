@@ -19,30 +19,30 @@ namespace SaleManagement
 
             dataAccess = new DataAccess();
 
-            idTextEdit.Enter += (s, e) => idTextEdit.SelectAll();
+            usernameTextEdit.Enter += (s, e) => usernameTextEdit.SelectAll();
             passwordTextEdit.Enter += (s, e) => passwordTextEdit.SelectAll();
             exitButton.Click += (s, e) => Close();
         }
 
         private void Login_Shown(object sender, EventArgs e)
         {
-            if (Settings.Default.ID == "")
+            if (Settings.Default.Username == "")
                 return;
 
             autoLoginCheckEdit.Checked = true;
 
-            var id = Settings.Default.ID;
+            var username = Settings.Default.Username;
             var password = Convert.FromBase64String(Settings.Default.Password);
 
-            ValidateAndProceedToMainForm(id, password);
+            ValusernameateAndProceedToMainForm(username, password);
         }
 
-        private void ValidateAndProceedToMainForm(string id, byte[] password)
+        private void ValusernameateAndProceedToMainForm(string username, byte[] password)
         {
             bool loginSuccess;
             try
             {
-                loginSuccess = dataAccess.VerifyLoginDetails(id, password);
+                loginSuccess = dataAccess.VerifyLoginDetails(username, password);
             }
             catch (SqlException)
             {
@@ -56,14 +56,14 @@ namespace SaleManagement
             {
                 Debug.Assert(!autoLoginCheckEdit.Checked);
 
-                string message = "ID or password is incorrect; please check your login details.";
+                string message = "username or password is incorrect; please check your login details.";
                 MessageBox.Show(message, "Error");
                 return;
             }
 
             this.Hide();
 
-            var mainForm = new MainForm();
+            var mainForm = new MainForm(username);
             var result = mainForm.ShowDialog();
 
             bool logout = result == DialogResult.OK;
@@ -79,15 +79,15 @@ namespace SaleManagement
 
         private void ResetFields()
         {
-            idTextEdit.Text = "";
+            usernameTextEdit.Text = "";
             passwordTextEdit.Text = "";
         }
 
         private void ResetCookies()
         {
-            if (Settings.Default.ID != "")
+            if (Settings.Default.Username != "")
             {
-                Settings.Default.ID = "";
+                Settings.Default.Username = "";
                 Settings.Default.Password = "";
                 Settings.Default.Save();
             }
@@ -99,17 +99,17 @@ namespace SaleManagement
             var passwordString = passwordTextEdit.Text + "RandomSalt";
             var passwordBytes = Encoding.Unicode.GetBytes(passwordString);
             var password = hasher.ComputeHash(passwordBytes);
-            string id = idTextEdit.Text;
+            string username = usernameTextEdit.Text;
 
             if (autoLoginCheckEdit.Checked)
-                SavePassword(id, password);
+                SavePassword(username, password);
 
-            ValidateAndProceedToMainForm(id, password);
+            ValusernameateAndProceedToMainForm(username, password);
         }
 
-        private void SavePassword(string id, byte[] password)
+        private void SavePassword(string username, byte[] password)
         {
-            Settings.Default.ID = idTextEdit.Text;
+            Settings.Default.Username = usernameTextEdit.Text;
             Settings.Default.Password = Convert.ToBase64String(password);
             Settings.Default.Save();
         }

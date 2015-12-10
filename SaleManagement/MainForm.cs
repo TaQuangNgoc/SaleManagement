@@ -1,22 +1,27 @@
 ﻿using DevExpress.XtraBars;
 using DevExpress.XtraTab;
+using DevExpress.XtraBars.Ribbon;
 using System.Windows.Forms;
 
 namespace SaleManagement
 {
-    public partial class MainForm : DevExpress.XtraBars.Ribbon.RibbonForm
+    public partial class MainForm : RibbonForm
     {
+        private string username;
+
         private CategoriesForm categoriesForm;
         private ProductsForm productsForm;
         private SuppliersForm suppliersForm;
         private CustomersForm customersForm;
 
-        public MainForm()
+        public MainForm(string username)
         {
             InitializeComponent();
 
             mdiManager.ClosePageButtonShowMode = ClosePageButtonShowMode.InAllTabPageHeaders;
             ribbonControl.SelectedPage = listingPage;
+
+            this.username = username;
         }
 
         private void categoriesButton_ItemClick(object sender, ItemClickEventArgs e)
@@ -71,6 +76,12 @@ namespace SaleManagement
                 customersForm.MdiParent = this;
                 customersForm.Show();
             }
+        }
+
+        private void editAccountButton_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var editForm = new AccountDetailsForm(username);
+            editForm.ShowDialog();
         }
 
         private void logoutButton_ItemClick(object sender, ItemClickEventArgs e)

@@ -40,8 +40,6 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.lastNameTxt = new System.Windows.Forms.TextBox();
             this.m_lbl_nghiep_vu = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.exitButton = new DevExpress.XtraEditors.SimpleButton();
             this.saveButton = new DevExpress.XtraEditors.SimpleButton();
@@ -64,8 +62,6 @@
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Controls.Add(this.lastNameTxt);
             this.groupControl1.Controls.Add(this.m_lbl_nghiep_vu);
-            this.groupControl1.Controls.Add(this.labelControl3);
-            this.groupControl1.Controls.Add(this.labelControl2);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
@@ -150,20 +146,6 @@
             this.m_lbl_nghiep_vu.TabIndex = 4;
             this.m_lbl_nghiep_vu.Text = "LastName";
             // 
-            // labelControl3
-            // 
-            this.labelControl3.Location = new System.Drawing.Point(29, 97);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(0, 13);
-            this.labelControl3.TabIndex = 2;
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Location = new System.Drawing.Point(29, 106);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(0, 13);
-            this.labelControl2.TabIndex = 1;
-            // 
             // panelControl2
             // 
             this.panelControl2.Controls.Add(this.exitButton);
@@ -235,8 +217,6 @@
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private System.Windows.Forms.TextBox lastNameTxt;
         private DevExpress.XtraEditors.LabelControl m_lbl_nghiep_vu;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.SimpleButton exitButton;
         private DevExpress.XtraEditors.SimpleButton saveButton;

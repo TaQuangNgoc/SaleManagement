@@ -26,12 +26,12 @@ namespace SaleManagement.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string ID {
+        public string Username {
             get {
-                return ((string)(this["ID"]));
+                return ((string)(this["Username"]));
             }
             set {
-                this["ID"] = value;
+                this["Username"] = value;
             }
         }
         
