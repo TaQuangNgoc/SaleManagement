@@ -303,5 +303,53 @@ namespace SaleManagement
         }
 
         #endregion
+
+        #region Report
+
+        public DataTable TableReturnFromProcedureStatistics(DateTime NgayBatDau, DateTime NgayKetThuc)
+        {
+            return connection.TableReturnFromProcedureStatistics(NgayBatDau, NgayKetThuc);
+        }
+
+        public DataTable TableReturnFromProcedure10MatHangBanChayNhatTheoSoLuong(DateTime NgayBatDau, DateTime NgayKetThuc)
+        {
+            return connection.TableReturnFromProcedure10MatHangBanChayNhatTheoSoLuong(NgayBatDau, NgayKetThuc);
+        }
+
+        public DataTable TableReturnFromProcedureMatHangKhongBanDuoc(DateTime NgayBatDau, DateTime NgayKetThuc)
+        {
+            return connection.TableReturnFromProcedureMatHangKhongBanDuoc(NgayBatDau, NgayKetThuc);
+        }
+
+        public DataTable TableReturnFromProcedure10MatHangBanCoDoanhSoLonNhat(DateTime NgayBatDau, DateTime NgayKetThuc)
+        {
+            return connection.TableReturnFromProcedure10MatHangBanCoDoanhSoLonNhat(NgayBatDau, NgayKetThuc);
+        }
+
+        public DataTable TableReturnFromProcedure10KhachHangMuaNhieuNhat(DateTime NgayBatDau, DateTime NgayKetThuc)
+        {
+            return connection.TableReturnFromProcedure10KhachHangMuaNhieuNhat(NgayBatDau, NgayKetThuc);
+        }
+
+        public DataTable TableReturnFromProcedure10NhanVienBanDuocNhieuHangNhat(DateTime NgayBatDau, DateTime NgayKetThuc)
+        {
+            return connection.TableReturnFromProcedure10NhanVienBanDuocNhieuHangNhat(NgayBatDau, NgayKetThuc);
+        }
+
+        public DataTable TableReturnFromProcedure10NhanVienBanDuocItHangNhat(DateTime NgayBatDau, DateTime NgayKetThuc)
+        {
+            return connection.TableReturnFromProcedure10NhanVienBanDuocItHangNhat(NgayBatDau, NgayKetThuc);
+        }
+
+        public DataTable TableReturnFromProcedure10NhanVienBanDuocNhieuTienNhat(DateTime NgayBatDau, DateTime NgayKetThuc)
+        {
+            return connection.TableReturnFromProcedure10NhanVienBanDuocNhieuTienNhat(NgayBatDau, NgayKetThuc);
+        }
+
+        public DataTable TableReturnFromProcedure10NhanVienBanDuocItTienNhat(DateTime NgayBatDau, DateTime NgayKetThuc)
+        {
+            return connection.TableReturnFromProcedure10NhanVienBanDuocNhieuTienNhat(NgayBatDau, NgayKetThuc);
+        }
+        #endregion
     }
 }

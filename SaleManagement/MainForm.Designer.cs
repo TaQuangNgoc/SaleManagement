@@ -36,6 +36,7 @@
             this.suppliersButton = new DevExpress.XtraBars.BarButtonItem();
             this.customersButton = new DevExpress.XtraBars.BarButtonItem();
             this.logoutButton = new DevExpress.XtraBars.BarButtonItem();
+            this.editAccountButton = new DevExpress.XtraBars.BarButtonItem();
             this.listingPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.listingPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.reportPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -44,7 +45,6 @@
             this.accountPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.mdiManager = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
-            this.editAccountButton = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mdiManager)).BeginInit();
             this.SuspendLayout();
@@ -116,6 +116,16 @@
             this.logoutButton.Name = "logoutButton";
             this.logoutButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.logoutButton_ItemClick);
             // 
+            // editAccountButton
+            // 
+            this.editAccountButton.Caption = "EDIT INFO";
+            this.editAccountButton.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
+            this.editAccountButton.Glyph = ((System.Drawing.Image)(resources.GetObject("editAccountButton.Glyph")));
+            this.editAccountButton.Id = 10;
+            this.editAccountButton.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("editAccountButton.LargeGlyph")));
+            this.editAccountButton.Name = "editAccountButton";
+            this.editAccountButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.editAccountButton_ItemClick);
+            // 
             // listingPage
             // 
             this.listingPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -167,16 +177,6 @@
             // mdiManager
             // 
             this.mdiManager.MdiParent = this;
-            // 
-            // editAccountButton
-            // 
-            this.editAccountButton.Caption = "EDIT INFO";
-            this.editAccountButton.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
-            this.editAccountButton.Glyph = ((System.Drawing.Image)(resources.GetObject("editAccountButton.Glyph")));
-            this.editAccountButton.Id = 10;
-            this.editAccountButton.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("editAccountButton.LargeGlyph")));
-            this.editAccountButton.Name = "editAccountButton";
-            this.editAccountButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.editAccountButton_ItemClick);
             // 
             // MainForm
             // 

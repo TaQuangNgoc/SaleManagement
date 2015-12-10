@@ -124,6 +124,102 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Report\10FastestProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\10FastestProducts.Designer.cs">
+      <DependentUpon>10FastestProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\BottomSaler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\BottomSaler.Designer.cs">
+      <DependentUpon>BottomSaler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\CustomersStatistics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\CustomersStatistics.Designer.cs">
+      <DependentUpon>CustomersStatistics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\EmployeeStatistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\EmployeeStatistic.Designer.cs">
+      <DependentUpon>EmployeeStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\EmployeeStatisticSaleDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\EmployeeStatisticSaleDetail.Designer.cs">
+      <DependentUpon>EmployeeStatisticSaleDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\EmployeeStatisticsDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\EmployeeStatisticsDetail.Designer.cs">
+      <DependentUpon>EmployeeStatisticsDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\EmployeeStatisticsSale.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\EmployeeStatisticsSale.Designer.cs">
+      <DependentUpon>EmployeeStatisticsSale.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\MaxCustomers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\MaxCustomers.Designer.cs">
+      <DependentUpon>MaxCustomers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\MaxEmployeeByNumber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\MaxEmployeeByNumber.Designer.cs">
+      <DependentUpon>MaxEmployeeByNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\MaxRevenue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\MaxRevenue.Designer.cs">
+      <DependentUpon>MaxRevenue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\MinEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\MinEmployee.Designer.cs">
+      <DependentUpon>MinEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\ProductsCantSale.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\ProductsCantSale.Designer.cs">
+      <DependentUpon>ProductsCantSale.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\StatisticByProductNumber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\StatisticByProductNumber.designer.cs">
+      <DependentUpon>StatisticByProductNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\StatisticPrice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\StatisticPrice.Designer.cs">
+      <DependentUpon>StatisticPrice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\StatisticsPrice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\StatisticsPrice.Designer.cs">
+      <DependentUpon>StatisticsPrice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\TopSaler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\TopSaler.Designer.cs">
+      <DependentUpon>TopSaler.cs</DependentUpon>
+    </Compile>
     <Compile Include="SuppliersForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,6 +270,54 @@
     </Compile>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\10FastestProducts.resx">
+      <DependentUpon>10FastestProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\BottomSaler.resx">
+      <DependentUpon>BottomSaler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\CustomersStatistics.resx">
+      <DependentUpon>CustomersStatistics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\EmployeeStatistic.resx">
+      <DependentUpon>EmployeeStatistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\EmployeeStatisticSaleDetail.resx">
+      <DependentUpon>EmployeeStatisticSaleDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\EmployeeStatisticsDetail.resx">
+      <DependentUpon>EmployeeStatisticsDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\EmployeeStatisticsSale.resx">
+      <DependentUpon>EmployeeStatisticsSale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\MaxCustomers.resx">
+      <DependentUpon>MaxCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\MaxEmployeeByNumber.resx">
+      <DependentUpon>MaxEmployeeByNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\MaxRevenue.resx">
+      <DependentUpon>MaxRevenue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\MinEmployee.resx">
+      <DependentUpon>MinEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ProductsCantSale.resx">
+      <DependentUpon>ProductsCantSale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\StatisticByProductNumber.resx">
+      <DependentUpon>StatisticByProductNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\StatisticPrice.resx">
+      <DependentUpon>StatisticPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\StatisticsPrice.resx">
+      <DependentUpon>StatisticsPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\TopSaler.resx">
+      <DependentUpon>TopSaler.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SuppliersForm.resx">
       <DependentUpon>SuppliersForm.cs</DependentUpon>
