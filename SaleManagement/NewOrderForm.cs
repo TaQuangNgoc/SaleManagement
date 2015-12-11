@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraGrid.Views.Base;
+using System;
 using System.Data;
 using System.Windows.Forms;
 
@@ -31,12 +32,18 @@ namespace SaleManagement
             comboBoxCustomerPhone.DataSource = dt;
             comboBoxCustomerPhone.SelectedValue = -1;
 
-           gridControl.DataSource = OrderDetailTable;
+            OrderDetailTable = new DataTable();
+            OrderDetailTable.Columns.Add("ProductID");
+            OrderDetailTable.Columns.Add("Product");
+            OrderDetailTable.Columns.Add("UnitPrice");
+            OrderDetailTable.Columns.Add("Quantity");
+            OrderDetailTable.Columns.Add("Discount");
 
-            
-            //productLookUpEdit.DataSource = dataAccess.SelectProductNames();
-            //productLookUpEdit.DisplayMember = "ProductName";
-            //productLookUpEdit.ValueMember = "ProductID";
+            gridControl.DataSource = OrderDetailTable;
+
+            productLookUpEdit.DataSource = dataAccess.SelectProductNames();
+            productLookUpEdit.DisplayMember = "ProductName";
+            productLookUpEdit.ValueMember = "ProductID";
         }
 
         private void comboBoxCustomerPhone_SelectedIndexChanged(object sender, EventArgs e)
@@ -48,6 +55,7 @@ namespace SaleManagement
                 {
                     lastNameTxt.Text = "";
                    firstNameTxt.Text = "";
+                   addressTxt.Text = "";
                     dateOfBirthDAT.Value= DateTime.Now;
                     return;
                 }
@@ -67,6 +75,14 @@ namespace SaleManagement
         private void grv_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
 
+        }
+
+        private void productLookUpEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            dataAccess = new DataAccess();
+            decimal id = (decimal)grv.GetRowCellValue(grv.FocusedRowHandle, "Product");
+            grv.SetRowCellValue(grv.FocusedRowHandle, "UnitPrice",dataAccess.SelectUnnitPrice(id));
+               
         }
             
      

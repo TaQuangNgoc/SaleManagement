@@ -146,9 +146,9 @@
             this.titleLabel.Appearance.ForeColor = System.Drawing.Color.Maroon;
             this.titleLabel.Location = new System.Drawing.Point(12, 12);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(114, 19);
+            this.titleLabel.Size = new System.Drawing.Size(137, 19);
             this.titleLabel.TabIndex = 0;
-            this.titleLabel.Text = "TOP 10 SALER";
+            this.titleLabel.Text = "TOP EMPLOYEES";
             // 
             // label1
             // 

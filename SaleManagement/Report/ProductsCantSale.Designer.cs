@@ -122,9 +122,9 @@
             this.titleLabel.Appearance.ForeColor = System.Drawing.Color.Maroon;
             this.titleLabel.Location = new System.Drawing.Point(34, 7);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(196, 19);
+            this.titleLabel.Size = new System.Drawing.Size(206, 19);
             this.titleLabel.TabIndex = 0;
-            this.titleLabel.Text = " PRODUCTS CAN\'T SALE";
+            this.titleLabel.Text = "UNSELLABLE PRODUCTS";
             // 
             // panelControl2
             // 
