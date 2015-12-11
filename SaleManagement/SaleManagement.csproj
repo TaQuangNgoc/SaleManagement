@@ -220,12 +220,6 @@
     <Compile Include="Report\StatisticPrice.Designer.cs">
       <DependentUpon>StatisticPrice.cs</DependentUpon>
     </Compile>
-    <Compile Include="Report\StatisticsPrice.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Report\StatisticsPrice.Designer.cs">
-      <DependentUpon>StatisticsPrice.cs</DependentUpon>
-    </Compile>
     <Compile Include="Report\TopSaler.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -330,9 +324,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Report\StatisticPrice.resx">
       <DependentUpon>StatisticPrice.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Report\StatisticsPrice.resx">
-      <DependentUpon>StatisticsPrice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\TopSaler.resx">
       <DependentUpon>TopSaler.cs</DependentUpon>

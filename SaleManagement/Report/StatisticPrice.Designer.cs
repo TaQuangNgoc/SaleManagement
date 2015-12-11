@@ -84,7 +84,7 @@
             this.pivotGridField2.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;
             this.pivotGridField2.AreaIndex = 0;
             this.pivotGridField2.Caption = "Price";
-            this.pivotGridField2.CellFormat.FormatString = "{c}";
+            this.pivotGridField2.CellFormat.FormatString = "c0";
             this.pivotGridField2.CellFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.pivotGridField2.FieldName = "FinalPrice";
             this.pivotGridField2.Name = "pivotGridField2";
@@ -106,6 +106,7 @@
             // 
             // ngayKetThucDTPicker
             // 
+            this.ngayKetThucDTPicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.ngayKetThucDTPicker.Location = new System.Drawing.Point(375, 9);
             this.ngayKetThucDTPicker.Name = "ngayKetThucDTPicker";
             this.ngayKetThucDTPicker.Size = new System.Drawing.Size(200, 20);
@@ -113,6 +114,7 @@
             // 
             // ngayBatDauDTPicker
             // 
+            this.ngayBatDauDTPicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.ngayBatDauDTPicker.Location = new System.Drawing.Point(95, 9);
             this.ngayBatDauDTPicker.Name = "ngayBatDauDTPicker";
             this.ngayBatDauDTPicker.Size = new System.Drawing.Size(200, 20);
@@ -124,7 +126,7 @@
             this.titlePanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.titlePanel.Location = new System.Drawing.Point(2, 2);
             this.titlePanel.Name = "titlePanel";
-            this.titlePanel.Size = new System.Drawing.Size(884, 34);
+            this.titlePanel.Size = new System.Drawing.Size(884, 40);
             this.titlePanel.TabIndex = 36;
             // 
             // titleLabel

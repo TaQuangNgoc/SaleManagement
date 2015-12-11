@@ -15,6 +15,7 @@ namespace SaleManagement.Report
         public EmployeeStatisticsSale()
         {
             InitializeComponent();
+            ngayBatDauDTPicker.Value = new DateTime(DateTime.Now.Year, 1, 1);
         }
 
         private void EmployeeStatisticsSale_Load(object sender, EventArgs e)

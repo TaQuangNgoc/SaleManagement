@@ -8,6 +8,7 @@ namespace SaleManagement.Report
         public CustomersStatistics()
         {
             InitializeComponent();
+            ngayBatDauDTPicker.Value = new DateTime(DateTime.Now.Year, 1, 1);
         }
 
         private void CustomersStatistics_Load(object sender, EventArgs e)
@@ -21,8 +22,15 @@ namespace SaleManagement.Report
             var procedureName = "[ProcedureStatistics]";
             DateTime fromDate = ngayBatDauDTPicker.Value,
                     toDate = ngayKetThucDTPicker.Value;
+            if (fromDate <= toDate)
+            {
+                pivotGridControl.DataSource = dataAccess.ExecuteProcedure(procedureName, fromDate, toDate);
+            }
+            else
+            {
+                MessageBox.Show("You have to choose fromDate is smaller than toDate!");
+            }
 
-            pivotGridControl.DataSource = dataAccess.ExecuteProcedure(procedureName, fromDate, toDate);
         }
 
         private void presentButton_Click(object sender, EventArgs e)

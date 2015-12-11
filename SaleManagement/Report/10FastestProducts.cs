@@ -8,6 +8,7 @@ namespace SaleManagement.Report
         public _10FastestProducts()
         {
             InitializeComponent();
+            ngayBatDauDTPicker.Value = new DateTime(DateTime.Now.Year, 1, 1);
         }
 
         private void LoadDataToGrid()
@@ -16,8 +17,14 @@ namespace SaleManagement.Report
             var procedureName = "[Procedure10MatHangBanChayNhatTheoSoLuong]";
             DateTime fromDate = ngayBatDauDTPicker.Value,
                     toDate = ngayKetThucDTPicker.Value;
-
-            gridControl.DataSource = dataAccess.ExecuteProcedure(procedureName, fromDate, toDate);
+            if (fromDate <= toDate)
+            {
+                gridControl.DataSource = dataAccess.ExecuteProcedure(procedureName, fromDate, toDate);
+            }
+            else
+            {
+                MessageBox.Show("You have to choose fromDate is smaller than toDate!");
+            }
         }
 
         private void _10FastestProducts_Load(object sender, EventArgs e)

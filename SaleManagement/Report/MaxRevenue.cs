@@ -15,6 +15,7 @@ namespace SaleManagement.Report
         public MaxRevenue()
         {
             InitializeComponent();
+            ngayBatDauDTPicker.Value = new DateTime(DateTime.Now.Year, 1, 1);
         }
 
         private void MaxRevenue_Load(object sender, EventArgs e)

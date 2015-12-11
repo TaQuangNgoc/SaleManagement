@@ -15,6 +15,7 @@ namespace SaleManagement.Report
         public ProductsCantSale()
         {
             InitializeComponent();
+            ngayBatDauDTPicker.Value = new DateTime(DateTime.Now.Year, 1, 1);
         }
 
         private void ProductsCantBuy_Load(object sender, EventArgs e)

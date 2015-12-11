@@ -15,6 +15,7 @@ namespace SaleManagement.Report
         public MinEmployee()
         {
             InitializeComponent();
+            ngayBatDauDTPicker.Value = new DateTime(DateTime.Now.Year, 1, 1);
         }
 
         private void MinEmployee_Load(object sender, EventArgs e)

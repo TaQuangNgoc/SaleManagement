@@ -217,6 +217,8 @@
             // gridColumn2
             // 
             this.gridColumn2.Caption = "Price";
+            this.gridColumn2.DisplayFormat.FormatString = "c";
+            this.gridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.gridColumn2.FieldName = "FinalPrice";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;

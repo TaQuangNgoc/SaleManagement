@@ -40,12 +40,12 @@
             this.mainPanel = new DevExpress.XtraEditors.PanelControl();
             this.gridControl = new DevExpress.XtraGrid.GridControl();
             this.gridView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.titlePanel = new DevExpress.XtraEditors.PanelControl();
             this.categoryNameColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.descriptionColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.titlePanel = new DevExpress.XtraEditors.PanelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
@@ -89,6 +89,7 @@
             // 
             // ngayBatDauDTPicker
             // 
+            this.ngayBatDauDTPicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.ngayBatDauDTPicker.Location = new System.Drawing.Point(103, 17);
             this.ngayBatDauDTPicker.Name = "ngayBatDauDTPicker";
             this.ngayBatDauDTPicker.Size = new System.Drawing.Size(200, 20);
@@ -109,6 +110,7 @@
             // 
             // ngayKetThucDTPicker
             // 
+            this.ngayKetThucDTPicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.ngayKetThucDTPicker.Location = new System.Drawing.Point(415, 16);
             this.ngayKetThucDTPicker.Name = "ngayKetThucDTPicker";
             this.ngayKetThucDTPicker.Size = new System.Drawing.Size(200, 20);
@@ -282,16 +284,6 @@
             this.gridView.OptionsView.ShowFooter = true;
             this.gridView.PaintStyleName = "Flat";
             // 
-            // titlePanel
-            // 
-            this.titlePanel.Controls.Add(this.panelControl2);
-            this.titlePanel.Controls.Add(this.panelControl1);
-            this.titlePanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.titlePanel.Location = new System.Drawing.Point(2, 2);
-            this.titlePanel.Name = "titlePanel";
-            this.titlePanel.Size = new System.Drawing.Size(882, 85);
-            this.titlePanel.TabIndex = 30;
-            // 
             // categoryNameColumn
             // 
             this.categoryNameColumn.Caption = "CATEGORY ";
@@ -323,7 +315,7 @@
             // gridColumn2
             // 
             this.gridColumn2.Caption = "UNIT PRICE";
-            this.gridColumn2.DisplayFormat.FormatString = "{c}";
+            this.gridColumn2.DisplayFormat.FormatString = "c";
             this.gridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.gridColumn2.FieldName = "UnitPrice";
             this.gridColumn2.Name = "gridColumn2";
@@ -338,13 +330,23 @@
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 4;
             // 
-            // ProductsCantBuy
+            // titlePanel
+            // 
+            this.titlePanel.Controls.Add(this.panelControl2);
+            this.titlePanel.Controls.Add(this.panelControl1);
+            this.titlePanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.titlePanel.Location = new System.Drawing.Point(2, 2);
+            this.titlePanel.Name = "titlePanel";
+            this.titlePanel.Size = new System.Drawing.Size(882, 85);
+            this.titlePanel.TabIndex = 30;
+            // 
+            // ProductsCantSale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(886, 349);
             this.Controls.Add(this.mainPanel);
-            this.Name = "ProductsCantBuy";
+            this.Name = "ProductsCantSale";
             this.Text = "ProductsCantBuy";
             this.Load += new System.EventHandler(this.ProductsCantBuy_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
