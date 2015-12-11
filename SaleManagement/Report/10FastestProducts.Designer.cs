@@ -288,9 +288,9 @@
             this.titleLabel.Appearance.ForeColor = System.Drawing.Color.Maroon;
             this.titleLabel.Location = new System.Drawing.Point(34, 7);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(192, 19);
+            this.titleLabel.Size = new System.Drawing.Size(203, 19);
             this.titleLabel.TabIndex = 0;
-            this.titleLabel.Text = "10 FASTEST PRODUCTS";
+            this.titleLabel.Text = "TOP SELLING PRODUCTS";
             // 
             // panelControl1
             // 
