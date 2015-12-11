@@ -10,7 +10,7 @@ namespace SaleManagement.Report
         {
             InitializeComponent();
 
-            ngayBatDauDTPicker.Value = new DateTime(DateTime.Now.Year, 1, 1);
+            ngayBatDauDTPicker.Value = new DateTime(DateTime.Now.Year, 2, 1);
         }
 
         private void LoadDataToGrid()
