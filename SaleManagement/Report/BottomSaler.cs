@@ -15,6 +15,7 @@ namespace SaleManagement.Report
         public BottomSaler()
         {
             InitializeComponent();
+            ngayBatDauDTPicker.Value = new DateTime(DateTime.Now.Year, 1, 1);
         }
 
         private void BottomSaler_Load(object sender, EventArgs e)
@@ -30,7 +31,14 @@ namespace SaleManagement.Report
 
         private void presentButton_Click(object sender, EventArgs e)
         {
-            LoadDataToGrid();
+            if (ngayBatDauDTPicker.Value <= ngayKetThucDTPicker.Value)
+            {
+                LoadDataToGrid();
+            }
+            else
+            {
+                MessageBox.Show("You have to choose fromDate is smaller than toDate!");
+            }
         }
 
         private void pivotGridControl_CellDoubleClick(object sender, DevExpress.XtraPivotGrid.PivotCellEventArgs e)
@@ -38,5 +46,6 @@ namespace SaleManagement.Report
             EmployeeStatisticSaleDetail employeeStatisticSaleDetailForm = new EmployeeStatisticSaleDetail();
             employeeStatisticSaleDetailForm.Display(e.CreateDrillDownDataSource());
         }
+
     }
 }

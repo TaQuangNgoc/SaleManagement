@@ -98,6 +98,7 @@
             // 
             // ngayBatDauDTPicker
             // 
+            this.ngayBatDauDTPicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.ngayBatDauDTPicker.Location = new System.Drawing.Point(103, 17);
             this.ngayBatDauDTPicker.Name = "ngayBatDauDTPicker";
             this.ngayBatDauDTPicker.Size = new System.Drawing.Size(200, 20);
@@ -105,6 +106,7 @@
             // 
             // ngayKetThucDTPicker
             // 
+            this.ngayKetThucDTPicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.ngayKetThucDTPicker.Location = new System.Drawing.Point(415, 16);
             this.ngayKetThucDTPicker.Name = "ngayKetThucDTPicker";
             this.ngayKetThucDTPicker.Size = new System.Drawing.Size(200, 20);

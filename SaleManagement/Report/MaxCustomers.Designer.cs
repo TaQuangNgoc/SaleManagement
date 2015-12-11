@@ -59,8 +59,8 @@
             // 
             // gridColumn2
             // 
-            this.gridColumn2.Caption = "Money";
-            this.gridColumn2.DisplayFormat.FormatString = "{c}";
+            this.gridColumn2.Caption = "MONEY";
+            this.gridColumn2.DisplayFormat.FormatString = "c";
             this.gridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.gridColumn2.FieldName = "CustomerMoney";
             this.gridColumn2.Name = "gridColumn2";
@@ -228,7 +228,7 @@
             this.gridControl.Location = new System.Drawing.Point(2, 87);
             this.gridControl.MainView = this.gridView;
             this.gridControl.Name = "gridControl";
-            this.gridControl.Size = new System.Drawing.Size(820, 173);
+            this.gridControl.Size = new System.Drawing.Size(820, 259);
             this.gridControl.TabIndex = 27;
             this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView});
@@ -240,7 +240,7 @@
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(824, 262);
+            this.mainPanel.Size = new System.Drawing.Size(824, 348);
             this.mainPanel.TabIndex = 34;
             // 
             // titlePanel
@@ -316,6 +316,7 @@
             // 
             // ngayKetThucDTPicker
             // 
+            this.ngayKetThucDTPicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.ngayKetThucDTPicker.Location = new System.Drawing.Point(415, 16);
             this.ngayKetThucDTPicker.Name = "ngayKetThucDTPicker";
             this.ngayKetThucDTPicker.Size = new System.Drawing.Size(200, 20);
@@ -323,6 +324,7 @@
             // 
             // ngayBatDauDTPicker
             // 
+            this.ngayBatDauDTPicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.ngayBatDauDTPicker.Location = new System.Drawing.Point(103, 17);
             this.ngayBatDauDTPicker.Name = "ngayBatDauDTPicker";
             this.ngayBatDauDTPicker.Size = new System.Drawing.Size(200, 20);
@@ -332,7 +334,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(824, 262);
+            this.ClientSize = new System.Drawing.Size(824, 348);
             this.Controls.Add(this.mainPanel);
             this.Name = "MaxCustomers";
             this.Text = "MaxCustomers";

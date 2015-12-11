@@ -16,6 +16,7 @@ namespace SaleManagement
         public MaxEmployeeByNumber()
         {
             InitializeComponent();
+            ngayBatDauDTPicker.Value = new DateTime(DateTime.Now.Year, 1, 1);
         }
 
         private void MaxEmployeeByNumber_Load(object sender, EventArgs e)

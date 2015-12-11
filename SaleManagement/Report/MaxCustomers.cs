@@ -15,6 +15,7 @@ namespace SaleManagement.Report
         public MaxCustomers()
         {
             InitializeComponent();
+            ngayBatDauDTPicker.Value = new DateTime(DateTime.Now.Year, 1, 1);
         }
 
         private void MaxCustomers_Load(object sender, EventArgs e)

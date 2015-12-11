@@ -15,6 +15,7 @@ namespace SaleManagement.Report
         public StatisticByProductNumber()
         {
             InitializeComponent();
+            ngayBatDauDTPicker.Value = new DateTime(DateTime.Now.Year, 1, 1);
         }
 
         private void StatisticByProductNumber_Load(object sender, EventArgs e)
