@@ -8,6 +8,7 @@ namespace SaleManagement.Report
         public _10FastestProducts()
         {
             InitializeComponent();
+
             ngayBatDauDTPicker.Value = new DateTime(DateTime.Now.Year, 1, 1);
         }
 
