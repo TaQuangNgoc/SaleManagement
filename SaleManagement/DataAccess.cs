@@ -309,8 +309,8 @@ namespace SaleManagement
         public DataTable ExecuteProcedure(string procedureName, DateTime fromDate, DateTime toDate)
         {
             var parameters = new SqlParameter[2];
-            parameters[0] = new SqlParameter("@NgayBatDau", fromDate);
-            parameters[0] = new SqlParameter("@NgayBatDau", toDate);
+            parameters[0] = new SqlParameter("@fromDate", fromDate);
+            parameters[1] = new SqlParameter("@toDate", toDate);
 
             return connection.ExecuteProcedure(procedureName, parameters);
         }
@@ -319,8 +319,8 @@ namespace SaleManagement
         {
             string procedure = "[ProcedureStatistics]";
             var parameters = new SqlParameter[2];
-            parameters[0] = new SqlParameter("@NgayBatDau", fromDate);
-            parameters[0] = new SqlParameter("@NgayBatDau", toDate);
+            parameters[0] = new SqlParameter("@fromDate", fromDate);
+            parameters[1] = new SqlParameter("@toDate", toDate);
 
             return connection.ExecuteProcedure(procedure, parameters);
         }
@@ -329,8 +329,8 @@ namespace SaleManagement
         {
             string procedure = "[Procedure10MatHangBanChayNhatTheoSoLuong]";
             var parameters = new SqlParameter[2];
-            parameters[0] = new SqlParameter("@NgayBatDau", fromDate);
-            parameters[0] = new SqlParameter("@NgayBatDau", toDate);
+            parameters[0] = new SqlParameter("@fromDate", fromDate);
+            parameters[1] = new SqlParameter("@toDate", toDate);
 
             return connection.ExecuteProcedure(procedure, parameters);
         }
@@ -339,8 +339,8 @@ namespace SaleManagement
         {
             string procedure = "[ProcedureMatHangKhongBanDuoc]";
             var parameters = new SqlParameter[2];
-            parameters[0] = new SqlParameter("@NgayBatDau", fromDate);
-            parameters[0] = new SqlParameter("@NgayBatDau", toDate);
+            parameters[0] = new SqlParameter("@fromDate", fromDate);
+            parameters[1] = new SqlParameter("@toDate", toDate);
 
             return connection.ExecuteProcedure(procedure, parameters);
         }
@@ -349,8 +349,8 @@ namespace SaleManagement
         {
             string procedure = "[Procedure10MatHangBanCoDoanhSoLonNhat]";
             var parameters = new SqlParameter[2];
-            parameters[0] = new SqlParameter("@NgayBatDau", fromDate);
-            parameters[0] = new SqlParameter("@NgayBatDau", toDate);
+            parameters[0] = new SqlParameter("@fromDate", fromDate);
+            parameters[1] = new SqlParameter("@toDate", toDate);
 
             return connection.ExecuteProcedure(procedure, parameters);
         }
@@ -359,8 +359,8 @@ namespace SaleManagement
         {
             string procedure = "[Procedure10KhachHangMuaNhieuNhat]";
             var parameters = new SqlParameter[2];
-            parameters[0] = new SqlParameter("@NgayBatDau", fromDate);
-            parameters[0] = new SqlParameter("@NgayBatDau", toDate);
+            parameters[0] = new SqlParameter("@fromDate", fromDate);
+            parameters[1] = new SqlParameter("@toDate", toDate);
 
             return connection.ExecuteProcedure(procedure, parameters);
         }
@@ -369,25 +369,40 @@ namespace SaleManagement
         {
             string procedure = "[Procedure10NhanVienBanDuocNhieuHangNhat]";
             var parameters = new SqlParameter[2];
-            parameters[0] = new SqlParameter("@NgayBatDau", fromDate);
-            parameters[0] = new SqlParameter("@NgayBatDau", toDate);
+            parameters[0] = new SqlParameter("@fromDate", fromDate);
+            parameters[1] = new SqlParameter("@toDate", toDate);
 
             return connection.ExecuteProcedure(procedure, parameters);
         }
 
-        public DataTable TableReturnFromProcedure10NhanVienBanDuocItHangNhat(DateTime NgayBatDau, DateTime NgayKetThuc)
+        public DataTable TableReturnFromProcedure10NhanVienBanDuocItHangNhat(DateTime fromDate, DateTime toDate)
         {
-            return connection.TableReturnFromProcedure10NhanVienBanDuocItHangNhat(NgayBatDau, NgayKetThuc);
+            string procedure = "[Procedure10NhanVienBanDuocItHangNhat]";
+            var parameters = new SqlParameter[2];
+            parameters[0] = new SqlParameter("@fromDate", fromDate);
+            parameters[1] = new SqlParameter("@toDate", toDate);
+
+            return connection.ExecuteProcedure(procedure, parameters);
         }
 
-        public DataTable TableReturnFromProcedure10NhanVienBanDuocNhieuTienNhat(DateTime NgayBatDau, DateTime NgayKetThuc)
+        public DataTable TableReturnFromProcedure10NhanVienBanDuocNhieuTienNhat(DateTime fromDate, DateTime toDate)
         {
-            return connection.TableReturnFromProcedure10NhanVienBanDuocNhieuTienNhat(NgayBatDau, NgayKetThuc);
+            string procedure = "[Procedure10NhanVienBanDuocNhieuTienNhat]";
+            var parameters = new SqlParameter[2];
+            parameters[0] = new SqlParameter("@fromDate", fromDate);
+            parameters[1] = new SqlParameter("@toDate", toDate);
+
+            return connection.ExecuteProcedure(procedure, parameters);
         }
 
-        public DataTable TableReturnFromProcedure10NhanVienBanDuocItTienNhat(DateTime NgayBatDau, DateTime NgayKetThuc)
+        public DataTable TableReturnFromProcedure10NhanVienBanDuocItTienNhat(DateTime fromDate, DateTime toDate)
         {
-            return connection.TableReturnFromProcedure10NhanVienBanDuocNhieuTienNhat(NgayBatDau, NgayKetThuc);
+            string procedure = "[Procedure10NhanVienBanDuocItTienNhat]";
+            var parameters = new SqlParameter[2];
+            parameters[0] = new SqlParameter("@fromDate", fromDate);
+            parameters[1] = new SqlParameter("@toDate", toDate);
+
+            return connection.ExecuteProcedure(procedure, parameters);
         }
         #endregion
     }

@@ -54,9 +54,7 @@ namespace SaleManagement
 
             if (!loginSuccess)
             {
-                Debug.Assert(!autoLoginCheckEdit.Checked);
-
-                string message = "username or password is incorrect; please check your login details.";
+                string message = "Username or password is incorrect; please check your login details.";
                 MessageBox.Show(message, "Error");
                 return;
             }

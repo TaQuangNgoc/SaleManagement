@@ -158,6 +158,7 @@
             // 
             this.accountPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.accountPageGroup});
+            this.accountPage.Image = ((System.Drawing.Image)(resources.GetObject("accountPage.Image")));
             this.accountPage.Name = "accountPage";
             this.accountPage.Text = "ACCOUNT";
             // 
