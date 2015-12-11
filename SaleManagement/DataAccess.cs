@@ -128,6 +128,13 @@ namespace SaleManagement
 
         #region Products
 
+        internal object SelectProductNames()
+        {
+            string query = "SELECT ProductID,ProductName FROM [ProductsView]";
+            var parameters = new SqlParameter[0];
+            return connection.ExecuteSelectQuery(query, parameters);
+        }
+
         public void InsertProduct(string productName, int supplierID, int categoryID, decimal unitPrice, int unitsInStock, byte[] image)
         {
             string query = "INSERT INTO [Products]" + " VALUES (" + "@productName" + ", " + "@supplierID" + ", " + "@categoryID" + "," + "@unitPrice" + "," + "@unitsInStock" + ", " + "@image" + ")";
@@ -183,6 +190,21 @@ namespace SaleManagement
             var parameters = new SqlParameter[0];
             return connection.ExecuteSelectQuery(query, parameters);
         }
+
+        public int SelectUnnitPrice(decimal productID)
+        {
+            string query = "SELECT TOP 1 UnitPrice FROM [ProductsView] WHERE [ProductID] = " + "@productID";
+            var parameters = new SqlParameter[1];
+            parameters[0] = new SqlParameter("@productID", SqlDbType.Int);
+            parameters[0].Value = productID;
+            connection.ExecuteDeleteQuery(query, parameters);
+            var table = connection.ExecuteSelectQuery(query, parameters);
+            var row = table.Rows[0];
+            int price = (int)row["UnitPrice"];
+            return price;
+        }
+
+
 
         #endregion
 
@@ -426,5 +448,7 @@ namespace SaleManagement
         }
 
         #endregion
+
+       
     }
 }
