@@ -23,7 +23,6 @@ namespace SaleManagement.Report
                     toDate = ngayKetThucDTPicker.Value;
 
             pivotGridControl.DataSource = dataAccess.ExecuteProcedure(procedureName, fromDate, toDate);
-
         }
 
         private void presentButton_Click(object sender, EventArgs e)

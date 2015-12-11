@@ -14,27 +14,20 @@ namespace SaleManagement
         private ProductsForm productsForm;
         private SuppliersForm suppliersForm;
         private CustomersForm customersForm;
-        StatisticByProductNumber statistic;
-        _10FastestProducts fastestProductsForm;
-        ProductsCantSale productCantSaleForm;
-        StatisticPrice statisticPriceForm;
-        MaxRevenue maxRevenueForm;
-        CustomersStatistics customersStatisticsForm;
-        MaxCustomers maxCustomerForm;
-        EmployeeStatistic employeeStatistics;
-        MaxEmployeeByNumber maxEmployeeForm;
-        MinEmployee minEmployeeForm;
-        EmployeeStatisticsSale employeeStatisticForm;
-        TopSaler topSalerForm;
-        BottomSaler bottomSalerForm;
 
-        public bool IsFormOpen(Form checkForm)
-        {
-            foreach (Form form in Application.OpenForms)
-                if (form.Name == checkForm.Name)
-                    return true;
-            return false;
-        }
+        private StatisticByProductNumber statistic;
+        private _10FastestProducts fastestProductsForm;
+        private ProductsCantSale productCantSaleForm;
+        private StatisticPrice statisticPriceForm;
+        private MaxRevenue maxRevenueForm;
+        private CustomersStatistics customersStatisticsForm;
+        private MaxCustomers maxCustomerForm;
+        private EmployeeStatistic employeeStatistics;
+        private MaxEmployeeByNumber maxEmployeeForm;
+        private MinEmployee minEmployeeForm;
+        private EmployeeStatisticsSale employeeStatisticForm;
+        private TopSaler topSalerForm;
+        private BottomSaler bottomSalerForm;
 
         public MainForm(string username)
         {
@@ -48,7 +41,7 @@ namespace SaleManagement
 
         private void categoriesButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (categoriesForm != null)
+            if (IsOpened(categoriesForm))
                 categoriesForm.Focus();
             else
             {
@@ -60,10 +53,8 @@ namespace SaleManagement
 
         private void productsButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (productsForm != null)
-            {
+            if (IsOpened(productsForm))
                 productsForm.Focus();
-            }
             else
             {
                 productsForm = new ProductsForm();
@@ -74,10 +65,8 @@ namespace SaleManagement
 
         private void suppliersButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (suppliersForm != null)
-            {
+            if (IsOpened(suppliersForm))
                 suppliersForm.Focus();
-            }
             else
             {
                 suppliersForm = new SuppliersForm();
@@ -88,10 +77,8 @@ namespace SaleManagement
 
         private void customersButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (customersForm != null)
-            {
+            if (IsOpened(customersForm))
                 customersForm.Focus();
-            }
             else
             {
                 customersForm = new CustomersForm();
@@ -114,184 +101,163 @@ namespace SaleManagement
 
         private void productsStatisticsNumberButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (statistic == null || !IsFormOpen(statistic))
+            if (IsOpened(statistic))
+                statistic.Focus();
+            else
             {
                 statistic = new StatisticByProductNumber();
                 statistic.MdiParent = this;
                 statistic.Show();
             }
-            else
-            {
-                statistic.Focus();
-            }
         }
 
         private void topNumberProductsButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (fastestProductsForm == null || !IsFormOpen(fastestProductsForm))
+            if (IsOpened(fastestProductsForm))
+                fastestProductsForm.Focus();
+            else
             {
                 fastestProductsForm = new _10FastestProducts();
                 fastestProductsForm.MdiParent = this;
                 fastestProductsForm.Show();
             }
-            else
-            {
-                fastestProductsForm.Focus();
-            }
         }
 
         private void productsCantSaleButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (productCantSaleForm == null || !IsFormOpen(productCantSaleForm))
+            if (IsOpened(productCantSaleForm))
+                productCantSaleForm.Focus();
+            else
             {
                 productCantSaleForm = new ProductsCantSale();
                 productCantSaleForm.MdiParent = this;
                 productCantSaleForm.Show();
             }
-            else
-            {
-                productCantSaleForm.Focus();
-            }
         }
 
         private void priceStatisticsButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (statisticPriceForm == null || !IsFormOpen(statisticPriceForm))
+            if (IsOpened(statisticPriceForm))
+                statisticPriceForm.Focus();
+            else
             {
                 statisticPriceForm = new StatisticPrice();
                 statisticPriceForm.MdiParent = this;
                 statisticPriceForm.Show();
             }
-            else
-            {
-                statisticPriceForm.Focus();
-            }
         }
 
         private void topReveueProductsButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (maxRevenueForm == null || !IsFormOpen(maxRevenueForm))
+            if (IsOpened(maxRevenueForm))
+                maxRevenueForm.Focus();
+            else
             {
                 maxRevenueForm = new MaxRevenue();
                 maxRevenueForm.MdiParent = this;
                 maxRevenueForm.Show();
             }
-            else
-            {
-                maxRevenueForm.Focus();
-            }
         }
 
         private void customerStatisticsButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (customersStatisticsForm == null || !IsFormOpen(customersStatisticsForm))
+            if (IsOpened(customersStatisticsForm))
+                maxRevenueForm.Focus();
+            else
             {
                 customersStatisticsForm = new CustomersStatistics();
                 customersStatisticsForm.MdiParent = this;
                 customersStatisticsForm.Show();
             }
-            else
-            {
-                maxRevenueForm.Focus();
-            }
         }
 
         private void topCustomersButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (maxCustomerForm == null || !IsFormOpen(maxCustomerForm))
+            if (IsOpened(maxCustomerForm))
+                maxCustomerForm.Focus();
+            else
             {
                 maxCustomerForm = new MaxCustomers();
                 maxCustomerForm.MdiParent = this;
                 maxCustomerForm.Show();
             }
-            else
-            {
-                maxCustomerForm.Focus();
-            }
         }
 
         private void employeeStatisticsButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (employeeStatistics == null || !IsFormOpen(employeeStatistics))
+            if (IsOpened(employeeStatistics))
+                maxCustomerForm.Focus();
+            else
             {
                 employeeStatistics = new EmployeeStatistic();
                 employeeStatistics.MdiParent = this;
                 employeeStatistics.Show();
             }
-            else
-            {
-                maxCustomerForm.Focus();
-            }
         }
 
         private void topEmployeeByProductsButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (maxEmployeeForm == null || !IsFormOpen(maxEmployeeForm))
+            if (IsOpened(maxEmployeeForm))
+                maxEmployeeForm.Focus();
+            else
             {
                 maxEmployeeForm = new MaxEmployeeByNumber();
                 maxEmployeeForm.MdiParent = this;
                 maxEmployeeForm.Show();
             }
-            else
-            {
-                maxEmployeeForm.Focus();
-            }
         }
 
         private void bottomEmployeesByProductsButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (minEmployeeForm == null || !IsFormOpen(minEmployeeForm))
+            if (IsOpened(minEmployeeForm))
+                minEmployeeForm.Focus();
+            else
             {
                 minEmployeeForm = new MinEmployee();
                 minEmployeeForm.MdiParent = this;
                 minEmployeeForm.Show();
             }
-            else
-            {
-                minEmployeeForm.Focus();
-            }
         }
 
         private void employeeStatisticsPriceButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (employeeStatisticForm == null || !IsFormOpen(employeeStatisticForm))
+            if (IsOpened(employeeStatisticForm))
+                employeeStatisticForm.Focus();
+            else
             {
                 employeeStatisticForm = new EmployeeStatisticsSale();
                 employeeStatisticForm.MdiParent = this;
                 employeeStatisticForm.Show();
             }
-            else
-            {
-                employeeStatisticForm.Focus();
-            }
         }
 
         private void topSalersButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (topSalerForm == null || !IsFormOpen(topSalerForm))
+            if (IsOpened(topSalerForm))
+                topSalerForm.Focus();
+            else
             {
                 topSalerForm = new TopSaler();
                 topSalerForm.MdiParent = this;
                 topSalerForm.Show();
             }
-            else
-            {
-                topSalerForm.Focus();
-            }
         }
 
         private void bottomSalersButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (bottomSalerForm == null || !IsFormOpen(bottomSalerForm))
+            if (IsOpened(bottomSalerForm))
+                bottomSalerForm.Focus();
+            else
             {
                 bottomSalerForm = new BottomSaler();
                 bottomSalerForm.MdiParent = this;
                 bottomSalerForm.Show();
             }
-            else
-            {
-                bottomSalerForm.Focus();
-            }
+        }
+
+        private bool IsOpened(Form form)
+        {
+            return form != null && form.Visible;
         }
     }
 }
