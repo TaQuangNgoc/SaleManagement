@@ -318,7 +318,6 @@
             this.Controls.Add(this.panel1);
             this.Name = "ListOrder";
             this.Text = "ListOrder";
-            this.Load += new System.EventHandler(this.ListOrder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.panel1.ResumeLayout(false);

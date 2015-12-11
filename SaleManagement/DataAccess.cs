@@ -417,12 +417,14 @@ namespace SaleManagement
         #endregion
 
         #region SelecOrder
-        internal object SelectOrder()
+
+        public DataTable SelectOrder()
         {
             string query = "SELECT * FROM [OrderView]";
             var parameters = new SqlParameter[0];
             return connection.ExecuteSelectQuery(query, parameters);
         }
+
         #endregion
     }
 }
