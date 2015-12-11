@@ -205,6 +205,16 @@ namespace SaleManagement
             connection.ExecuteInsertQuery(query, parameters);
         }
 
+        internal DataRow SelectCustomers(decimal customerID)
+        {
+            string query = "SELECT TOP 1 * FROM [Customers] WHERE [customerID] = " + "@customerID";
+            var parameters = new SqlParameter[1];
+            parameters[0] = new SqlParameter("@customerID", SqlDbType.Decimal);
+            parameters[0].Value = customerID;
+            var table = connection.ExecuteSelectQuery(query, parameters);
+            return table.Rows[0];
+        }
+
         public void UpdateCustomer(string lastName, string firstName, string address, string phone, DateTime dateOfBirth, int customerID)
         {
             string query = "UPDATE [Customers] SET [LastName] = " + "@lastName" + ", [FirstName] = " + "@firstName" + ", [Address] = " + "@address" + ", [Phone] = " + "@phone" + ", [DateOfBirth] = " + "@dateOfBirth" + " WHERE [CustomerID] = " + "@customerID";
@@ -388,6 +398,15 @@ namespace SaleManagement
         public DataTable TableReturnFromProcedure10NhanVienBanDuocItTienNhat(DateTime NgayBatDau, DateTime NgayKetThuc)
         {
             return connection.TableReturnFromProcedure10NhanVienBanDuocNhieuTienNhat(NgayBatDau, NgayKetThuc);
+        }
+        #endregion
+
+        #region SelecOrder
+        internal object SelectOrder()
+        {
+            string query = "SELECT * FROM [OrderView]";
+            var parameters = new SqlParameter[0];
+            return connection.ExecuteSelectQuery(query, parameters);
         }
         #endregion
     }

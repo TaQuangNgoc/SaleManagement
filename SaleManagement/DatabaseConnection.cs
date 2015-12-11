@@ -6,7 +6,7 @@ namespace SaleManagement
 {
     class DatabaseConnection
     {
-        private static readonly string connectionString = "Data Source=27.118.16.60\\sqlexpress;Initial Catalog=SaleManagement;User id=kstn;Password=sa";
+        private static readonly string connectionString = "Data Source=27.118.16.60;Initial Catalog=SaleManagement;User id=kstn;Password=sa";
 
         private SqlDataAdapter adapter;
         private SqlConnection connection;
