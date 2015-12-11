@@ -120,9 +120,9 @@ namespace SaleManagement
                 adapter.SelectCommand = command;
                 adapter.Fill(dataSet);
             }
-            catch (SqlException)
+            catch (SqlException v_e)
             {
-                throw;
+                throw v_e;
             }
             finally
             {
