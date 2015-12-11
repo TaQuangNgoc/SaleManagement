@@ -41,9 +41,9 @@ namespace SaleManagement
 
             gridControl.DataSource = OrderDetailTable;
 
-            productLookUpEdit.DataSource = dataAccess.SelectProductNames();
-            productLookUpEdit.DisplayMember = "ProductName";
-            productLookUpEdit.ValueMember = "ProductID";
+            //productLookUpEdit.DataSource = dataAccess.SelectProductNames();
+            //productLookUpEdit.DisplayMember = "ProductName";
+            //productLookUpEdit.ValueMember = "ProductID";
         }
 
         private void comboBoxCustomerPhone_SelectedIndexChanged(object sender, EventArgs e)
