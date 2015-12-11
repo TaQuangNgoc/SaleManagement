@@ -3,7 +3,7 @@ using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
-namespace SaleManagement.Report
+namespace SaleManagement
 {
     public partial class EmployeeStatistic : Form
     {

@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace SaleManagement.Report
@@ -15,6 +9,7 @@ namespace SaleManagement.Report
         public ProductsCantSale()
         {
             InitializeComponent();
+
             ngayBatDauDTPicker.Value = new DateTime(DateTime.Now.Year, 1, 1);
         }
 
@@ -25,15 +20,33 @@ namespace SaleManagement.Report
 
         private void LoadDataToGrid()
         {
+            DateTime fromDate = ngayBatDauDTPicker.Value,
+                    toDate = ngayKetThucDTPicker.Value;
+            var dataAccess = new DataAccess();
 
-            DataAccess da = new DataAccess();
-            gridControl.DataSource = da.TableReturnFromProcedureMatHangKhongBanDuoc(ngayBatDauDTPicker.Value, ngayKetThucDTPicker.Value);
+            try
+            {
+                gridControl.DataSource = dataAccess.TableReturnFromProcedureMatHangKhongBanDuoc(fromDate, toDate);
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("An error has occured while trying to connect to server.", "Error");
+            }
         }
 
         private void presentButton_Click(object sender, EventArgs e)
         {
+            DateTime fromDate = ngayBatDauDTPicker.Value,
+                    toDate = ngayKetThucDTPicker.Value;
+
+            bool isValid = fromDate <= toDate;
+            if (!isValid)
+            {
+                MessageBox.Show("Date range is invalid.", "Error");
+                return;
+            }
+
             LoadDataToGrid();
         }
-
     }
 }

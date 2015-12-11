@@ -1,4 +1,4 @@
-﻿namespace SaleManagement.Report
+﻿namespace SaleManagement
 {
     partial class MaxRevenue
     {

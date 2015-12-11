@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace SaleManagement.Report
@@ -14,25 +15,35 @@ namespace SaleManagement.Report
 
         private void LoadDataToGrid()
         {
-            var dataAccess = new DataAccess();
-            var procedureName = "[Procedure10MatHangBanChayNhatTheoSoLuong]";
             DateTime fromDate = ngayBatDauDTPicker.Value,
                     toDate = ngayKetThucDTPicker.Value;
-            if (fromDate <= toDate)
+            var dataAccess = new DataAccess();
+            var procedureName = "[Procedure10MatHangBanChayNhatTheoSoLuong]";
+
+            try
             {
                 gridControl.DataSource = dataAccess.ExecuteProcedure(procedureName, fromDate, toDate);
             }
-            else
+            catch (SqlException)
             {
-                MessageBox.Show("You have to choose fromDate is smaller than toDate!");
+                MessageBox.Show("An error has occured while trying to connect to server.", "Error");
             }
         }
 
         private void _10FastestProducts_Load(object sender, EventArgs e)
         {
+            DateTime fromDate = ngayBatDauDTPicker.Value,
+                    toDate = ngayKetThucDTPicker.Value;
+
+            bool isValid = fromDate <= toDate;
+            if (!isValid)
+            {
+                MessageBox.Show("Date range is invalid.", "Error");
+                return;
+            }
+
             LoadDataToGrid();
         }
-
 
         private void presentButton_Click(object sender, EventArgs e)
         {
