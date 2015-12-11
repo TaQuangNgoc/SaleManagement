@@ -45,6 +45,22 @@
             this.accountPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.mdiManager = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
+            this.productsStatisticsNumberButton = new DevExpress.XtraBars.BarButtonItem();
+            this.topNumberProductsButton = new DevExpress.XtraBars.BarButtonItem();
+            this.productsCantSaleButton = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.priceStatisticsButton = new DevExpress.XtraBars.BarButtonItem();
+            this.topReveueProductsButton = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.customerStatisticsButton = new DevExpress.XtraBars.BarButtonItem();
+            this.topCustomersButton = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.employeeStatisticsButton = new DevExpress.XtraBars.BarButtonItem();
+            this.topEmployeeByProductsButton = new DevExpress.XtraBars.BarButtonItem();
+            this.bottomEmployeesByProductsButton = new DevExpress.XtraBars.BarButtonItem();
+            this.employeeStatisticsPriceButton = new DevExpress.XtraBars.BarButtonItem();
+            this.topSalersButton = new DevExpress.XtraBars.BarButtonItem();
+            this.bottomSalersButton = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mdiManager)).BeginInit();
             this.SuspendLayout();
@@ -59,15 +75,28 @@
             this.suppliersButton,
             this.customersButton,
             this.logoutButton,
-            this.editAccountButton});
+            this.editAccountButton,
+            this.productsStatisticsNumberButton,
+            this.topNumberProductsButton,
+            this.productsCantSaleButton,
+            this.priceStatisticsButton,
+            this.topReveueProductsButton,
+            this.customerStatisticsButton,
+            this.topCustomersButton,
+            this.employeeStatisticsButton,
+            this.topEmployeeByProductsButton,
+            this.bottomEmployeesByProductsButton,
+            this.employeeStatisticsPriceButton,
+            this.topSalersButton,
+            this.bottomSalersButton});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 11;
+            this.ribbonControl.MaxItemId = 24;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.listingPage,
             this.reportPage,
             this.accountPage});
-            this.ribbonControl.Size = new System.Drawing.Size(993, 163);
+            this.ribbonControl.Size = new System.Drawing.Size(1180, 163);
             this.ribbonControl.StatusBar = this.ribbonStatusBar;
             // 
             // categoriesButton
@@ -145,14 +174,21 @@
             // reportPage
             // 
             this.reportPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.reportPageGroup});
+            this.reportPageGroup,
+            this.ribbonPageGroup1,
+            this.ribbonPageGroup2,
+            this.ribbonPageGroup3});
             this.reportPage.Image = ((System.Drawing.Image)(resources.GetObject("reportPage.Image")));
             this.reportPage.Name = "reportPage";
             this.reportPage.Text = "REPORT";
             // 
             // reportPageGroup
             // 
+            this.reportPageGroup.ItemLinks.Add(this.productsStatisticsNumberButton);
+            this.reportPageGroup.ItemLinks.Add(this.topNumberProductsButton);
+            this.reportPageGroup.ItemLinks.Add(this.productsCantSaleButton);
             this.reportPageGroup.Name = "reportPageGroup";
+            this.reportPageGroup.Text = "PRODUCT STATISTICS";
             // 
             // accountPage
             // 
@@ -173,17 +209,159 @@
             this.ribbonStatusBar.Location = new System.Drawing.Point(0, 418);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbonControl;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(993, 31);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1180, 31);
             // 
             // mdiManager
             // 
             this.mdiManager.MdiParent = this;
             // 
+            // productsStatisticsNumberButton
+            // 
+            this.productsStatisticsNumberButton.Caption = "PRODUCTS STATISTICS NUMBER";
+            this.productsStatisticsNumberButton.Glyph = ((System.Drawing.Image)(resources.GetObject("productsStatisticsNumberButton.Glyph")));
+            this.productsStatisticsNumberButton.Id = 11;
+            this.productsStatisticsNumberButton.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("productsStatisticsNumberButton.LargeGlyph")));
+            this.productsStatisticsNumberButton.Name = "productsStatisticsNumberButton";
+            this.productsStatisticsNumberButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.productsStatisticsNumberButton_ItemClick);
+            // 
+            // topNumberProductsButton
+            // 
+            this.topNumberProductsButton.Caption = "TOP NUMBER PRODUCTS";
+            this.topNumberProductsButton.Glyph = ((System.Drawing.Image)(resources.GetObject("topNumberProductsButton.Glyph")));
+            this.topNumberProductsButton.Id = 12;
+            this.topNumberProductsButton.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("topNumberProductsButton.LargeGlyph")));
+            this.topNumberProductsButton.Name = "topNumberProductsButton";
+            this.topNumberProductsButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.topNumberProductsButton_ItemClick);
+            // 
+            // productsCantSaleButton
+            // 
+            this.productsCantSaleButton.Caption = "PRODUCTS CAN\'T SALE";
+            this.productsCantSaleButton.Glyph = ((System.Drawing.Image)(resources.GetObject("productsCantSaleButton.Glyph")));
+            this.productsCantSaleButton.Id = 13;
+            this.productsCantSaleButton.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("productsCantSaleButton.LargeGlyph")));
+            this.productsCantSaleButton.Name = "productsCantSaleButton";
+            this.productsCantSaleButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.productsCantSaleButton_ItemClick);
+            // 
+            // ribbonPageGroup1
+            // 
+            this.ribbonPageGroup1.ItemLinks.Add(this.priceStatisticsButton);
+            this.ribbonPageGroup1.ItemLinks.Add(this.topReveueProductsButton);
+            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
+            this.ribbonPageGroup1.Text = "PRICE STATISTICS";
+            // 
+            // priceStatisticsButton
+            // 
+            this.priceStatisticsButton.Caption = "PRICE STATISTICS";
+            this.priceStatisticsButton.Glyph = ((System.Drawing.Image)(resources.GetObject("priceStatisticsButton.Glyph")));
+            this.priceStatisticsButton.Id = 14;
+            this.priceStatisticsButton.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("priceStatisticsButton.LargeGlyph")));
+            this.priceStatisticsButton.Name = "priceStatisticsButton";
+            this.priceStatisticsButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.priceStatisticsButton_ItemClick);
+            // 
+            // topReveueProductsButton
+            // 
+            this.topReveueProductsButton.Caption = "TOP REVENUE PRODUCTS";
+            this.topReveueProductsButton.Glyph = ((System.Drawing.Image)(resources.GetObject("topReveueProductsButton.Glyph")));
+            this.topReveueProductsButton.Id = 15;
+            this.topReveueProductsButton.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("topReveueProductsButton.LargeGlyph")));
+            this.topReveueProductsButton.Name = "topReveueProductsButton";
+            this.topReveueProductsButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.topReveueProductsButton_ItemClick);
+            // 
+            // ribbonPageGroup2
+            // 
+            this.ribbonPageGroup2.ItemLinks.Add(this.customerStatisticsButton);
+            this.ribbonPageGroup2.ItemLinks.Add(this.topCustomersButton);
+            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
+            this.ribbonPageGroup2.Text = "CUSTOMER STATISTICS";
+            // 
+            // customerStatisticsButton
+            // 
+            this.customerStatisticsButton.Caption = "CUSTOMER STATISTICS";
+            this.customerStatisticsButton.Glyph = ((System.Drawing.Image)(resources.GetObject("customerStatisticsButton.Glyph")));
+            this.customerStatisticsButton.Id = 16;
+            this.customerStatisticsButton.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("customerStatisticsButton.LargeGlyph")));
+            this.customerStatisticsButton.Name = "customerStatisticsButton";
+            this.customerStatisticsButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.customerStatisticsButton_ItemClick);
+            // 
+            // topCustomersButton
+            // 
+            this.topCustomersButton.Caption = "TOP CUSTOMERS";
+            this.topCustomersButton.Glyph = ((System.Drawing.Image)(resources.GetObject("topCustomersButton.Glyph")));
+            this.topCustomersButton.Id = 17;
+            this.topCustomersButton.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("topCustomersButton.LargeGlyph")));
+            this.topCustomersButton.Name = "topCustomersButton";
+            this.topCustomersButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.topCustomersButton_ItemClick);
+            // 
+            // ribbonPageGroup3
+            // 
+            this.ribbonPageGroup3.ItemLinks.Add(this.employeeStatisticsButton);
+            this.ribbonPageGroup3.ItemLinks.Add(this.topEmployeeByProductsButton);
+            this.ribbonPageGroup3.ItemLinks.Add(this.bottomEmployeesByProductsButton);
+            this.ribbonPageGroup3.ItemLinks.Add(this.employeeStatisticsPriceButton);
+            this.ribbonPageGroup3.ItemLinks.Add(this.topSalersButton);
+            this.ribbonPageGroup3.ItemLinks.Add(this.bottomSalersButton);
+            this.ribbonPageGroup3.Name = "ribbonPageGroup3";
+            this.ribbonPageGroup3.Text = "EMPLOYEE STATISTICS";
+            // 
+            // employeeStatisticsButton
+            // 
+            this.employeeStatisticsButton.Caption = "EMPLOYEE STATISTICS";
+            this.employeeStatisticsButton.Glyph = ((System.Drawing.Image)(resources.GetObject("employeeStatisticsButton.Glyph")));
+            this.employeeStatisticsButton.Id = 18;
+            this.employeeStatisticsButton.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("employeeStatisticsButton.LargeGlyph")));
+            this.employeeStatisticsButton.Name = "employeeStatisticsButton";
+            this.employeeStatisticsButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.employeeStatisticsButton_ItemClick);
+            // 
+            // topEmployeeByProductsButton
+            // 
+            this.topEmployeeByProductsButton.Caption = "TOP EMPLOYEES BY PRODUCTS";
+            this.topEmployeeByProductsButton.Glyph = ((System.Drawing.Image)(resources.GetObject("topEmployeeByProductsButton.Glyph")));
+            this.topEmployeeByProductsButton.Id = 19;
+            this.topEmployeeByProductsButton.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("topEmployeeByProductsButton.LargeGlyph")));
+            this.topEmployeeByProductsButton.Name = "topEmployeeByProductsButton";
+            this.topEmployeeByProductsButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.topEmployeeByProductsButton_ItemClick);
+            // 
+            // bottomEmployeesByProductsButton
+            // 
+            this.bottomEmployeesByProductsButton.Caption = "BOTTOM EMPLOYEES BY PRODUCTS";
+            this.bottomEmployeesByProductsButton.Glyph = ((System.Drawing.Image)(resources.GetObject("bottomEmployeesByProductsButton.Glyph")));
+            this.bottomEmployeesByProductsButton.Id = 20;
+            this.bottomEmployeesByProductsButton.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bottomEmployeesByProductsButton.LargeGlyph")));
+            this.bottomEmployeesByProductsButton.Name = "bottomEmployeesByProductsButton";
+            this.bottomEmployeesByProductsButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bottomEmployeesByProductsButton_ItemClick);
+            // 
+            // employeeStatisticsPriceButton
+            // 
+            this.employeeStatisticsPriceButton.Caption = "EMPLOYEE STATISTICS PRICE";
+            this.employeeStatisticsPriceButton.Glyph = ((System.Drawing.Image)(resources.GetObject("employeeStatisticsPriceButton.Glyph")));
+            this.employeeStatisticsPriceButton.Id = 21;
+            this.employeeStatisticsPriceButton.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("employeeStatisticsPriceButton.LargeGlyph")));
+            this.employeeStatisticsPriceButton.Name = "employeeStatisticsPriceButton";
+            this.employeeStatisticsPriceButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.employeeStatisticsPriceButton_ItemClick);
+            // 
+            // topSalersButton
+            // 
+            this.topSalersButton.Caption = "TOP SALERS";
+            this.topSalersButton.Glyph = ((System.Drawing.Image)(resources.GetObject("topSalersButton.Glyph")));
+            this.topSalersButton.Id = 22;
+            this.topSalersButton.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("topSalersButton.LargeGlyph")));
+            this.topSalersButton.Name = "topSalersButton";
+            this.topSalersButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.topSalersButton_ItemClick);
+            // 
+            // bottomSalersButton
+            // 
+            this.bottomSalersButton.Caption = "BOTTOM SALERS";
+            this.bottomSalersButton.Glyph = ((System.Drawing.Image)(resources.GetObject("bottomSalersButton.Glyph")));
+            this.bottomSalersButton.Id = 23;
+            this.bottomSalersButton.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("bottomSalersButton.LargeGlyph")));
+            this.bottomSalersButton.Name = "bottomSalersButton";
+            this.bottomSalersButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bottomSalersButton_ItemClick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(993, 449);
+            this.ClientSize = new System.Drawing.Size(1180, 449);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbonControl);
             this.IsMdiContainer = true;
@@ -207,7 +385,6 @@
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;
         private DevExpress.XtraTabbedMdi.XtraTabbedMdiManager mdiManager;
         private DevExpress.XtraBars.Ribbon.RibbonPage reportPage;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup reportPageGroup;
         private DevExpress.XtraBars.BarButtonItem categoriesButton;
         private DevExpress.XtraBars.BarButtonItem productsButton;
         private DevExpress.XtraBars.BarButtonItem suppliersButton;
@@ -216,5 +393,22 @@
         private DevExpress.XtraBars.Ribbon.RibbonPage accountPage;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup accountPageGroup;
         private DevExpress.XtraBars.BarButtonItem editAccountButton;
+        private DevExpress.XtraBars.BarButtonItem productsStatisticsNumberButton;
+        private DevExpress.XtraBars.BarButtonItem topNumberProductsButton;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup reportPageGroup;
+        private DevExpress.XtraBars.BarButtonItem productsCantSaleButton;
+        private DevExpress.XtraBars.BarButtonItem priceStatisticsButton;
+        private DevExpress.XtraBars.BarButtonItem topReveueProductsButton;
+        private DevExpress.XtraBars.BarButtonItem customerStatisticsButton;
+        private DevExpress.XtraBars.BarButtonItem topCustomersButton;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
+        private DevExpress.XtraBars.BarButtonItem employeeStatisticsButton;
+        private DevExpress.XtraBars.BarButtonItem topEmployeeByProductsButton;
+        private DevExpress.XtraBars.BarButtonItem bottomEmployeesByProductsButton;
+        private DevExpress.XtraBars.BarButtonItem employeeStatisticsPriceButton;
+        private DevExpress.XtraBars.BarButtonItem topSalersButton;
+        private DevExpress.XtraBars.BarButtonItem bottomSalersButton;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
     }
 }
